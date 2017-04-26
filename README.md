@@ -1,2 +1,1 @@
-# ooAgdaHtml
-Html pages for ooAgda
+Readme FSCD
