@@ -1,0 +1,1939 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+><head
+  ><title
+    >src.heap.library</title
+    ><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
+     /><meta http-equiv="Content-Style-Type" content="text/css"
+     /><link href="Agda.css" rel="stylesheet" type="text/css"
+     /></head
+  ><body
+  ><pre
+    ><a name="1" class="Keyword"
+      >module</a
+      ><a name="7"
+      > </a
+      ><a name="8" href="src.heap.library.html#1" class="Module"
+      >src.heap.library</a
+      ><a name="24"
+      > </a
+      ><a name="25" class="Keyword"
+      >where</a
+      ><a name="30"
+      >
+
+
+</a
+      ><a name="33" class="Keyword"
+      >open</a
+      ><a name="37"
+      > </a
+      ><a name="38" class="Keyword"
+      >import</a
+      ><a name="44"
+      > </a
+      ><a name="45" href="Relation.Nullary.html#1" class="Module"
+      >Relation.Nullary</a
+      ><a name="61"
+      >
+</a
+      ><a name="62" class="Keyword"
+      >open</a
+      ><a name="66"
+      > </a
+      ><a name="67" class="Keyword"
+      >import</a
+      ><a name="73"
+      > </a
+      ><a name="74" href="Data.Nat.html#1" class="Module"
+      >Data.Nat</a
+      ><a name="82"
+      > </a
+      ><a name="83" class="Keyword"
+      >hiding</a
+      ><a name="89"
+      > </a
+      ><a name="90" class="Symbol"
+      >(</a
+      ><a name="91" href="Data.Nat.Base.html#3212" class="Function Operator"
+      >_&#8799;_</a
+      ><a name="94" class="Symbol"
+      >)</a
+      ><a name="95"
+      > </a
+      ><a name="96" class="Keyword"
+      >renaming</a
+      ><a name="104"
+      > </a
+      ><a name="105" class="Symbol"
+      >(</a
+      ><a name="106" href="Data.Nat.Base.html#2726" class="Function Operator"
+      >_&#8852;_</a
+      ><a name="109"
+      > </a
+      ><a name="110" class="Symbol"
+      >to</a
+      ><a name="112"
+      > </a
+      ><a name="113" href="Data.Nat.Base.html#2726" class="Function Operator"
+      >_&#8852;n_</a
+      ><a name="117" class="Symbol"
+      >)</a
+      ><a name="118"
+      >
+</a
+      ><a name="119" class="Keyword"
+      >open</a
+      ><a name="123"
+      > </a
+      ><a name="124" class="Keyword"
+      >import</a
+      ><a name="130"
+      > </a
+      ><a name="131" href="Relation.Binary.Core.html#1" class="Module"
+      >Relation.Binary.Core</a
+      ><a name="151"
+      >
+
+</a
+      ><a name="153" class="Keyword"
+      >open</a
+      ><a name="157"
+      > </a
+      ><a name="158" class="Keyword"
+      >import</a
+      ><a name="164"
+      > </a
+      ><a name="165" href="Data.Fin.html#1" class="Module"
+      >Data.Fin</a
+      ><a name="173"
+      > </a
+      ><a name="174" class="Keyword"
+      >hiding</a
+      ><a name="180"
+      > </a
+      ><a name="181" class="Symbol"
+      >(</a
+      ><a name="182" href="Data.Fin.html#3657" class="Function"
+      >lift</a
+      ><a name="186" class="Symbol"
+      >)</a
+      ><a name="187"
+      >
+</a
+      ><a name="188" class="Keyword"
+      >open</a
+      ><a name="192"
+      > </a
+      ><a name="193" class="Keyword"
+      >import</a
+      ><a name="199"
+      > </a
+      ><a name="200" href="Data.Empty.html#1" class="Module"
+      >Data.Empty</a
+      ><a name="210"
+      >
+</a
+      ><a name="211" class="Keyword"
+      >open</a
+      ><a name="215"
+      > </a
+      ><a name="216" class="Keyword"
+      >import</a
+      ><a name="222"
+      > </a
+      ><a name="223" href="Data.Unit.html#1" class="Module"
+      >Data.Unit</a
+      ><a name="232"
+      >
+</a
+      ><a name="233" class="Keyword"
+      >open</a
+      ><a name="237"
+      > </a
+      ><a name="238" class="Keyword"
+      >import</a
+      ><a name="244"
+      > </a
+      ><a name="245" href="Data.Maybe.Base.html#1" class="Module"
+      >Data.Maybe.Base</a
+      ><a name="260"
+      >
+</a
+      ><a name="261" class="Keyword"
+      >open</a
+      ><a name="265"
+      > </a
+      ><a name="266" class="Keyword"
+      >import</a
+      ><a name="272"
+      > </a
+      ><a name="273" href="Data.Product.html#1" class="Module"
+      >Data.Product</a
+      ><a name="285"
+      > </a
+      ><a name="286" class="Keyword"
+      >renaming</a
+      ><a name="294"
+      > </a
+      ><a name="295" class="Symbol"
+      >(</a
+      ><a name="296" href="Data.Product.html#525" class="Field"
+      >proj&#8321;</a
+      ><a name="301"
+      > </a
+      ><a name="302" class="Symbol"
+      >to</a
+      ><a name="304"
+      > </a
+      ><a name="305" href="Data.Product.html#525" class="Field"
+      >pr&#8321;</a
+      ><a name="308" class="Symbol"
+      >;</a
+      ><a name="309"
+      > </a
+      ><a name="310" href="Data.Product.html#539" class="Field"
+      >proj&#8322;</a
+      ><a name="315"
+      > </a
+      ><a name="316" class="Symbol"
+      >to</a
+      ><a name="318"
+      > </a
+      ><a name="319" href="Data.Product.html#539" class="Field"
+      >pr&#8322;</a
+      ><a name="322" class="Symbol"
+      >)</a
+      ><a name="323"
+      > </a
+      ><a name="324" class="Keyword"
+      >hiding</a
+      ><a name="330"
+      > </a
+      ><a name="331" class="Symbol"
+      >(</a
+      ><a name="332" href="Data.Product.html#1295" class="Function Operator"
+      >_&#215;_</a
+      ><a name="335" class="Symbol"
+      >)</a
+      ><a name="336"
+      >
+</a
+      ><a name="337" class="Keyword"
+      >open</a
+      ><a name="341"
+      > </a
+      ><a name="342" class="Keyword"
+      >import</a
+      ><a name="348"
+      > </a
+      ><a name="349" href="Level.html#1" class="Module"
+      >Level</a
+      ><a name="354"
+      > </a
+      ><a name="355" class="Keyword"
+      >renaming</a
+      ><a name="363"
+      > </a
+      ><a name="364" class="Symbol"
+      >(</a
+      ><a name="365" href="Agda.Primitive.html#611" class="Primitive"
+      >zero</a
+      ><a name="369"
+      > </a
+      ><a name="370" class="Symbol"
+      >to</a
+      ><a name="372"
+      > </a
+      ><a name="373" href="Agda.Primitive.html#611" class="Primitive"
+      >lzero</a
+      ><a name="378" class="Symbol"
+      >;</a
+      ><a name="379"
+      > </a
+      ><a name="380" href="Agda.Primitive.html#627" class="Primitive"
+      >suc</a
+      ><a name="383"
+      > </a
+      ><a name="384" class="Symbol"
+      >to</a
+      ><a name="386"
+      > </a
+      ><a name="387" href="Agda.Primitive.html#627" class="Primitive"
+      >lsuc</a
+      ><a name="391" class="Symbol"
+      >)</a
+      ><a name="392"
+      > </a
+      ><a name="393" class="Keyword"
+      >hiding</a
+      ><a name="399"
+      > </a
+      ><a name="400" class="Symbol"
+      >(</a
+      ><a name="401" href="Level.html#407" class="InductiveConstructor"
+      >lift</a
+      ><a name="405" class="Symbol"
+      >)</a
+      ><a name="406"
+      >
+
+
+</a
+      ><a name="409" class="Comment"
+      >--postulate TODO : &#8704; {a} {A : Set a} &#8594; A</a
+      ><a name="449"
+      >
+
+</a
+      ><a name="451" href="src.heap.library.html#451" class="Function"
+      >isNull</a
+      ><a name="457"
+      > </a
+      ><a name="458" class="Symbol"
+      >:</a
+      ><a name="459"
+      > </a
+      ><a name="460" class="Symbol"
+      >&#8704;</a
+      ><a name="461"
+      > </a
+      ><a name="462" class="Symbol"
+      >{</a
+      ><a name="463" href="src.heap.library.html#463" class="Bound"
+      >a</a
+      ><a name="464" class="Symbol"
+      >}</a
+      ><a name="465"
+      > </a
+      ><a name="466" class="Symbol"
+      >{</a
+      ><a name="467" href="src.heap.library.html#467" class="Bound"
+      >A</a
+      ><a name="468"
+      > </a
+      ><a name="469" class="Symbol"
+      >:</a
+      ><a name="470"
+      > </a
+      ><a name="471" class="PrimitiveType"
+      >Set</a
+      ><a name="474"
+      > </a
+      ><a name="475" href="src.heap.library.html#463" class="Bound"
+      >a</a
+      ><a name="476" class="Symbol"
+      >}</a
+      ><a name="477"
+      > </a
+      ><a name="478" class="Symbol"
+      >&#8594;</a
+      ><a name="479"
+      > </a
+      ><a name="480" href="Data.Maybe.Base.html#335" class="Datatype"
+      >Maybe</a
+      ><a name="485"
+      > </a
+      ><a name="486" href="src.heap.library.html#467" class="Bound"
+      >A</a
+      ><a name="487"
+      > </a
+      ><a name="488" class="Symbol"
+      >&#8594;</a
+      ><a name="489"
+      > </a
+      ><a name="490" class="PrimitiveType"
+      >Set</a
+      ><a name="493"
+      >
+</a
+      ><a name="494" href="src.heap.library.html#451" class="Function"
+      >isNull</a
+      ><a name="500"
+      > </a
+      ><a name="501" class="Symbol"
+      >(</a
+      ><a name="502" href="Data.Maybe.Base.html#373" class="InductiveConstructor"
+      >just</a
+      ><a name="506"
+      > </a
+      ><a name="507" class="Symbol"
+      >_)</a
+      ><a name="509"
+      > </a
+      ><a name="510" class="Symbol"
+      >=</a
+      ><a name="511"
+      > </a
+      ><a name="512" href="Data.Empty.html#243" class="Datatype"
+      >&#8869;</a
+      ><a name="513"
+      >
+</a
+      ><a name="514" href="src.heap.library.html#451" class="Function"
+      >isNull</a
+      ><a name="520"
+      > </a
+      ><a name="521" href="Data.Maybe.Base.html#403" class="InductiveConstructor"
+      >nothing</a
+      ><a name="528"
+      > </a
+      ><a name="529" class="Symbol"
+      >=</a
+      ><a name="530"
+      > </a
+      ><a name="531" href="Agda.Builtin.Unit.html#69" class="Record"
+      >&#8868;</a
+      ><a name="532"
+      >
+
+</a
+      ><a name="534" href="src.heap.library.html#534" class="Function"
+      >inj</a
+      ><a name="537"
+      > </a
+      ><a name="538" class="Symbol"
+      >:</a
+      ><a name="539"
+      > </a
+      ><a name="540" class="Symbol"
+      >&#8704;</a
+      ><a name="541"
+      > </a
+      ><a name="542" class="Symbol"
+      >{</a
+      ><a name="543" href="src.heap.library.html#543" class="Bound"
+      >a</a
+      ><a name="544"
+      > </a
+      ><a name="545" href="src.heap.library.html#545" class="Bound"
+      >b</a
+      ><a name="546" class="Symbol"
+      >}</a
+      ><a name="547"
+      > </a
+      ><a name="548" class="Symbol"
+      >{</a
+      ><a name="549" href="src.heap.library.html#549" class="Bound"
+      >A</a
+      ><a name="550"
+      > </a
+      ><a name="551" class="Symbol"
+      >:</a
+      ><a name="552"
+      > </a
+      ><a name="553" class="PrimitiveType"
+      >Set</a
+      ><a name="556"
+      > </a
+      ><a name="557" href="src.heap.library.html#543" class="Bound"
+      >a</a
+      ><a name="558" class="Symbol"
+      >}</a
+      ><a name="559"
+      > </a
+      ><a name="560" class="Symbol"
+      >{</a
+      ><a name="561" href="src.heap.library.html#561" class="Bound"
+      >B</a
+      ><a name="562"
+      > </a
+      ><a name="563" class="Symbol"
+      >:</a
+      ><a name="564"
+      > </a
+      ><a name="565" href="src.heap.library.html#549" class="Bound"
+      >A</a
+      ><a name="566"
+      > </a
+      ><a name="567" class="Symbol"
+      >&#8594;</a
+      ><a name="568"
+      > </a
+      ><a name="569" class="PrimitiveType"
+      >Set</a
+      ><a name="572"
+      > </a
+      ><a name="573" href="src.heap.library.html#545" class="Bound"
+      >b</a
+      ><a name="574" class="Symbol"
+      >}</a
+      ><a name="575"
+      > </a
+      ><a name="576" class="Symbol"
+      >{</a
+      ><a name="577" href="src.heap.library.html#577" class="Bound"
+      >a'</a
+      ><a name="579"
+      > </a
+      ><a name="580" class="Symbol"
+      >:</a
+      ><a name="581"
+      > </a
+      ><a name="582" href="src.heap.library.html#549" class="Bound"
+      >A</a
+      ><a name="583" class="Symbol"
+      >}</a
+      ><a name="584"
+      > </a
+      ><a name="585" class="Symbol"
+      >(</a
+      ><a name="586" href="src.heap.library.html#586" class="Bound"
+      >b'</a
+      ><a name="588"
+      > </a
+      ><a name="589" class="Symbol"
+      >:</a
+      ><a name="590"
+      > </a
+      ><a name="591" href="src.heap.library.html#561" class="Bound"
+      >B</a
+      ><a name="592"
+      > </a
+      ><a name="593" href="src.heap.library.html#577" class="Bound"
+      >a'</a
+      ><a name="595" class="Symbol"
+      >)</a
+      ><a name="596"
+      > </a
+      ><a name="597" class="Symbol"
+      >&#8594;</a
+      ><a name="598"
+      > </a
+      ><a name="599" href="Data.Product.html#439" class="Record"
+      >&#931;</a
+      ><a name="600"
+      > </a
+      ><a name="601" href="src.heap.library.html#549" class="Bound"
+      >A</a
+      ><a name="602"
+      > </a
+      ><a name="603" href="src.heap.library.html#561" class="Bound"
+      >B</a
+      ><a name="604"
+      >
+</a
+      ><a name="605" href="src.heap.library.html#534" class="Function"
+      >inj</a
+      ><a name="608" class="Symbol"
+      >{</a
+      ><a name="609" class="Argument"
+      >a'</a
+      ><a name="611"
+      > </a
+      ><a name="612" class="Symbol"
+      >=</a
+      ><a name="613"
+      > </a
+      ><a name="614" href="src.heap.library.html#614" class="Bound"
+      >a'</a
+      ><a name="616" class="Symbol"
+      >}</a
+      ><a name="617"
+      > </a
+      ><a name="618" href="src.heap.library.html#618" class="Bound"
+      >b'</a
+      ><a name="620"
+      > </a
+      ><a name="621" class="Symbol"
+      >=</a
+      ><a name="622"
+      > </a
+      ><a name="623" href="src.heap.library.html#614" class="Bound"
+      >a'</a
+      ><a name="625"
+      > </a
+      ><a name="626" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="627"
+      > </a
+      ><a name="628" href="src.heap.library.html#618" class="Bound"
+      >b'</a
+      ><a name="630"
+      >
+
+
+</a
+      ><a name="633" class="Keyword"
+      >data</a
+      ><a name="637"
+      > </a
+      ><a name="638" href="src.heap.library.html#638" class="Datatype Operator"
+      >_&#215;_</a
+      ><a name="641"
+      >  </a
+      ><a name="643" class="Symbol"
+      >{</a
+      ><a name="644" href="src.heap.library.html#644" class="Bound"
+      >&#963;</a
+      ><a name="645"
+      > </a
+      ><a name="646" href="src.heap.library.html#646" class="Bound"
+      >&#964;</a
+      ><a name="647" class="Symbol"
+      >}</a
+      ><a name="648"
+      > </a
+      ><a name="649" class="Symbol"
+      >(</a
+      ><a name="650" href="src.heap.library.html#650" class="Bound"
+      >A</a
+      ><a name="651"
+      > </a
+      ><a name="652" class="Symbol"
+      >:</a
+      ><a name="653"
+      > </a
+      ><a name="654" class="PrimitiveType"
+      >Set</a
+      ><a name="657"
+      > </a
+      ><a name="658" href="src.heap.library.html#644" class="Bound"
+      >&#963;</a
+      ><a name="659" class="Symbol"
+      >)</a
+      ><a name="660"
+      > </a
+      ><a name="661" class="Symbol"
+      >(</a
+      ><a name="662" href="src.heap.library.html#662" class="Bound"
+      >B</a
+      ><a name="663"
+      > </a
+      ><a name="664" class="Symbol"
+      >:</a
+      ><a name="665"
+      > </a
+      ><a name="666" class="PrimitiveType"
+      >Set</a
+      ><a name="669"
+      > </a
+      ><a name="670" href="src.heap.library.html#646" class="Bound"
+      >&#964;</a
+      ><a name="671" class="Symbol"
+      >)</a
+      ><a name="672"
+      > </a
+      ><a name="673" class="Symbol"
+      >:</a
+      ><a name="674"
+      > </a
+      ><a name="675" class="PrimitiveType"
+      >Set</a
+      ><a name="678"
+      > </a
+      ><a name="679" class="Symbol"
+      >(</a
+      ><a name="680" href="src.heap.library.html#644" class="Bound"
+      >&#963;</a
+      ><a name="681"
+      > </a
+      ><a name="682" href="Agda.Primitive.html#657" class="Primitive Operator"
+      >&#8852;</a
+      ><a name="683"
+      > </a
+      ><a name="684" href="src.heap.library.html#646" class="Bound"
+      >&#964;</a
+      ><a name="685" class="Symbol"
+      >)</a
+      ><a name="686"
+      > </a
+      ><a name="687" class="Keyword"
+      >where</a
+      ><a name="692"
+      >
+    </a
+      ><a name="697" href="src.heap.library.html#697" class="InductiveConstructor Operator"
+      >_,,_</a
+      ><a name="701"
+      > </a
+      ><a name="702" class="Symbol"
+      >:</a
+      ><a name="703"
+      > </a
+      ><a name="704" href="src.heap.library.html#650" class="Bound"
+      >A</a
+      ><a name="705"
+      > </a
+      ><a name="706" class="Symbol"
+      >&#8594;</a
+      ><a name="707"
+      > </a
+      ><a name="708" href="src.heap.library.html#662" class="Bound"
+      >B</a
+      ><a name="709"
+      > </a
+      ><a name="710" class="Symbol"
+      >&#8594;</a
+      ><a name="711"
+      > </a
+      ><a name="712" href="src.heap.library.html#650" class="Bound"
+      >A</a
+      ><a name="713"
+      > </a
+      ><a name="714" href="src.heap.library.html#638" class="Datatype Operator"
+      >&#215;</a
+      ><a name="715"
+      > </a
+      ><a name="716" href="src.heap.library.html#662" class="Bound"
+      >B</a
+      ><a name="717"
+      >
+
+</a
+      ><a name="719" href="src.heap.library.html#719" class="Function"
+      >proj&#8321;</a
+      ><a name="724"
+      > </a
+      ><a name="725" class="Symbol"
+      >:</a
+      ><a name="726"
+      > </a
+      ><a name="727" class="Symbol"
+      >{</a
+      ><a name="728" href="src.heap.library.html#728" class="Bound"
+      >&#963;</a
+      ><a name="729"
+      > </a
+      ><a name="730" href="src.heap.library.html#730" class="Bound"
+      >&#964;</a
+      ><a name="731"
+      > </a
+      ><a name="732" class="Symbol"
+      >:</a
+      ><a name="733"
+      > </a
+      ><a name="734" href="Agda.Primitive.html#408" class="Postulate"
+      >Level</a
+      ><a name="739" class="Symbol"
+      >}</a
+      ><a name="740"
+      > </a
+      ><a name="741" class="Symbol"
+      >{</a
+      ><a name="742" href="src.heap.library.html#742" class="Bound"
+      >A</a
+      ><a name="743"
+      > </a
+      ><a name="744" class="Symbol"
+      >:</a
+      ><a name="745"
+      > </a
+      ><a name="746" class="PrimitiveType"
+      >Set</a
+      ><a name="749"
+      > </a
+      ><a name="750" href="src.heap.library.html#728" class="Bound"
+      >&#963;</a
+      ><a name="751" class="Symbol"
+      >}</a
+      ><a name="752"
+      > </a
+      ><a name="753" class="Symbol"
+      >{</a
+      ><a name="754" href="src.heap.library.html#754" class="Bound"
+      >B</a
+      ><a name="755"
+      > </a
+      ><a name="756" class="Symbol"
+      >:</a
+      ><a name="757"
+      > </a
+      ><a name="758" class="PrimitiveType"
+      >Set</a
+      ><a name="761"
+      > </a
+      ><a name="762" href="src.heap.library.html#730" class="Bound"
+      >&#964;</a
+      ><a name="763" class="Symbol"
+      >}</a
+      ><a name="764"
+      > </a
+      ><a name="765" class="Symbol"
+      >&#8594;</a
+      ><a name="766"
+      >  </a
+      ><a name="768" href="src.heap.library.html#742" class="Bound"
+      >A</a
+      ><a name="769"
+      > </a
+      ><a name="770" href="src.heap.library.html#638" class="Datatype Operator"
+      >&#215;</a
+      ><a name="771"
+      > </a
+      ><a name="772" href="src.heap.library.html#754" class="Bound"
+      >B</a
+      ><a name="773"
+      > </a
+      ><a name="774" class="Symbol"
+      >&#8594;</a
+      ><a name="775"
+      > </a
+      ><a name="776" href="src.heap.library.html#742" class="Bound"
+      >A</a
+      ><a name="777"
+      >
+</a
+      ><a name="778" href="src.heap.library.html#719" class="Function"
+      >proj&#8321;</a
+      ><a name="783"
+      > </a
+      ><a name="784" class="Symbol"
+      >(</a
+      ><a name="785" href="src.heap.library.html#785" class="Bound"
+      >a</a
+      ><a name="786"
+      > </a
+      ><a name="787" href="src.heap.library.html#697" class="InductiveConstructor Operator"
+      >,,</a
+      ><a name="789"
+      > </a
+      ><a name="790" href="src.heap.library.html#790" class="Bound"
+      >b</a
+      ><a name="791" class="Symbol"
+      >)</a
+      ><a name="792"
+      > </a
+      ><a name="793" class="Symbol"
+      >=</a
+      ><a name="794"
+      > </a
+      ><a name="795" href="src.heap.library.html#785" class="Bound"
+      >a</a
+      ><a name="796"
+      >
+
+</a
+      ><a name="798" href="src.heap.library.html#798" class="Function"
+      >proj&#8322;</a
+      ><a name="803"
+      > </a
+      ><a name="804" class="Symbol"
+      >:</a
+      ><a name="805"
+      > </a
+      ><a name="806" class="Symbol"
+      >{</a
+      ><a name="807" href="src.heap.library.html#807" class="Bound"
+      >&#963;</a
+      ><a name="808"
+      > </a
+      ><a name="809" href="src.heap.library.html#809" class="Bound"
+      >&#964;</a
+      ><a name="810"
+      > </a
+      ><a name="811" class="Symbol"
+      >:</a
+      ><a name="812"
+      > </a
+      ><a name="813" href="Agda.Primitive.html#408" class="Postulate"
+      >Level</a
+      ><a name="818" class="Symbol"
+      >}</a
+      ><a name="819"
+      > </a
+      ><a name="820" class="Symbol"
+      >{</a
+      ><a name="821" href="src.heap.library.html#821" class="Bound"
+      >A</a
+      ><a name="822"
+      > </a
+      ><a name="823" class="Symbol"
+      >:</a
+      ><a name="824"
+      > </a
+      ><a name="825" class="PrimitiveType"
+      >Set</a
+      ><a name="828"
+      > </a
+      ><a name="829" href="src.heap.library.html#807" class="Bound"
+      >&#963;</a
+      ><a name="830" class="Symbol"
+      >}</a
+      ><a name="831"
+      > </a
+      ><a name="832" class="Symbol"
+      >{</a
+      ><a name="833" href="src.heap.library.html#833" class="Bound"
+      >B</a
+      ><a name="834"
+      > </a
+      ><a name="835" class="Symbol"
+      >:</a
+      ><a name="836"
+      > </a
+      ><a name="837" class="PrimitiveType"
+      >Set</a
+      ><a name="840"
+      > </a
+      ><a name="841" href="src.heap.library.html#809" class="Bound"
+      >&#964;</a
+      ><a name="842" class="Symbol"
+      >}</a
+      ><a name="843"
+      > </a
+      ><a name="844" class="Symbol"
+      >&#8594;</a
+      ><a name="845"
+      >  </a
+      ><a name="847" href="src.heap.library.html#821" class="Bound"
+      >A</a
+      ><a name="848"
+      > </a
+      ><a name="849" href="src.heap.library.html#638" class="Datatype Operator"
+      >&#215;</a
+      ><a name="850"
+      > </a
+      ><a name="851" href="src.heap.library.html#833" class="Bound"
+      >B</a
+      ><a name="852"
+      > </a
+      ><a name="853" class="Symbol"
+      >&#8594;</a
+      ><a name="854"
+      > </a
+      ><a name="855" href="src.heap.library.html#833" class="Bound"
+      >B</a
+      ><a name="856"
+      >
+</a
+      ><a name="857" href="src.heap.library.html#798" class="Function"
+      >proj&#8322;</a
+      ><a name="862"
+      > </a
+      ><a name="863" class="Symbol"
+      >(</a
+      ><a name="864" href="src.heap.library.html#864" class="Bound"
+      >a</a
+      ><a name="865"
+      > </a
+      ><a name="866" href="src.heap.library.html#697" class="InductiveConstructor Operator"
+      >,,</a
+      ><a name="868"
+      > </a
+      ><a name="869" href="src.heap.library.html#869" class="Bound"
+      >b</a
+      ><a name="870" class="Symbol"
+      >)</a
+      ><a name="871"
+      > </a
+      ><a name="872" class="Symbol"
+      >=</a
+      ><a name="873"
+      > </a
+      ><a name="874" href="src.heap.library.html#869" class="Bound"
+      >b</a
+      ><a name="875"
+      >
+
+
+</a
+      ><a name="878" href="src.heap.library.html#878" class="Function"
+      >finSucInj&#172;</a
+      ><a name="888"
+      > </a
+      ><a name="889" class="Symbol"
+      >:</a
+      ><a name="890"
+      > </a
+      ><a name="891" class="Symbol"
+      >{</a
+      ><a name="892" href="src.heap.library.html#892" class="Bound"
+      >n</a
+      ><a name="893"
+      > </a
+      ><a name="894" class="Symbol"
+      >:</a
+      ><a name="895"
+      > </a
+      ><a name="896" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="897" class="Symbol"
+      >}</a
+      ><a name="898"
+      > </a
+      ><a name="899" class="Symbol"
+      >&#8594;</a
+      ><a name="900"
+      > </a
+      ><a name="901" class="Symbol"
+      >(</a
+      ><a name="902" href="src.heap.library.html#902" class="Bound"
+      >q</a
+      ><a name="903"
+      > </a
+      ><a name="904" href="src.heap.library.html#904" class="Bound"
+      >q'</a
+      ><a name="906"
+      > </a
+      ><a name="907" class="Symbol"
+      >:</a
+      ><a name="908"
+      > </a
+      ><a name="909" href="Data.Fin.html#871" class="Datatype"
+      >Fin</a
+      ><a name="912"
+      > </a
+      ><a name="913" href="src.heap.library.html#892" class="Bound"
+      >n</a
+      ><a name="914" class="Symbol"
+      >)</a
+      ><a name="915"
+      > </a
+      ><a name="916" class="Symbol"
+      >&#8594;</a
+      ><a name="917"
+      > </a
+      ><a name="918" href="Relation.Nullary.html#414" class="Function Operator"
+      >&#172;</a
+      ><a name="919"
+      > </a
+      ><a name="920" class="Symbol"
+      >(</a
+      ><a name="921" href="Agda.Builtin.Equality.html#83" class="Datatype Operator"
+      >_&#8801;_</a
+      ><a name="924"
+      > </a
+      ><a name="925" class="Symbol"
+      >{</a
+      ><a name="926" href="Agda.Primitive.html#611" class="Primitive"
+      >lzero</a
+      ><a name="931" class="Symbol"
+      >}</a
+      ><a name="932"
+      > </a
+      ><a name="933" class="Symbol"
+      >{</a
+      ><a name="934" href="Data.Fin.html#871" class="Datatype"
+      >Fin</a
+      ><a name="937"
+      > </a
+      ><a name="938" class="Symbol"
+      >(</a
+      ><a name="939" href="Agda.Builtin.Nat.html#128" class="InductiveConstructor"
+      >suc</a
+      ><a name="942"
+      > </a
+      ><a name="943" href="src.heap.library.html#892" class="Bound"
+      >n</a
+      ><a name="944" class="Symbol"
+      >)}</a
+      ><a name="946"
+      > </a
+      ><a name="947" class="Symbol"
+      >(</a
+      ><a name="948" href="Data.Fin.html#924" class="InductiveConstructor"
+      >suc</a
+      ><a name="951"
+      > </a
+      ><a name="952" href="src.heap.library.html#902" class="Bound"
+      >q</a
+      ><a name="953" class="Symbol"
+      >)</a
+      ><a name="954"
+      >  </a
+      ><a name="956" class="Symbol"
+      >(</a
+      ><a name="957" href="Data.Fin.html#924" class="InductiveConstructor"
+      >suc</a
+      ><a name="960"
+      > </a
+      ><a name="961" href="src.heap.library.html#904" class="Bound"
+      >q'</a
+      ><a name="963" class="Symbol"
+      >))</a
+      ><a name="965"
+      > </a
+      ><a name="966" class="Symbol"
+      >&#8594;</a
+      ><a name="967"
+      > </a
+      ><a name="968" href="Relation.Nullary.html#414" class="Function Operator"
+      >&#172;</a
+      ><a name="969"
+      > </a
+      ><a name="970" class="Symbol"
+      >(</a
+      ><a name="971" href="src.heap.library.html#902" class="Bound"
+      >q</a
+      ><a name="972"
+      > </a
+      ><a name="973" href="Agda.Builtin.Equality.html#83" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="974"
+      > </a
+      ><a name="975" href="src.heap.library.html#904" class="Bound"
+      >q'</a
+      ><a name="977" class="Symbol"
+      >)</a
+      ><a name="978"
+      >
+</a
+      ><a name="979" href="src.heap.library.html#878" class="Function"
+      >finSucInj&#172;</a
+      ><a name="989"
+      > </a
+      ><a name="990" href="Data.Fin.html#893" class="InductiveConstructor"
+      >zero</a
+      ><a name="994"
+      > </a
+      ><a name="995" class="DottedPattern Symbol"
+      >.</a
+      ><a name="996" href="Data.Fin.html#893" class="DottedPattern InductiveConstructor"
+      >zero</a
+      ><a name="1000"
+      > </a
+      ><a name="1001" href="src.heap.library.html#1001" class="Bound"
+      >&#172;sqsq'</a
+      ><a name="1007"
+      > </a
+      ><a name="1008" href="Agda.Builtin.Equality.html#140" class="InductiveConstructor"
+      >refl</a
+      ><a name="1012"
+      > </a
+      ><a name="1013" class="Symbol"
+      >=</a
+      ><a name="1014"
+      > </a
+      ><a name="1015" href="src.heap.library.html#1001" class="Bound"
+      >&#172;sqsq'</a
+      ><a name="1021"
+      > </a
+      ><a name="1022" href="Agda.Builtin.Equality.html#140" class="InductiveConstructor"
+      >refl</a
+      ><a name="1026"
+      >
+</a
+      ><a name="1027" href="src.heap.library.html#878" class="Function"
+      >finSucInj&#172;</a
+      ><a name="1037"
+      > </a
+      ><a name="1038" class="Symbol"
+      >(</a
+      ><a name="1039" href="Data.Fin.html#924" class="InductiveConstructor"
+      >suc</a
+      ><a name="1042"
+      > </a
+      ><a name="1043" href="src.heap.library.html#1043" class="Bound"
+      >q</a
+      ><a name="1044" class="Symbol"
+      >)</a
+      ><a name="1045"
+      > </a
+      ><a name="1046" class="DottedPattern Symbol"
+      >.(</a
+      ><a name="1048" href="Data.Fin.html#924" class="DottedPattern InductiveConstructor"
+      >suc</a
+      ><a name="1051"
+      > </a
+      ><a name="1052" href="src.heap.library.html#1043" class="DottedPattern Bound"
+      >q</a
+      ><a name="1053" class="DottedPattern Symbol"
+      >)</a
+      ><a name="1054"
+      > </a
+      ><a name="1055" href="src.heap.library.html#1055" class="Bound"
+      >&#172;sqsq'</a
+      ><a name="1061"
+      > </a
+      ><a name="1062" href="Agda.Builtin.Equality.html#140" class="InductiveConstructor"
+      >refl</a
+      ><a name="1066"
+      > </a
+      ><a name="1067" class="Symbol"
+      >=</a
+      ><a name="1068"
+      > </a
+      ><a name="1069" href="src.heap.library.html#1055" class="Bound"
+      >&#172;sqsq'</a
+      ><a name="1075"
+      > </a
+      ><a name="1076" href="Agda.Builtin.Equality.html#140" class="InductiveConstructor"
+      >refl</a
+      ><a name="1080"
+      >
+
+</a
+      ><a name="1082" href="src.heap.library.html#1082" class="Function"
+      >trans&#8801;</a
+      ><a name="1088"
+      > </a
+      ><a name="1089" class="Symbol"
+      >:</a
+      ><a name="1090"
+      > </a
+      ><a name="1091" class="Symbol"
+      >{</a
+      ><a name="1092" href="src.heap.library.html#1092" class="Bound"
+      >A</a
+      ><a name="1093"
+      > </a
+      ><a name="1094" class="Symbol"
+      >:</a
+      ><a name="1095"
+      > </a
+      ><a name="1096" class="PrimitiveType"
+      >Set</a
+      ><a name="1099" class="Symbol"
+      >}</a
+      ><a name="1100"
+      > </a
+      ><a name="1101" class="Symbol"
+      >{</a
+      ><a name="1102" href="src.heap.library.html#1102" class="Bound"
+      >a</a
+      ><a name="1103"
+      > </a
+      ><a name="1104" href="src.heap.library.html#1104" class="Bound"
+      >a'</a
+      ><a name="1106"
+      > </a
+      ><a name="1107" href="src.heap.library.html#1107" class="Bound"
+      >a''</a
+      ><a name="1110"
+      > </a
+      ><a name="1111" class="Symbol"
+      >:</a
+      ><a name="1112"
+      > </a
+      ><a name="1113" href="src.heap.library.html#1092" class="Bound"
+      >A</a
+      ><a name="1114" class="Symbol"
+      >}</a
+      ><a name="1115"
+      > </a
+      ><a name="1116" class="Symbol"
+      >&#8594;</a
+      ><a name="1117"
+      > </a
+      ><a name="1118" href="src.heap.library.html#1102" class="Bound"
+      >a</a
+      ><a name="1119"
+      > </a
+      ><a name="1120" href="Agda.Builtin.Equality.html#83" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="1121"
+      > </a
+      ><a name="1122" href="src.heap.library.html#1104" class="Bound"
+      >a'</a
+      ><a name="1124"
+      > </a
+      ><a name="1125" class="Symbol"
+      >&#8594;</a
+      ><a name="1126"
+      > </a
+      ><a name="1127" href="src.heap.library.html#1104" class="Bound"
+      >a'</a
+      ><a name="1129"
+      > </a
+      ><a name="1130" href="Agda.Builtin.Equality.html#83" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="1131"
+      > </a
+      ><a name="1132" href="src.heap.library.html#1107" class="Bound"
+      >a''</a
+      ><a name="1135"
+      > </a
+      ><a name="1136" class="Symbol"
+      >&#8594;</a
+      ><a name="1137"
+      > </a
+      ><a name="1138" href="src.heap.library.html#1102" class="Bound"
+      >a</a
+      ><a name="1139"
+      > </a
+      ><a name="1140" href="Agda.Builtin.Equality.html#83" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="1141"
+      > </a
+      ><a name="1142" href="src.heap.library.html#1107" class="Bound"
+      >a''</a
+      ><a name="1145"
+      >
+</a
+      ><a name="1146" href="src.heap.library.html#1082" class="Function"
+      >trans&#8801;</a
+      ><a name="1152"
+      > </a
+      ><a name="1153" href="Agda.Builtin.Equality.html#140" class="InductiveConstructor"
+      >refl</a
+      ><a name="1157"
+      > </a
+      ><a name="1158" href="Agda.Builtin.Equality.html#140" class="InductiveConstructor"
+      >refl</a
+      ><a name="1162"
+      > </a
+      ><a name="1163" class="Symbol"
+      >=</a
+      ><a name="1164"
+      > </a
+      ><a name="1165" href="Agda.Builtin.Equality.html#140" class="InductiveConstructor"
+      >refl</a
+      ><a name="1169"
+      >
+
+</a
+      ><a name="1171" href="src.heap.library.html#1171" class="Function"
+      >injsuc</a
+      ><a name="1177"
+      > </a
+      ><a name="1178" class="Symbol"
+      >:</a
+      ><a name="1179"
+      > </a
+      ><a name="1180" class="Symbol"
+      >{</a
+      ><a name="1181" href="src.heap.library.html#1181" class="Bound"
+      >n</a
+      ><a name="1182"
+      > </a
+      ><a name="1183" class="Symbol"
+      >:</a
+      ><a name="1184"
+      > </a
+      ><a name="1185" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="1186" class="Symbol"
+      >}</a
+      ><a name="1187"
+      > </a
+      ><a name="1188" class="Symbol"
+      >{</a
+      ><a name="1189" href="src.heap.library.html#1189" class="Bound"
+      >k</a
+      ><a name="1190"
+      > </a
+      ><a name="1191" href="src.heap.library.html#1191" class="Bound"
+      >l</a
+      ><a name="1192"
+      > </a
+      ><a name="1193" class="Symbol"
+      >:</a
+      ><a name="1194"
+      > </a
+      ><a name="1195" href="Data.Fin.html#871" class="Datatype"
+      >Fin</a
+      ><a name="1198"
+      > </a
+      ><a name="1199" href="src.heap.library.html#1181" class="Bound"
+      >n</a
+      ><a name="1200" class="Symbol"
+      >}</a
+      ><a name="1201"
+      > </a
+      ><a name="1202" class="Symbol"
+      >&#8594;</a
+      ><a name="1203"
+      > </a
+      ><a name="1204" href="Relation.Nullary.html#414" class="Function Operator"
+      >&#172;</a
+      ><a name="1205"
+      > </a
+      ><a name="1206" class="Symbol"
+      >(</a
+      ><a name="1207" href="Agda.Builtin.Equality.html#83" class="Datatype Operator"
+      >_&#8801;_</a
+      ><a name="1210"
+      > </a
+      ><a name="1211" class="Symbol"
+      >{</a
+      ><a name="1212" href="Agda.Primitive.html#611" class="Primitive"
+      >lzero</a
+      ><a name="1217" class="Symbol"
+      >}</a
+      ><a name="1218"
+      > </a
+      ><a name="1219" class="Symbol"
+      >{</a
+      ><a name="1220" href="Data.Fin.html#871" class="Datatype"
+      >Fin</a
+      ><a name="1223"
+      > </a
+      ><a name="1224" class="Symbol"
+      >(</a
+      ><a name="1225" href="Agda.Builtin.Nat.html#128" class="InductiveConstructor"
+      >suc</a
+      ><a name="1228"
+      > </a
+      ><a name="1229" href="src.heap.library.html#1181" class="Bound"
+      >n</a
+      ><a name="1230" class="Symbol"
+      >)}</a
+      ><a name="1232"
+      > </a
+      ><a name="1233" class="Symbol"
+      >(</a
+      ><a name="1234" href="Data.Fin.html#924" class="InductiveConstructor"
+      >suc</a
+      ><a name="1237"
+      > </a
+      ><a name="1238" href="src.heap.library.html#1189" class="Bound"
+      >k</a
+      ><a name="1239" class="Symbol"
+      >)</a
+      ><a name="1240"
+      > </a
+      ><a name="1241" class="Symbol"
+      >(</a
+      ><a name="1242" href="Data.Fin.html#924" class="InductiveConstructor"
+      >suc</a
+      ><a name="1245"
+      > </a
+      ><a name="1246" href="src.heap.library.html#1191" class="Bound"
+      >l</a
+      ><a name="1247" class="Symbol"
+      >))</a
+      ><a name="1249"
+      > </a
+      ><a name="1250" class="Symbol"
+      >&#8594;</a
+      ><a name="1251"
+      > </a
+      ><a name="1252" href="Relation.Nullary.html#414" class="Function Operator"
+      >&#172;</a
+      ><a name="1253"
+      > </a
+      ><a name="1254" href="src.heap.library.html#1189" class="Bound"
+      >k</a
+      ><a name="1255"
+      > </a
+      ><a name="1256" href="Agda.Builtin.Equality.html#83" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="1257"
+      > </a
+      ><a name="1258" href="src.heap.library.html#1191" class="Bound"
+      >l</a
+      ><a name="1259"
+      >
+</a
+      ><a name="1260" href="src.heap.library.html#1171" class="Function"
+      >injsuc</a
+      ><a name="1266"
+      > </a
+      ><a name="1267" href="src.heap.library.html#1267" class="Bound"
+      >&#172;snsm</a
+      ><a name="1272"
+      > </a
+      ><a name="1273" href="Agda.Builtin.Equality.html#140" class="InductiveConstructor"
+      >refl</a
+      ><a name="1277"
+      > </a
+      ><a name="1278" class="Symbol"
+      >=</a
+      ><a name="1279"
+      > </a
+      ><a name="1280" href="src.heap.library.html#1267" class="Bound"
+      >&#172;snsm</a
+      ><a name="1285"
+      > </a
+      ><a name="1286" href="Agda.Builtin.Equality.html#140" class="InductiveConstructor"
+      >refl</a
+      ><a name="1290"
+      >
+
+</a
+      ><a name="1292" href="src.heap.library.html#1292" class="Function"
+      >injsuc2</a
+      ><a name="1299"
+      > </a
+      ><a name="1300" class="Symbol"
+      >:</a
+      ><a name="1301"
+      > </a
+      ><a name="1302" class="Symbol"
+      >{</a
+      ><a name="1303" href="src.heap.library.html#1303" class="Bound"
+      >n</a
+      ><a name="1304"
+      > </a
+      ><a name="1305" class="Symbol"
+      >:</a
+      ><a name="1306"
+      > </a
+      ><a name="1307" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="1308" class="Symbol"
+      >}</a
+      ><a name="1309"
+      > </a
+      ><a name="1310" class="Symbol"
+      >{</a
+      ><a name="1311" href="src.heap.library.html#1311" class="Bound"
+      >k</a
+      ><a name="1312"
+      > </a
+      ><a name="1313" href="src.heap.library.html#1313" class="Bound"
+      >l</a
+      ><a name="1314"
+      > </a
+      ><a name="1315" class="Symbol"
+      >:</a
+      ><a name="1316"
+      > </a
+      ><a name="1317" href="Data.Fin.html#871" class="Datatype"
+      >Fin</a
+      ><a name="1320"
+      > </a
+      ><a name="1321" href="src.heap.library.html#1303" class="Bound"
+      >n</a
+      ><a name="1322" class="Symbol"
+      >}</a
+      ><a name="1323"
+      > </a
+      ><a name="1324" class="Symbol"
+      >&#8594;</a
+      ><a name="1325"
+      > </a
+      ><a name="1326" class="Symbol"
+      >(</a
+      ><a name="1327" href="Agda.Builtin.Equality.html#83" class="Datatype Operator"
+      >_&#8801;_</a
+      ><a name="1330"
+      > </a
+      ><a name="1331" class="Symbol"
+      >{</a
+      ><a name="1332" href="Agda.Primitive.html#611" class="Primitive"
+      >lzero</a
+      ><a name="1337" class="Symbol"
+      >}</a
+      ><a name="1338"
+      > </a
+      ><a name="1339" class="Symbol"
+      >{</a
+      ><a name="1340" href="Data.Fin.html#871" class="Datatype"
+      >Fin</a
+      ><a name="1343"
+      > </a
+      ><a name="1344" class="Symbol"
+      >(</a
+      ><a name="1345" href="Agda.Builtin.Nat.html#128" class="InductiveConstructor"
+      >suc</a
+      ><a name="1348"
+      > </a
+      ><a name="1349" href="src.heap.library.html#1303" class="Bound"
+      >n</a
+      ><a name="1350" class="Symbol"
+      >)}</a
+      ><a name="1352"
+      > </a
+      ><a name="1353" class="Symbol"
+      >(</a
+      ><a name="1354" href="Data.Fin.html#924" class="InductiveConstructor"
+      >suc</a
+      ><a name="1357"
+      > </a
+      ><a name="1358" href="src.heap.library.html#1311" class="Bound"
+      >k</a
+      ><a name="1359" class="Symbol"
+      >)</a
+      ><a name="1360"
+      > </a
+      ><a name="1361" class="Symbol"
+      >(</a
+      ><a name="1362" href="Data.Fin.html#924" class="InductiveConstructor"
+      >suc</a
+      ><a name="1365"
+      > </a
+      ><a name="1366" href="src.heap.library.html#1313" class="Bound"
+      >l</a
+      ><a name="1367" class="Symbol"
+      >))</a
+      ><a name="1369"
+      > </a
+      ><a name="1370" class="Symbol"
+      >&#8594;</a
+      ><a name="1371"
+      > </a
+      ><a name="1372" href="src.heap.library.html#1311" class="Bound"
+      >k</a
+      ><a name="1373"
+      > </a
+      ><a name="1374" href="Agda.Builtin.Equality.html#83" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="1375"
+      > </a
+      ><a name="1376" href="src.heap.library.html#1313" class="Bound"
+      >l</a
+      ><a name="1377"
+      >
+</a
+      ><a name="1378" href="src.heap.library.html#1292" class="Function"
+      >injsuc2</a
+      ><a name="1385"
+      > </a
+      ><a name="1386" href="Agda.Builtin.Equality.html#140" class="InductiveConstructor"
+      >refl</a
+      ><a name="1390"
+      > </a
+      ><a name="1391" class="Symbol"
+      >=</a
+      ><a name="1392"
+      > </a
+      ><a name="1393" href="Agda.Builtin.Equality.html#140" class="InductiveConstructor"
+      >refl</a
+      ><a name="1397"
+      >
+
+</a
+      ><a name="1399" href="src.heap.library.html#1399" class="Function"
+      >zero&#172;=sucFin</a
+      ><a name="1411"
+      > </a
+      ><a name="1412" class="Symbol"
+      >:</a
+      ><a name="1413"
+      > </a
+      ><a name="1414" class="Symbol"
+      >{</a
+      ><a name="1415" href="src.heap.library.html#1415" class="Bound"
+      >n</a
+      ><a name="1416"
+      > </a
+      ><a name="1417" class="Symbol"
+      >:</a
+      ><a name="1418"
+      > </a
+      ><a name="1419" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="1420" class="Symbol"
+      >}</a
+      ><a name="1421"
+      > </a
+      ><a name="1422" class="Symbol"
+      >&#8594;</a
+      ><a name="1423"
+      > </a
+      ><a name="1424" class="Symbol"
+      >(</a
+      ><a name="1425" href="src.heap.library.html#1425" class="Bound"
+      >l</a
+      ><a name="1426"
+      > </a
+      ><a name="1427" class="Symbol"
+      >:</a
+      ><a name="1428"
+      > </a
+      ><a name="1429" href="Data.Fin.html#871" class="Datatype"
+      >Fin</a
+      ><a name="1432"
+      > </a
+      ><a name="1433" href="src.heap.library.html#1415" class="Bound"
+      >n</a
+      ><a name="1434" class="Symbol"
+      >)</a
+      ><a name="1435"
+      > </a
+      ><a name="1436" class="Symbol"
+      >&#8594;</a
+      ><a name="1437"
+      > </a
+      ><a name="1438" href="Relation.Nullary.html#414" class="Function Operator"
+      >&#172;</a
+      ><a name="1439"
+      > </a
+      ><a name="1440" class="Symbol"
+      >(</a
+      ><a name="1441" href="Agda.Builtin.Equality.html#83" class="Datatype Operator"
+      >_&#8801;_</a
+      ><a name="1444"
+      > </a
+      ><a name="1445" class="Symbol"
+      >{</a
+      ><a name="1446" href="Agda.Primitive.html#611" class="Primitive"
+      >lzero</a
+      ><a name="1451" class="Symbol"
+      >}</a
+      ><a name="1452"
+      > </a
+      ><a name="1453" class="Symbol"
+      >{</a
+      ><a name="1454" href="Data.Fin.html#871" class="Datatype"
+      >Fin</a
+      ><a name="1457"
+      > </a
+      ><a name="1458" class="Symbol"
+      >(</a
+      ><a name="1459" href="Agda.Builtin.Nat.html#128" class="InductiveConstructor"
+      >suc</a
+      ><a name="1462"
+      > </a
+      ><a name="1463" href="src.heap.library.html#1415" class="Bound"
+      >n</a
+      ><a name="1464" class="Symbol"
+      >)}</a
+      ><a name="1466"
+      > </a
+      ><a name="1467" href="Data.Fin.html#893" class="InductiveConstructor"
+      >zero</a
+      ><a name="1471"
+      >  </a
+      ><a name="1473" class="Symbol"
+      >(</a
+      ><a name="1474" href="Data.Fin.html#924" class="InductiveConstructor"
+      >suc</a
+      ><a name="1477"
+      > </a
+      ><a name="1478" href="src.heap.library.html#1425" class="Bound"
+      >l</a
+      ><a name="1479" class="Symbol"
+      >))</a
+      ><a name="1481"
+      >
+</a
+      ><a name="1482" href="src.heap.library.html#1399" class="Function"
+      >zero&#172;=sucFin</a
+      ><a name="1494"
+      > </a
+      ><a name="1495" href="src.heap.library.html#1495" class="Bound"
+      >l</a
+      ><a name="1496"
+      > </a
+      ><a name="1497" class="Symbol"
+      >()</a
+      ><a name="1499"
+      >
+
+</a
+      ><a name="1501" href="src.heap.library.html#1501" class="Function"
+      >sym</a
+      ><a name="1504"
+      > </a
+      ><a name="1505" class="Symbol"
+      >:</a
+      ><a name="1506"
+      > </a
+      ><a name="1507" class="Symbol"
+      >{</a
+      ><a name="1508" href="src.heap.library.html#1508" class="Bound"
+      >A</a
+      ><a name="1509"
+      > </a
+      ><a name="1510" class="Symbol"
+      >:</a
+      ><a name="1511"
+      > </a
+      ><a name="1512" class="PrimitiveType"
+      >Set</a
+      ><a name="1515" class="Symbol"
+      >}</a
+      ><a name="1516"
+      > </a
+      ><a name="1517" class="Symbol"
+      >{</a
+      ><a name="1518" href="src.heap.library.html#1518" class="Bound"
+      >a</a
+      ><a name="1519"
+      > </a
+      ><a name="1520" href="src.heap.library.html#1520" class="Bound"
+      >a'</a
+      ><a name="1522"
+      > </a
+      ><a name="1523" class="Symbol"
+      >:</a
+      ><a name="1524"
+      > </a
+      ><a name="1525" href="src.heap.library.html#1508" class="Bound"
+      >A</a
+      ><a name="1526" class="Symbol"
+      >}</a
+      ><a name="1527"
+      > </a
+      ><a name="1528" class="Symbol"
+      >(</a
+      ><a name="1529" href="src.heap.library.html#1529" class="Bound"
+      >aa'</a
+      ><a name="1532"
+      > </a
+      ><a name="1533" class="Symbol"
+      >:</a
+      ><a name="1534"
+      > </a
+      ><a name="1535" href="src.heap.library.html#1518" class="Bound"
+      >a</a
+      ><a name="1536"
+      > </a
+      ><a name="1537" href="Agda.Builtin.Equality.html#83" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="1538"
+      > </a
+      ><a name="1539" href="src.heap.library.html#1520" class="Bound"
+      >a'</a
+      ><a name="1541" class="Symbol"
+      >)</a
+      ><a name="1542"
+      > </a
+      ><a name="1543" class="Symbol"
+      >&#8594;</a
+      ><a name="1544"
+      > </a
+      ><a name="1545" class="Symbol"
+      >(</a
+      ><a name="1546" href="src.heap.library.html#1520" class="Bound"
+      >a'</a
+      ><a name="1548"
+      > </a
+      ><a name="1549" href="Agda.Builtin.Equality.html#83" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="1550"
+      > </a
+      ><a name="1551" href="src.heap.library.html#1518" class="Bound"
+      >a</a
+      ><a name="1552" class="Symbol"
+      >)</a
+      ><a name="1553"
+      >
+</a
+      ><a name="1554" href="src.heap.library.html#1501" class="Function"
+      >sym</a
+      ><a name="1557"
+      > </a
+      ><a name="1558" href="Agda.Builtin.Equality.html#140" class="InductiveConstructor"
+      >refl</a
+      ><a name="1562"
+      > </a
+      ><a name="1563" class="Symbol"
+      >=</a
+      ><a name="1564"
+      > </a
+      ><a name="1565" href="Agda.Builtin.Equality.html#140" class="InductiveConstructor"
+      >refl</a
+      ><a name="1569"
+      >
+
+</a
+      ><a name="1571" href="src.heap.library.html#1571" class="Function"
+      >sym'</a
+      ><a name="1575"
+      > </a
+      ><a name="1576" class="Symbol"
+      >:</a
+      ><a name="1577"
+      > </a
+      ><a name="1578" class="Symbol"
+      >{</a
+      ><a name="1579" href="src.heap.library.html#1579" class="Bound"
+      >A</a
+      ><a name="1580"
+      > </a
+      ><a name="1581" class="Symbol"
+      >:</a
+      ><a name="1582"
+      > </a
+      ><a name="1583" class="PrimitiveType"
+      >Set</a
+      ><a name="1586" class="Symbol"
+      >}</a
+      ><a name="1587"
+      > </a
+      ><a name="1588" class="Symbol"
+      >{</a
+      ><a name="1589" href="src.heap.library.html#1589" class="Bound"
+      >a</a
+      ><a name="1590"
+      > </a
+      ><a name="1591" href="src.heap.library.html#1591" class="Bound"
+      >a'</a
+      ><a name="1593"
+      > </a
+      ><a name="1594" class="Symbol"
+      >:</a
+      ><a name="1595"
+      > </a
+      ><a name="1596" href="src.heap.library.html#1579" class="Bound"
+      >A</a
+      ><a name="1597" class="Symbol"
+      >}</a
+      ><a name="1598"
+      > </a
+      ><a name="1599" class="Symbol"
+      >(</a
+      ><a name="1600" href="src.heap.library.html#1600" class="Bound"
+      >aa'</a
+      ><a name="1603"
+      > </a
+      ><a name="1604" class="Symbol"
+      >:</a
+      ><a name="1605"
+      > </a
+      ><a name="1606" href="Relation.Nullary.html#414" class="Function Operator"
+      >&#172;</a
+      ><a name="1607"
+      > </a
+      ><a name="1608" class="Symbol"
+      >(</a
+      ><a name="1609" href="src.heap.library.html#1589" class="Bound"
+      >a</a
+      ><a name="1610"
+      > </a
+      ><a name="1611" href="Agda.Builtin.Equality.html#83" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="1612"
+      > </a
+      ><a name="1613" href="src.heap.library.html#1591" class="Bound"
+      >a'</a
+      ><a name="1615" class="Symbol"
+      >))</a
+      ><a name="1617"
+      > </a
+      ><a name="1618" class="Symbol"
+      >&#8594;</a
+      ><a name="1619"
+      > </a
+      ><a name="1620" href="Relation.Nullary.html#414" class="Function Operator"
+      >&#172;</a
+      ><a name="1621"
+      > </a
+      ><a name="1622" class="Symbol"
+      >(</a
+      ><a name="1623" href="src.heap.library.html#1591" class="Bound"
+      >a'</a
+      ><a name="1625"
+      > </a
+      ><a name="1626" href="Agda.Builtin.Equality.html#83" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="1627"
+      > </a
+      ><a name="1628" href="src.heap.library.html#1589" class="Bound"
+      >a</a
+      ><a name="1629" class="Symbol"
+      >)</a
+      ><a name="1630"
+      >
+</a
+      ><a name="1631" href="src.heap.library.html#1571" class="Function"
+      >sym'</a
+      ><a name="1635"
+      >  </a
+      ><a name="1637" href="src.heap.library.html#1637" class="Bound"
+      >aa'</a
+      ><a name="1640"
+      > </a
+      ><a name="1641" href="src.heap.library.html#1641" class="Bound"
+      >a'a</a
+      ><a name="1644"
+      > </a
+      ><a name="1645" class="Symbol"
+      >=</a
+      ><a name="1646"
+      > </a
+      ><a name="1647" href="src.heap.library.html#1637" class="Bound"
+      >aa'</a
+      ><a name="1650"
+      > </a
+      ><a name="1651" class="Symbol"
+      >(</a
+      ><a name="1652" href="src.heap.library.html#1501" class="Function"
+      >sym</a
+      ><a name="1655"
+      > </a
+      ><a name="1656" href="src.heap.library.html#1641" class="Bound"
+      >a'a</a
+      ><a name="1659" class="Symbol"
+      >)</a
+      ><a name="1660"
+      >
+</a
+      ></pre
+    ></body
+  ></html
+>

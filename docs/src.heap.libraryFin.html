@@ -1,0 +1,259 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+><head
+  ><title
+    >src.heap.libraryFin</title
+    ><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
+     /><meta http-equiv="Content-Style-Type" content="text/css"
+     /><link href="Agda.css" rel="stylesheet" type="text/css"
+     /></head
+  ><body
+  ><pre
+    ><a name="1" class="Keyword"
+      >module</a
+      ><a name="7"
+      > </a
+      ><a name="8" href="src.heap.libraryFin.html#1" class="Module"
+      >src.heap.libraryFin</a
+      ><a name="27"
+      > </a
+      ><a name="28" class="Keyword"
+      >where</a
+      ><a name="33"
+      >
+</a
+      ><a name="34" class="Keyword"
+      >open</a
+      ><a name="38"
+      > </a
+      ><a name="39" class="Keyword"
+      >import</a
+      ><a name="45"
+      > </a
+      ><a name="46" href="Data.Nat.html#1" class="Module"
+      >Data.Nat</a
+      ><a name="54"
+      >
+</a
+      ><a name="55" class="Keyword"
+      >open</a
+      ><a name="59"
+      > </a
+      ><a name="60" class="Keyword"
+      >import</a
+      ><a name="66"
+      > </a
+      ><a name="67" href="Data.Fin.html#1" class="Module"
+      >Data.Fin</a
+      ><a name="75"
+      > </a
+      ><a name="76" class="Keyword"
+      >hiding</a
+      ><a name="82"
+      > </a
+      ><a name="83" class="Symbol"
+      >(</a
+      ><a name="84" href="Data.Fin.html#3657" class="Function"
+      >lift</a
+      ><a name="88" class="Symbol"
+      >)</a
+      ><a name="89"
+      >
+</a
+      ><a name="90" class="Keyword"
+      >open</a
+      ><a name="94"
+      > </a
+      ><a name="95" class="Keyword"
+      >import</a
+      ><a name="101"
+      > </a
+      ><a name="102" href="Data.Bool.Base.html#1" class="Module"
+      >Data.Bool.Base</a
+      ><a name="116"
+      >
+</a
+      ><a name="117" class="Keyword"
+      >open</a
+      ><a name="121"
+      > </a
+      ><a name="122" class="Keyword"
+      >import</a
+      ><a name="128"
+      > </a
+      ><a name="129" href="src.heap.libraryNat.html#1" class="Module"
+      >src.heap.libraryNat</a
+      ><a name="148"
+      > </a
+      ><a name="149" class="Keyword"
+      >using</a
+      ><a name="154"
+      > </a
+      ><a name="155" class="Symbol"
+      >(</a
+      ><a name="156" href="src.heap.libraryNat.html#879" class="Function Operator"
+      >_&#8806;&#8469;b_</a
+      ><a name="161" class="Symbol"
+      >)</a
+      ><a name="162"
+      >
+</a
+      ><a name="163" class="Keyword"
+      >open</a
+      ><a name="167"
+      > </a
+      ><a name="168" class="Keyword"
+      >import</a
+      ><a name="174"
+      > </a
+      ><a name="175" href="Relation.Binary.PropositionalEquality.html#1" class="Module"
+      >Relation.Binary.PropositionalEquality</a
+      ><a name="212"
+      > </a
+      ><a name="213" class="Keyword"
+      >hiding</a
+      ><a name="219"
+      > </a
+      ><a name="220" class="Symbol"
+      >(</a
+      ><a name="221" href="Relation.Binary.PropositionalEquality.Core.html#565" class="Function"
+      >sym</a
+      ><a name="224" class="Symbol"
+      >)</a
+      ><a name="225"
+      >
+
+</a
+      ><a name="227" href="src.heap.libraryFin.html#227" class="Function"
+      >createFinn</a
+      ><a name="237"
+      > </a
+      ><a name="238" class="Symbol"
+      >:</a
+      ><a name="239"
+      > </a
+      ><a name="240" class="Symbol"
+      >{</a
+      ><a name="241" href="src.heap.libraryFin.html#241" class="Bound"
+      >n</a
+      ><a name="242"
+      > </a
+      ><a name="243" class="Symbol"
+      >:</a
+      ><a name="244"
+      > </a
+      ><a name="245" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="246" class="Symbol"
+      >}</a
+      ><a name="247"
+      > </a
+      ><a name="248" class="Symbol"
+      >&#8594;</a
+      ><a name="249"
+      > </a
+      ><a name="250" class="Symbol"
+      >(</a
+      ><a name="251" href="src.heap.libraryFin.html#251" class="Bound"
+      >notzero</a
+      ><a name="258"
+      > </a
+      ><a name="259" class="Symbol"
+      >:</a
+      ><a name="260"
+      > </a
+      ><a name="261" href="Data.Bool.Base.html#791" class="Function"
+      >T</a
+      ><a name="262"
+      > </a
+      ><a name="263" class="Symbol"
+      >(</a
+      ><a name="264" class="Number"
+      >1</a
+      ><a name="265"
+      > </a
+      ><a name="266" href="src.heap.libraryNat.html#879" class="Function Operator"
+      >&#8806;&#8469;b</a
+      ><a name="269"
+      > </a
+      ><a name="270" href="src.heap.libraryFin.html#241" class="Bound"
+      >n</a
+      ><a name="271" class="Symbol"
+      >))</a
+      ><a name="273"
+      > </a
+      ><a name="274" class="Symbol"
+      >&#8594;</a
+      ><a name="275"
+      > </a
+      ><a name="276" href="Data.Fin.html#871" class="Datatype"
+      >Fin</a
+      ><a name="279"
+      > </a
+      ><a name="280" href="src.heap.libraryFin.html#241" class="Bound"
+      >n</a
+      ><a name="281"
+      >
+</a
+      ><a name="282" href="src.heap.libraryFin.html#227" class="Function"
+      >createFinn</a
+      ><a name="292"
+      > </a
+      ><a name="293" class="Symbol"
+      >{</a
+      ><a name="294" href="Agda.Builtin.Nat.html#115" class="InductiveConstructor"
+      >zero</a
+      ><a name="298" class="Symbol"
+      >}</a
+      ><a name="299"
+      > </a
+      ><a name="300" class="Symbol"
+      >()</a
+      ><a name="302"
+      >
+</a
+      ><a name="303" href="src.heap.libraryFin.html#227" class="Function"
+      >createFinn</a
+      ><a name="313"
+      > </a
+      ><a name="314" class="Symbol"
+      >{</a
+      ><a name="315" href="Agda.Builtin.Nat.html#128" class="InductiveConstructor"
+      >suc</a
+      ><a name="318"
+      > </a
+      ><a name="319" href="src.heap.libraryFin.html#319" class="Bound"
+      >n</a
+      ><a name="320" class="Symbol"
+      >}</a
+      ><a name="321"
+      > </a
+      ><a name="322" href="src.heap.libraryFin.html#322" class="Bound"
+      >notzero</a
+      ><a name="329"
+      > </a
+      ><a name="330" class="Symbol"
+      >=</a
+      ><a name="331"
+      > </a
+      ><a name="332" href="Data.Fin.html#893" class="InductiveConstructor"
+      >zero</a
+      ><a name="336"
+      >
+
+
+</a
+      ><a name="339" class="Comment"
+      >{-
+_==fin_ : {n : &#8469;}  &#8594; Fin n &#8594; Fin n &#8594; Bool
+zero ==fin zero = true
+suc k ==fin suc l = k ==fin l
+_ ==fin _ = false
+-}</a
+      ><a name="457"
+      >
+</a
+      ></pre
+    ></body
+  ></html
+>

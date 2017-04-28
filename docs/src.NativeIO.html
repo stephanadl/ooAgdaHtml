@@ -1,0 +1,725 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+><head
+  ><title
+    >src.NativeIO</title
+    ><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
+     /><meta http-equiv="Content-Style-Type" content="text/css"
+     /><link href="Agda.css" rel="stylesheet" type="text/css"
+     /></head
+  ><body
+  ><pre
+    ><a name="1" class="Keyword"
+      >module</a
+      ><a name="7"
+      > </a
+      ><a name="8" href="src.NativeIO.html#1" class="Module"
+      >src.NativeIO</a
+      ><a name="20"
+      > </a
+      ><a name="21" class="Keyword"
+      >where</a
+      ><a name="26"
+      >
+
+</a
+      ><a name="28" class="Keyword"
+      >open</a
+      ><a name="32"
+      > </a
+      ><a name="33" class="Keyword"
+      >import</a
+      ><a name="39"
+      > </a
+      ><a name="40" href="src.Unit.html#1" class="Module"
+      >src.Unit</a
+      ><a name="48"
+      > </a
+      ><a name="49" class="Keyword"
+      >public</a
+      ><a name="55"
+      >
+</a
+      ><a name="56" class="Keyword"
+      >open</a
+      ><a name="60"
+      > </a
+      ><a name="61" class="Keyword"
+      >import</a
+      ><a name="67"
+      > </a
+      ><a name="68" href="Data.List.html#1" class="Module"
+      >Data.List</a
+      ><a name="77"
+      >
+</a
+      ><a name="78" class="Keyword"
+      >open</a
+      ><a name="82"
+      > </a
+      ><a name="83" class="Keyword"
+      >import</a
+      ><a name="89"
+      > </a
+      ><a name="90" href="Data.Nat.html#1" class="Module"
+      >Data.Nat</a
+      ><a name="98"
+      >
+</a
+      ><a name="99" class="Keyword"
+      >open</a
+      ><a name="103"
+      > </a
+      ><a name="104" class="Keyword"
+      >import</a
+      ><a name="110"
+      > </a
+      ><a name="111" href="Data.String.Base.html#1" class="Module"
+      >Data.String.Base</a
+      ><a name="127"
+      > </a
+      ><a name="128" class="Keyword"
+      >using</a
+      ><a name="133"
+      > </a
+      ><a name="134" class="Symbol"
+      >(</a
+      ><a name="135" href="Agda.Builtin.String.html#165" class="Postulate"
+      >String</a
+      ><a name="141" class="Symbol"
+      >)</a
+      ><a name="142"
+      > </a
+      ><a name="143" class="Keyword"
+      >public</a
+      ><a name="149"
+      >
+
+</a
+      ><a name="151" class="Symbol"
+      >{-#</a
+      ><a name="154"
+      > </a
+      ><a name="155" class="Keyword"
+      >FOREIGN</a
+      ><a name="162"
+      > GHC import qualified Data.Text </a
+      ><a name="194" class="Symbol"
+      >#-}</a
+      ><a name="197"
+      >
+</a
+      ><a name="198" class="Symbol"
+      >{-#</a
+      ><a name="201"
+      > </a
+      ><a name="202" class="Keyword"
+      >FOREIGN</a
+      ><a name="209"
+      > GHC import qualified System.Environment </a
+      ><a name="250" class="Symbol"
+      >#-}</a
+      ><a name="253"
+      >
+
+
+</a
+      ><a name="256" class="Keyword"
+      >postulate</a
+      ><a name="265"
+      >
+  </a
+      ><a name="268" href="src.NativeIO.html#268" class="Postulate"
+      >NativeIO</a
+      ><a name="276"
+      >     </a
+      ><a name="281" class="Symbol"
+      >:</a
+      ><a name="282"
+      > </a
+      ><a name="283" class="PrimitiveType"
+      >Set</a
+      ><a name="286"
+      > </a
+      ><a name="287" class="Symbol"
+      >&#8594;</a
+      ><a name="288"
+      > </a
+      ><a name="289" class="PrimitiveType"
+      >Set</a
+      ><a name="292"
+      >
+  </a
+      ><a name="295" href="src.NativeIO.html#295" class="Postulate"
+      >nativeReturn</a
+      ><a name="307"
+      > </a
+      ><a name="308" class="Symbol"
+      >:</a
+      ><a name="309"
+      > </a
+      ><a name="310" class="Symbol"
+      >{</a
+      ><a name="311" href="src.NativeIO.html#311" class="Bound"
+      >A</a
+      ><a name="312"
+      > </a
+      ><a name="313" class="Symbol"
+      >:</a
+      ><a name="314"
+      > </a
+      ><a name="315" class="PrimitiveType"
+      >Set</a
+      ><a name="318" class="Symbol"
+      >}</a
+      ><a name="319"
+      > </a
+      ><a name="320" class="Symbol"
+      >&#8594;</a
+      ><a name="321"
+      > </a
+      ><a name="322" href="src.NativeIO.html#311" class="Bound"
+      >A</a
+      ><a name="323"
+      > </a
+      ><a name="324" class="Symbol"
+      >&#8594;</a
+      ><a name="325"
+      > </a
+      ><a name="326" href="src.NativeIO.html#268" class="Postulate"
+      >NativeIO</a
+      ><a name="334"
+      > </a
+      ><a name="335" href="src.NativeIO.html#311" class="Bound"
+      >A</a
+      ><a name="336"
+      >
+  </a
+      ><a name="339" href="src.NativeIO.html#339" class="Postulate Operator"
+      >_native&gt;&gt;=_</a
+      ><a name="350"
+      >  </a
+      ><a name="352" class="Symbol"
+      >:</a
+      ><a name="353"
+      > </a
+      ><a name="354" class="Symbol"
+      >{</a
+      ><a name="355" href="src.NativeIO.html#355" class="Bound"
+      >A</a
+      ><a name="356"
+      > </a
+      ><a name="357" href="src.NativeIO.html#357" class="Bound"
+      >B</a
+      ><a name="358"
+      > </a
+      ><a name="359" class="Symbol"
+      >:</a
+      ><a name="360"
+      > </a
+      ><a name="361" class="PrimitiveType"
+      >Set</a
+      ><a name="364" class="Symbol"
+      >}</a
+      ><a name="365"
+      > </a
+      ><a name="366" class="Symbol"
+      >&#8594;</a
+      ><a name="367"
+      > </a
+      ><a name="368" href="src.NativeIO.html#268" class="Postulate"
+      >NativeIO</a
+      ><a name="376"
+      > </a
+      ><a name="377" href="src.NativeIO.html#355" class="Bound"
+      >A</a
+      ><a name="378"
+      > </a
+      ><a name="379" class="Symbol"
+      >&#8594;</a
+      ><a name="380"
+      > </a
+      ><a name="381" class="Symbol"
+      >(</a
+      ><a name="382" href="src.NativeIO.html#355" class="Bound"
+      >A</a
+      ><a name="383"
+      > </a
+      ><a name="384" class="Symbol"
+      >&#8594;</a
+      ><a name="385"
+      > </a
+      ><a name="386" href="src.NativeIO.html#268" class="Postulate"
+      >NativeIO</a
+      ><a name="394"
+      > </a
+      ><a name="395" href="src.NativeIO.html#357" class="Bound"
+      >B</a
+      ><a name="396" class="Symbol"
+      >)</a
+      ><a name="397"
+      > </a
+      ><a name="398" class="Symbol"
+      >&#8594;</a
+      ><a name="399"
+      > </a
+      ><a name="400" href="src.NativeIO.html#268" class="Postulate"
+      >NativeIO</a
+      ><a name="408"
+      > </a
+      ><a name="409" href="src.NativeIO.html#357" class="Bound"
+      >B</a
+      ><a name="410"
+      >
+
+
+</a
+      ><a name="413" class="Symbol"
+      >{-#</a
+      ><a name="416"
+      > </a
+      ><a name="417" class="Keyword"
+      >BUILTIN</a
+      ><a name="424"
+      > IO </a
+      ><a name="428" href="src.NativeIO.html#268" class="Postulate"
+      >NativeIO</a
+      ><a name="436"
+      > </a
+      ><a name="437" class="Symbol"
+      >#-}</a
+      ><a name="440"
+      >
+</a
+      ><a name="441" class="Symbol"
+      >{-#</a
+      ><a name="444"
+      > </a
+      ><a name="445" class="Keyword"
+      >COMPILE</a
+      ><a name="452"
+      > GHC </a
+      ><a name="457" href="src.NativeIO.html#268" class="Postulate"
+      >NativeIO</a
+      ><a name="465"
+      > = type IO </a
+      ><a name="476" class="Symbol"
+      >#-}</a
+      ><a name="479"
+      >
+</a
+      ><a name="480" class="Symbol"
+      >{-#</a
+      ><a name="483"
+      > </a
+      ><a name="484" class="Keyword"
+      >COMPILE</a
+      ><a name="491"
+      > GHC </a
+      ><a name="496" href="src.NativeIO.html#295" class="Postulate"
+      >nativeReturn</a
+      ><a name="508"
+      > = (\_ -&gt; return :: a -&gt; IO a) </a
+      ><a name="539" class="Symbol"
+      >#-}</a
+      ><a name="542"
+      >
+</a
+      ><a name="543" class="Symbol"
+      >{-#</a
+      ><a name="546"
+      > </a
+      ><a name="547" class="Keyword"
+      >COMPILE</a
+      ><a name="554"
+      > GHC </a
+      ><a name="559" href="src.NativeIO.html#339" class="Postulate Operator"
+      >_native&gt;&gt;=_</a
+      ><a name="570"
+      > = (\_ _ -&gt; (&gt;&gt;=) :: IO a -&gt; (a -&gt; IO b) -&gt; IO b) </a
+      ><a name="620" class="Symbol"
+      >#-}</a
+      ><a name="623"
+      >
+
+
+</a
+      ><a name="626" class="Keyword"
+      >postulate</a
+      ><a name="635"
+      >
+  </a
+      ><a name="638" href="src.NativeIO.html#638" class="Postulate"
+      >nativeGetLine</a
+      ><a name="651"
+      >   </a
+      ><a name="654" class="Symbol"
+      >:</a
+      ><a name="655"
+      > </a
+      ><a name="656" href="src.NativeIO.html#268" class="Postulate"
+      >NativeIO</a
+      ><a name="664"
+      > </a
+      ><a name="665" href="Agda.Builtin.String.html#165" class="Postulate"
+      >String</a
+      ><a name="671"
+      >
+  </a
+      ><a name="674" href="src.NativeIO.html#674" class="Postulate"
+      >nativePutStrLn</a
+      ><a name="688"
+      >  </a
+      ><a name="690" class="Symbol"
+      >:</a
+      ><a name="691"
+      > </a
+      ><a name="692" href="Agda.Builtin.String.html#165" class="Postulate"
+      >String</a
+      ><a name="698"
+      > </a
+      ><a name="699" class="Symbol"
+      >&#8594;</a
+      ><a name="700"
+      > </a
+      ><a name="701" href="src.NativeIO.html#268" class="Postulate"
+      >NativeIO</a
+      ><a name="709"
+      > </a
+      ><a name="710" href="src.Unit.html#32" class="Record"
+      >Unit</a
+      ><a name="714"
+      >
+
+</a
+      ><a name="716" class="Symbol"
+      >{-#</a
+      ><a name="719"
+      > </a
+      ><a name="720" class="Keyword"
+      >COMPILE</a
+      ><a name="727"
+      > GHC </a
+      ><a name="732" href="src.NativeIO.html#674" class="Postulate"
+      >nativePutStrLn</a
+      ><a name="746"
+      > = (\ s -&gt; putStrLn (Data.Text.unpack s)) </a
+      ><a name="788" class="Symbol"
+      >#-}</a
+      ><a name="791"
+      >
+</a
+      ><a name="792" class="Symbol"
+      >{-#</a
+      ><a name="795"
+      > </a
+      ><a name="796" class="Keyword"
+      >COMPILE</a
+      ><a name="803"
+      > GHC </a
+      ><a name="808" href="src.NativeIO.html#638" class="Postulate"
+      >nativeGetLine</a
+      ><a name="821"
+      > = (fmap Data.Text.pack getLine) </a
+      ><a name="854" class="Symbol"
+      >#-}</a
+      ><a name="857"
+      >
+
+
+</a
+      ><a name="860" class="Keyword"
+      >postulate</a
+      ><a name="869"
+      >
+  </a
+      ><a name="872" href="src.NativeIO.html#872" class="Postulate"
+      >getArgs</a
+      ><a name="879"
+      > </a
+      ><a name="880" class="Symbol"
+      >:</a
+      ><a name="881"
+      > </a
+      ><a name="882" href="src.NativeIO.html#268" class="Postulate"
+      >NativeIO</a
+      ><a name="890"
+      > </a
+      ><a name="891" class="Symbol"
+      >(</a
+      ><a name="892" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="896"
+      > </a
+      ><a name="897" href="Agda.Builtin.String.html#165" class="Postulate"
+      >String</a
+      ><a name="903" class="Symbol"
+      >)</a
+      ><a name="904"
+      >
+  </a
+      ><a name="907" href="src.NativeIO.html#907" class="Postulate"
+      >primShowNat</a
+      ><a name="918"
+      > </a
+      ><a name="919" class="Symbol"
+      >:</a
+      ><a name="920"
+      > </a
+      ><a name="921" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="922"
+      > </a
+      ><a name="923" class="Symbol"
+      >&#8594;</a
+      ><a name="924"
+      > </a
+      ><a name="925" href="Agda.Builtin.String.html#165" class="Postulate"
+      >String</a
+      ><a name="931"
+      >
+
+</a
+      ><a name="933" class="Symbol"
+      >{-#</a
+      ><a name="936"
+      > </a
+      ><a name="937" class="Keyword"
+      >COMPILE</a
+      ><a name="944"
+      > GHC </a
+      ><a name="949" href="src.NativeIO.html#907" class="Postulate"
+      >primShowNat</a
+      ><a name="960"
+      > = Data.Text.pack . show </a
+      ><a name="985" class="Symbol"
+      >#-}</a
+      ><a name="988"
+      >
+
+</a
+      ><a name="990" class="Symbol"
+      >{-#</a
+      ><a name="993"
+      > </a
+      ><a name="994" class="Keyword"
+      >COMPILE</a
+      ><a name="1001"
+      > GHC </a
+      ><a name="1006" href="src.NativeIO.html#872" class="Postulate"
+      >getArgs</a
+      ><a name="1013"
+      > =     fmap (map Data.Text.pack) System.Environment.getArgs </a
+      ><a name="1073" class="Symbol"
+      >#-}</a
+      ><a name="1076"
+      >
+
+
+
+</a
+      ><a name="1080" class="Comment"
+      >--</a
+      ><a name="1082"
+      >
+</a
+      ><a name="1083" class="Comment"
+      >-- Debug function</a
+      ><a name="1100"
+      >
+</a
+      ><a name="1101" class="Comment"
+      >--</a
+      ><a name="1103"
+      >
+</a
+      ><a name="1104" class="Symbol"
+      >{-#</a
+      ><a name="1107"
+      > </a
+      ><a name="1108" class="Keyword"
+      >FOREIGN</a
+      ><a name="1115"
+      > GHC import qualified Debug.Trace as Trace </a
+      ><a name="1158" class="Symbol"
+      >#-}</a
+      ><a name="1161"
+      >
+
+</a
+      ><a name="1163" class="Symbol"
+      >{-#</a
+      ><a name="1166"
+      > </a
+      ><a name="1167" class="Keyword"
+      >FOREIGN</a
+      ><a name="1174"
+      > GHC
+
+debug = flip Trace.trace
+
+debug' :: c -&gt; Data.Text.Text -&gt; c
+debug' c txt = debug c (Data.Text.unpack txt)
+
+</a
+      ><a name="1288" class="Symbol"
+      >#-}</a
+      ><a name="1291"
+      >
+
+</a
+      ><a name="1293" class="Keyword"
+      >postulate</a
+      ><a name="1302"
+      > </a
+      ><a name="1303" href="src.NativeIO.html#1303" class="Postulate"
+      >debug</a
+      ><a name="1308"
+      > </a
+      ><a name="1309" class="Symbol"
+      >:</a
+      ><a name="1310"
+      > </a
+      ><a name="1311" class="Symbol"
+      >{</a
+      ><a name="1312" href="src.NativeIO.html#1312" class="Bound"
+      >A</a
+      ><a name="1313"
+      > </a
+      ><a name="1314" class="Symbol"
+      >:</a
+      ><a name="1315"
+      > </a
+      ><a name="1316" class="PrimitiveType"
+      >Set</a
+      ><a name="1319" class="Symbol"
+      >}</a
+      ><a name="1320"
+      > </a
+      ><a name="1321" class="Symbol"
+      >&#8594;</a
+      ><a name="1322"
+      >  </a
+      ><a name="1324" href="src.NativeIO.html#1312" class="Bound"
+      >A</a
+      ><a name="1325"
+      > </a
+      ><a name="1326" class="Symbol"
+      >&#8594;</a
+      ><a name="1327"
+      > </a
+      ><a name="1328" href="Agda.Builtin.String.html#165" class="Postulate"
+      >String</a
+      ><a name="1334"
+      > </a
+      ><a name="1335" class="Symbol"
+      >&#8594;</a
+      ><a name="1336"
+      > </a
+      ><a name="1337" href="src.NativeIO.html#1312" class="Bound"
+      >A</a
+      ><a name="1338"
+      >
+</a
+      ><a name="1339" class="Comment"
+      >--debug {A} a s = a</a
+      ><a name="1358"
+      >
+</a
+      ><a name="1359" class="Symbol"
+      >{-#</a
+      ><a name="1362"
+      > </a
+      ><a name="1363" class="Keyword"
+      >COMPILE</a
+      ><a name="1370"
+      > GHC </a
+      ><a name="1375" href="src.NativeIO.html#1303" class="Postulate"
+      >debug</a
+      ><a name="1380"
+      > = (\x -&gt; debug') </a
+      ><a name="1398" class="Symbol"
+      >#-}</a
+      ><a name="1401"
+      >
+
+</a
+      ><a name="1403" class="Keyword"
+      >postulate</a
+      ><a name="1412"
+      > </a
+      ><a name="1413" href="src.NativeIO.html#1413" class="Postulate"
+      >debug&#8321;</a
+      ><a name="1419"
+      > </a
+      ><a name="1420" class="Symbol"
+      >:</a
+      ><a name="1421"
+      > </a
+      ><a name="1422" class="Symbol"
+      >{</a
+      ><a name="1423" href="src.NativeIO.html#1423" class="Bound"
+      >A</a
+      ><a name="1424"
+      > </a
+      ><a name="1425" class="Symbol"
+      >:</a
+      ><a name="1426"
+      > </a
+      ><a name="1427" class="PrimitiveType"
+      >Set&#8321;</a
+      ><a name="1431" class="Symbol"
+      >}</a
+      ><a name="1432"
+      > </a
+      ><a name="1433" class="Symbol"
+      >&#8594;</a
+      ><a name="1434"
+      >  </a
+      ><a name="1436" href="src.NativeIO.html#1423" class="Bound"
+      >A</a
+      ><a name="1437"
+      > </a
+      ><a name="1438" class="Symbol"
+      >&#8594;</a
+      ><a name="1439"
+      > </a
+      ><a name="1440" href="Agda.Builtin.String.html#165" class="Postulate"
+      >String</a
+      ><a name="1446"
+      > </a
+      ><a name="1447" class="Symbol"
+      >&#8594;</a
+      ><a name="1448"
+      > </a
+      ><a name="1449" href="src.NativeIO.html#1423" class="Bound"
+      >A</a
+      ><a name="1450"
+      >
+</a
+      ><a name="1451" class="Comment"
+      >-- debug&#8321; {A} a s = a</a
+      ><a name="1472"
+      >
+</a
+      ><a name="1473" class="Symbol"
+      >{-#</a
+      ><a name="1476"
+      > </a
+      ><a name="1477" class="Keyword"
+      >COMPILE</a
+      ><a name="1484"
+      > GHC </a
+      ><a name="1489" href="src.NativeIO.html#1413" class="Postulate"
+      >debug&#8321;</a
+      ><a name="1495"
+      > = (\x -&gt; debug') </a
+      ><a name="1513" class="Symbol"
+      >#-}</a
+      ><a name="1516"
+      >
+</a
+      ></pre
+    ></body
+  ></html
+>
