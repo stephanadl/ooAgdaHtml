@@ -1,0 +1,5894 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+><head
+  ><title
+    >examples.benchmarks.binaryTreeBenchmark</title
+    ><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
+     /><meta http-equiv="Content-Style-Type" content="text/css"
+     /><link href="Agda.css" rel="stylesheet" type="text/css"
+     /></head
+  ><body
+  ><pre
+    ><a name="1"
+      >
+</a
+      ><a name="2" class="Symbol"
+      >{-#</a
+      ><a name="5"
+      > </a
+      ><a name="6" class="Keyword"
+      >OPTIONS</a
+      ><a name="13"
+      > </a
+      ><a name="14" class="Option"
+      >--postfix-projections</a
+      ><a name="35"
+      > </a
+      ><a name="36" class="Symbol"
+      >#-}</a
+      ><a name="39"
+      >
+
+
+
+</a
+      ><a name="43" class="Keyword"
+      >module</a
+      ><a name="49"
+      > </a
+      ><a name="50" href="examples.benchmarks.binaryTreeBenchmark.html#1" class="Module"
+      >examples.benchmarks.binaryTreeBenchmark</a
+      ><a name="89"
+      > </a
+      ><a name="90" class="Keyword"
+      >where</a
+      ><a name="95"
+      >
+
+</a
+      ><a name="97" class="Comment"
+      >-- standard lib</a
+      ><a name="112"
+      >
+</a
+      ><a name="113" class="Comment"
+      >--</a
+      ><a name="115"
+      >
+</a
+      ><a name="116" class="Keyword"
+      >open</a
+      ><a name="120"
+      > </a
+      ><a name="121" class="Keyword"
+      >import</a
+      ><a name="127"
+      > </a
+      ><a name="128" href="Relation.Nullary.Decidable.html#1" class="Module"
+      >Relation.Nullary.Decidable</a
+      ><a name="154"
+      > </a
+      ><a name="155" class="Keyword"
+      >using</a
+      ><a name="160"
+      > </a
+      ><a name="161" class="Symbol"
+      >(</a
+      ><a name="162" href="Relation.Nullary.Decidable.html#822" class="Function Operator"
+      >&#8970;_&#8971;</a
+      ><a name="165" class="Symbol"
+      >)</a
+      ><a name="166"
+      >
+</a
+      ><a name="167" class="Keyword"
+      >open</a
+      ><a name="171"
+      > </a
+      ><a name="172" class="Keyword"
+      >import</a
+      ><a name="178"
+      > </a
+      ><a name="179" href="Function.html#1" class="Module"
+      >Function</a
+      ><a name="187"
+      > </a
+      ><a name="188" class="Keyword"
+      >using</a
+      ><a name="193"
+      > </a
+      ><a name="194" class="Symbol"
+      >(</a
+      ><a name="195" href="Function.html#2761" class="Function Operator"
+      >case_of_</a
+      ><a name="203" class="Symbol"
+      >)</a
+      ><a name="204"
+      >
+
+</a
+      ><a name="206" class="Keyword"
+      >open</a
+      ><a name="210"
+      > </a
+      ><a name="211" class="Keyword"
+      >import</a
+      ><a name="217"
+      > </a
+      ><a name="218" href="Data.Bool.Base.html#1" class="Module"
+      >Data.Bool.Base</a
+      ><a name="232"
+      > </a
+      ><a name="233" class="Keyword"
+      >using</a
+      ><a name="238"
+      > </a
+      ><a name="239" class="Symbol"
+      >(</a
+      ><a name="240" href="Data.Bool.Base.html#791" class="Function"
+      >T</a
+      ><a name="241" class="Symbol"
+      >;</a
+      ><a name="242"
+      > </a
+      ><a name="243" href="Data.Bool.Base.html#831" class="Function Operator"
+      >if_then_else_</a
+      ><a name="256" class="Symbol"
+      >;</a
+      ><a name="257"
+      > </a
+      ><a name="258" href="Agda.Builtin.Bool.html#92" class="InductiveConstructor"
+      >true</a
+      ><a name="262" class="Symbol"
+      >;</a
+      ><a name="263"
+      > </a
+      ><a name="264" href="Agda.Builtin.Bool.html#86" class="InductiveConstructor"
+      >false</a
+      ><a name="269" class="Symbol"
+      >)</a
+      ><a name="270"
+      >
+</a
+      ><a name="271" class="Keyword"
+      >open</a
+      ><a name="275"
+      > </a
+      ><a name="276" class="Keyword"
+      >import</a
+      ><a name="282"
+      > </a
+      ><a name="283" href="Data.String.html#1" class="Module"
+      >Data.String</a
+      ><a name="294"
+      > </a
+      ><a name="295" class="Keyword"
+      >using</a
+      ><a name="300"
+      > </a
+      ><a name="301" class="Symbol"
+      >(</a
+      ><a name="302" href="Data.String.Base.html#873" class="Function Operator"
+      >_++_</a
+      ><a name="306" class="Symbol"
+      >;</a
+      ><a name="307"
+      > </a
+      ><a name="308" href="Agda.Builtin.String.html#165" class="Postulate"
+      >String</a
+      ><a name="314" class="Symbol"
+      >)</a
+      ><a name="315"
+      >
+</a
+      ><a name="316" class="Keyword"
+      >open</a
+      ><a name="320"
+      > </a
+      ><a name="321" class="Keyword"
+      >import</a
+      ><a name="327"
+      > </a
+      ><a name="328" href="Data.Maybe.html#1" class="Module"
+      >Data.Maybe</a
+      ><a name="338"
+      > </a
+      ><a name="339" class="Keyword"
+      >using</a
+      ><a name="344"
+      > </a
+      ><a name="345" class="Symbol"
+      >(</a
+      ><a name="346" href="Data.Maybe.html#1527" class="InductiveConstructor"
+      >just</a
+      ><a name="350" class="Symbol"
+      >;</a
+      ><a name="351"
+      > </a
+      ><a name="352" href="Data.Maybe.html#1588" class="InductiveConstructor"
+      >nothing</a
+      ><a name="359" class="Symbol"
+      >;</a
+      ><a name="360"
+      > </a
+      ><a name="361" href="Data.Maybe.Base.html#335" class="Datatype"
+      >Maybe</a
+      ><a name="366" class="Symbol"
+      >)</a
+      ><a name="367"
+      >
+</a
+      ><a name="368" class="Keyword"
+      >open</a
+      ><a name="372"
+      > </a
+      ><a name="373" class="Keyword"
+      >import</a
+      ><a name="379"
+      > </a
+      ><a name="380" href="Data.List.Base.html#1" class="Module"
+      >Data.List.Base</a
+      ><a name="394"
+      > </a
+      ><a name="395" class="Keyword"
+      >hiding</a
+      ><a name="401"
+      > </a
+      ><a name="402" class="Symbol"
+      >(</a
+      ><a name="403" href="Data.List.Base.html#895" class="Function Operator"
+      >_++_</a
+      ><a name="407" class="Symbol"
+      >)</a
+      ><a name="408"
+      >
+
+</a
+      ><a name="410" class="Keyword"
+      >open</a
+      ><a name="414"
+      > </a
+      ><a name="415" class="Keyword"
+      >import</a
+      ><a name="421"
+      > </a
+      ><a name="422" href="Data.Nat.Base.html#1" class="Module"
+      >Data.Nat.Base</a
+      ><a name="435"
+      > </a
+      ><a name="436" class="Keyword"
+      >hiding</a
+      ><a name="442"
+      > </a
+      ><a name="443" class="Symbol"
+      >(</a
+      ><a name="444" href="Data.Nat.Base.html#3212" class="Function Operator"
+      >_&#8799;_</a
+      ><a name="447" class="Symbol"
+      >)</a
+      ><a name="448"
+      > </a
+      ><a name="449" class="Keyword"
+      >renaming</a
+      ><a name="457"
+      > </a
+      ><a name="458" class="Symbol"
+      >(</a
+      ><a name="459" href="Data.Nat.Base.html#2726" class="Function Operator"
+      >_&#8852;_</a
+      ><a name="462"
+      > </a
+      ><a name="463" class="Symbol"
+      >to</a
+      ><a name="465"
+      > </a
+      ><a name="466" href="Data.Nat.Base.html#2726" class="Function Operator"
+      >_&#8852;n_</a
+      ><a name="470" class="Symbol"
+      >;</a
+      ><a name="471"
+      >  </a
+      ><a name="473" href="Agda.Builtin.Nat.html#433" class="Primitive Operator"
+      >_*_</a
+      ><a name="476"
+      > </a
+      ><a name="477" class="Symbol"
+      >to</a
+      ><a name="479"
+      > </a
+      ><a name="480" href="Agda.Builtin.Nat.html#433" class="Primitive Operator"
+      >_*Nat_</a
+      ><a name="486" class="Symbol"
+      >;</a
+      ><a name="487"
+      > </a
+      ><a name="488" href="Agda.Builtin.Nat.html#230" class="Primitive Operator"
+      >_+_</a
+      ><a name="491"
+      > </a
+      ><a name="492" class="Symbol"
+      >to</a
+      ><a name="494"
+      > </a
+      ><a name="495" href="Agda.Builtin.Nat.html#230" class="Primitive Operator"
+      >_+Nat_</a
+      ><a name="501" class="Symbol"
+      >)</a
+      ><a name="502"
+      >
+
+</a
+      ><a name="504" class="Keyword"
+      >open</a
+      ><a name="508"
+      > </a
+      ><a name="509" class="Keyword"
+      >import</a
+      ><a name="515"
+      > </a
+      ><a name="516" href="Size.html#1" class="Module"
+      >Size</a
+      ><a name="520"
+      > </a
+      ><a name="521" class="Keyword"
+      >using</a
+      ><a name="526"
+      > </a
+      ><a name="527" class="Symbol"
+      >(</a
+      ><a name="528" href="Agda.Builtin.Size.html#114" class="Postulate"
+      >Size</a
+      ><a name="532" class="Symbol"
+      >;</a
+      ><a name="533"
+      > </a
+      ><a name="534" href="Agda.Builtin.Size.html#210" class="Postulate"
+      >&#8734;</a
+      ><a name="535" class="Symbol"
+      >)</a
+      ><a name="536"
+      >
+
+</a
+      ><a name="538" class="Keyword"
+      >open</a
+      ><a name="542"
+      > </a
+      ><a name="543" class="Keyword"
+      >import</a
+      ><a name="549"
+      > </a
+      ><a name="550" href="Data.Integer.Base.html#1" class="Module"
+      >Data.Integer.Base</a
+      ><a name="567"
+      > </a
+      ><a name="568" class="Keyword"
+      >hiding</a
+      ><a name="574"
+      > </a
+      ><a name="575" class="Symbol"
+      >(</a
+      ><a name="576" href="Data.Integer.Base.html#2252" class="Function"
+      >suc</a
+      ><a name="579" class="Symbol"
+      >)</a
+      ><a name="580"
+      >
+</a
+      ><a name="581" class="Keyword"
+      >open</a
+      ><a name="585"
+      > </a
+      ><a name="586" class="Keyword"
+      >import</a
+      ><a name="592"
+      > </a
+      ><a name="593" href="Data.Integer.html#1" class="Module"
+      >Data.Integer</a
+      ><a name="605"
+      > </a
+      ><a name="606" class="Keyword"
+      >using</a
+      ><a name="611"
+      > </a
+      ><a name="612" class="Symbol"
+      >(</a
+      ><a name="613" href="Data.Integer.html#931" class="Function"
+      >show</a
+      ><a name="617" class="Symbol"
+      >)</a
+      ><a name="618"
+      >
+
+
+</a
+      ><a name="621" class="Comment"
+      >-- lib</a
+      ><a name="627"
+      >
+</a
+      ><a name="628" class="Comment"
+      >--</a
+      ><a name="630"
+      >
+</a
+      ><a name="631" class="Keyword"
+      >open</a
+      ><a name="635"
+      > </a
+      ><a name="636" class="Keyword"
+      >import</a
+      ><a name="642"
+      > </a
+      ><a name="643" href="src.NativeIO.html#1" class="Module"
+      >src.NativeIO</a
+      ><a name="655"
+      > </a
+      ><a name="656" class="Keyword"
+      >using</a
+      ><a name="661"
+      > </a
+      ><a name="662" class="Symbol"
+      >(</a
+      ><a name="663" href="src.Unit.html#63" class="InductiveConstructor"
+      >unit</a
+      ><a name="667" class="Symbol"
+      >;</a
+      ><a name="668"
+      > </a
+      ><a name="669" href="src.Unit.html#32" class="Record"
+      >Unit</a
+      ><a name="673" class="Symbol"
+      >;</a
+      ><a name="674"
+      > </a
+      ><a name="675" href="src.NativeIO.html#907" class="Postulate"
+      >primShowNat</a
+      ><a name="686" class="Symbol"
+      >;</a
+      ><a name="687"
+      > </a
+      ><a name="688" href="src.NativeIO.html#872" class="Postulate"
+      >getArgs</a
+      ><a name="695" class="Symbol"
+      >;</a
+      ><a name="696"
+      > </a
+      ><a name="697" href="src.NativeIO.html#268" class="Postulate"
+      >NativeIO</a
+      ><a name="705" class="Symbol"
+      >;</a
+      ><a name="706"
+      > </a
+      ><a name="707" href="src.NativeIO.html#339" class="Postulate Operator"
+      >_native&gt;&gt;=_</a
+      ><a name="718" class="Symbol"
+      >;</a
+      ><a name="719"
+      > </a
+      ><a name="720" href="src.NativeIO.html#674" class="Postulate"
+      >nativePutStrLn</a
+      ><a name="734" class="Symbol"
+      >)</a
+      ><a name="735"
+      >
+</a
+      ><a name="736" class="Keyword"
+      >open</a
+      ><a name="740"
+      > </a
+      ><a name="741" class="Keyword"
+      >import</a
+      ><a name="747"
+      > </a
+      ><a name="748" href="src.SizedIO.Console.html#1" class="Module"
+      >src.SizedIO.Console</a
+      ><a name="767"
+      > </a
+      ><a name="768" class="Keyword"
+      >using</a
+      ><a name="773"
+      > </a
+      ><a name="774" class="Symbol"
+      >(</a
+      ><a name="775" href="src.SizedIO.Console.html#194" class="InductiveConstructor"
+      >putStrLn</a
+      ><a name="783" class="Symbol"
+      >;</a
+      ><a name="784"
+      > </a
+      ><a name="785" href="src.SizedIO.Console.html#231" class="InductiveConstructor"
+      >getLine</a
+      ><a name="792" class="Symbol"
+      >;</a
+      ><a name="793"
+      > </a
+      ><a name="794" href="src.SizedIO.Console.html#372" class="Function"
+      >consoleI</a
+      ><a name="802" class="Symbol"
+      >;</a
+      ><a name="803"
+      > </a
+      ><a name="804" href="src.SizedIO.Console.html#588" class="Function"
+      >translateIOConsoleLocal</a
+      ><a name="827" class="Symbol"
+      >)</a
+      ><a name="828"
+      >
+</a
+      ><a name="829" class="Keyword"
+      >open</a
+      ><a name="833"
+      > </a
+      ><a name="834" class="Keyword"
+      >import</a
+      ><a name="840"
+      > </a
+      ><a name="841" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#1" class="Module"
+      >src.StateSizedIO.writingOOsUsingIOReaderMethods</a
+      ><a name="888"
+      > </a
+      ><a name="889" class="Keyword"
+      >using</a
+      ><a name="894"
+      > </a
+      ><a name="895" class="Symbol"
+      >(</a
+      ><a name="896" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#10943" class="Datatype"
+      >IO&#738;indcoind+</a
+      ><a name="908" class="Symbol"
+      >;</a
+      ><a name="909"
+      > </a
+      ><a name="910" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#16117" class="Function"
+      >ConsoleInterface&#738;</a
+      ><a name="927" class="Symbol"
+      >;</a
+      ><a name="928"
+      > </a
+      ><a name="929" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#11298" class="InductiveConstructor"
+      >return&#738;ic</a
+      ><a name="938" class="Symbol"
+      >;</a
+      ><a name="939"
+      > </a
+      ><a name="940" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#11161" class="InductiveConstructor"
+      >do&#738;obj</a
+      ><a name="946" class="Symbol"
+      >;</a
+      ><a name="947"
+      > </a
+      ><a name="948" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#13025" class="Function Operator"
+      >_&gt;&gt;=indcoind+_</a
+      ><a name="962" class="Symbol"
+      >;</a
+      ><a name="963"
+      > </a
+      ><a name="964" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#11024" class="InductiveConstructor"
+      >do&#738;IO</a
+      ><a name="969" class="Symbol"
+      >;</a
+      ><a name="970"
+      > </a
+      ><a name="971" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#14187" class="Function"
+      >delay&#738;ic</a
+      ><a name="979" class="Symbol"
+      >;</a
+      ><a name="980"
+      > </a
+      ><a name="981" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#13547" class="Function Operator"
+      >_&gt;&gt;=indcoind_</a
+      ><a name="994" class="Symbol"
+      >;</a
+      ><a name="995"
+      > </a
+      ><a name="996" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#10596" class="Record"
+      >IO&#738;indcoind</a
+      ><a name="1007" class="Symbol"
+      >;</a
+      ><a name="1008"
+      > </a
+      ><a name="1009" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#10735" class="Field"
+      >forceIC</a
+      ><a name="1016" class="Symbol"
+      >)</a
+      ><a name="1017"
+      >
+
+</a
+      ><a name="1019" class="Comment"
+      >-- heap imports</a
+      ><a name="1034"
+      >
+</a
+      ><a name="1035" class="Comment"
+      >--</a
+      ><a name="1037"
+      >
+</a
+      ><a name="1038" class="Keyword"
+      >open</a
+      ><a name="1042"
+      > </a
+      ><a name="1043" class="Keyword"
+      >import</a
+      ><a name="1049"
+      > </a
+      ><a name="1050" href="src.heap.libraryNat.html#1" class="Module"
+      >src.heap.libraryNat</a
+      ><a name="1069"
+      > </a
+      ><a name="1070" class="Keyword"
+      >using</a
+      ><a name="1075"
+      > </a
+      ><a name="1076" class="Symbol"
+      >(</a
+      ><a name="1077" href="src.heap.libraryNat.html#2368" class="Function"
+      >refl&#8806;&#8469;b</a
+      ><a name="1084" class="Symbol"
+      >;</a
+      ><a name="1085"
+      > </a
+      ><a name="1086" href="src.heap.libraryNat.html#2447" class="Function"
+      >trans&#8806;&#8469;b</a
+      ><a name="1094" class="Symbol"
+      >;</a
+      ><a name="1095"
+      > </a
+      ><a name="1096" href="src.heap.libraryNat.html#2191" class="Function"
+      >n&#8806;&#8469;bsucn</a
+      ><a name="1104" class="Symbol"
+      >)</a
+      ><a name="1105"
+      >
+
+</a
+      ><a name="1107" class="Keyword"
+      >open</a
+      ><a name="1111"
+      > </a
+      ><a name="1112" class="Keyword"
+      >import</a
+      ><a name="1118"
+      > </a
+      ><a name="1119" href="src.heap.library.html#1" class="Module"
+      >src.heap.library</a
+      ><a name="1135"
+      > </a
+      ><a name="1136" class="Keyword"
+      >using</a
+      ><a name="1141"
+      > </a
+      ><a name="1142" class="Symbol"
+      >(</a
+      ><a name="1143" href="src.heap.library.html#638" class="Datatype Operator"
+      >_&#215;_</a
+      ><a name="1146" class="Symbol"
+      >;</a
+      ><a name="1147"
+      > </a
+      ><a name="1148" href="src.heap.library.html#697" class="InductiveConstructor Operator"
+      >_,,_</a
+      ><a name="1152" class="Symbol"
+      >)</a
+      ><a name="1153"
+      >
+</a
+      ><a name="1154" class="Keyword"
+      >open</a
+      ><a name="1158"
+      > </a
+      ><a name="1159" class="Keyword"
+      >import</a
+      ><a name="1165"
+      > </a
+      ><a name="1166" href="src.heap.libraryMaybe.html#1" class="Module"
+      >src.heap.libraryMaybe</a
+      ><a name="1187"
+      > </a
+      ><a name="1188" class="Keyword"
+      >using</a
+      ><a name="1193"
+      > </a
+      ><a name="1194" class="Symbol"
+      >(</a
+      ><a name="1195" href="src.heap.libraryMaybe.html#220" class="Datatype"
+      >NativeMaybe</a
+      ><a name="1206" class="Symbol"
+      >;</a
+      ><a name="1207"
+      > </a
+      ><a name="1208" href="src.heap.libraryMaybe.html#383" class="Function"
+      >nativeMaybeFunc</a
+      ><a name="1223" class="Symbol"
+      >;</a
+      ><a name="1224"
+      > </a
+      ><a name="1225" href="src.heap.libraryMaybe.html#288" class="InductiveConstructor"
+      >justNative</a
+      ><a name="1235" class="Symbol"
+      >;</a
+      ><a name="1236"
+      > </a
+      ><a name="1237" href="src.heap.libraryMaybe.html#256" class="InductiveConstructor"
+      >nothingNative</a
+      ><a name="1250" class="Symbol"
+      >)</a
+      ><a name="1251"
+      >
+
+</a
+      ><a name="1253" class="Keyword"
+      >open</a
+      ><a name="1257"
+      > </a
+      ><a name="1258" class="Keyword"
+      >import</a
+      ><a name="1264"
+      > </a
+      ><a name="1265" href="src.heap.heapAsObjectBase.html#1" class="Module"
+      >src.heap.heapAsObjectBase</a
+      ><a name="1290"
+      > </a
+      ><a name="1291" class="Keyword"
+      >using</a
+      ><a name="1296"
+      > </a
+      ><a name="1297" class="Symbol"
+      >(</a
+      ><a name="1298" href="src.heap.heapAsObjectBase.html#525" class="Function"
+      >World</a
+      ><a name="1303" class="Symbol"
+      >;</a
+      ><a name="1304"
+      > </a
+      ><a name="1305" href="src.heap.heapAsObjectBase.html#1085" class="Function Operator"
+      >_&#8806;w_</a
+      ><a name="1309" class="Symbol"
+      >;</a
+      ><a name="1310"
+      > </a
+      ><a name="1311" href="src.heap.heapAsObjectBase.html#549" class="Function"
+      >sucw</a
+      ><a name="1315" class="Symbol"
+      >)</a
+      ><a name="1316"
+      >
+</a
+      ><a name="1317" class="Keyword"
+      >open</a
+      ><a name="1321"
+      > </a
+      ><a name="1322" class="Keyword"
+      >import</a
+      ><a name="1328"
+      > </a
+      ><a name="1329" href="src.heap.heapAsObjectGeneric.html#1" class="Module"
+      >src.heap.heapAsObjectGeneric</a
+      ><a name="1357"
+      > </a
+      ><a name="1358" class="Keyword"
+      >using</a
+      ><a name="1363"
+      > </a
+      ><a name="1364" class="Symbol"
+      >(</a
+      ><a name="1365" href="src.heap.heapAsObjectGeneric.html#513" class="Field"
+      >Pointer</a
+      ><a name="1372" class="Symbol"
+      >;</a
+      ><a name="1373"
+      > </a
+      ><a name="1374" href="src.heap.heapAsObjectGeneric.html#548" class="Field"
+      >embedp</a
+      ><a name="1380" class="Symbol"
+      >)</a
+      ><a name="1381"
+      >
+
+</a
+      ><a name="1383" class="Keyword"
+      >open</a
+      ><a name="1387"
+      > </a
+      ><a name="1388" class="Keyword"
+      >import</a
+      ><a name="1394"
+      > </a
+      ><a name="1395" href="src.heap.heapAsObjectNativeHeap.html#1" class="Module"
+      >src.heap.heapAsObjectNativeHeap</a
+      ><a name="1426"
+      > </a
+      ><a name="1427" class="Keyword"
+      >using</a
+      ><a name="1432"
+      > </a
+      ><a name="1433" class="Symbol"
+      >(</a
+      ><a name="1434" href="src.heap.heapAsObjectNativeHeap.html#303" class="Postulate"
+      >IORef</a
+      ><a name="1439" class="Symbol"
+      >)</a
+      ><a name="1440"
+      >
+
+</a
+      ><a name="1442" class="Keyword"
+      >open</a
+      ><a name="1446"
+      > </a
+      ><a name="1447" class="Keyword"
+      >import</a
+      ><a name="1453"
+      > </a
+      ><a name="1454" href="src.heap.heapAsObject.html#1" class="Module"
+      >src.heap.heapAsObject</a
+      ><a name="1475"
+      > </a
+      ><a name="1476" class="Keyword"
+      >using</a
+      ><a name="1481"
+      > </a
+      ><a name="1482" class="Symbol"
+      >(</a
+      ><a name="1483" href="src.heap.heapAsObject.html#3985" class="Function"
+      >readP</a
+      ><a name="1488" class="Symbol"
+      >;</a
+      ><a name="1489"
+      > </a
+      ><a name="1490" href="src.heap.heapAsObject.html#3753" class="Function"
+      >newP</a
+      ><a name="1494" class="Symbol"
+      >)</a
+      ><a name="1495"
+      >
+
+
+</a
+      ><a name="1498" class="Keyword"
+      >open</a
+      ><a name="1502"
+      > </a
+      ><a name="1503" class="Keyword"
+      >import</a
+      ><a name="1509"
+      > </a
+      ><a name="1510" href="examples.benchmarks.libraryFastInt.html#1" class="Module"
+      >examples.benchmarks.libraryFastInt</a
+      ><a name="1544"
+      > </a
+      ><a name="1545" class="Keyword"
+      >using</a
+      ><a name="1550"
+      > </a
+      ><a name="1551" class="Symbol"
+      >(</a
+      ><a name="1552" href="examples.benchmarks.libraryFastInt.html#807" class="Postulate"
+      >toInt</a
+      ><a name="1557" class="Symbol"
+      >;</a
+      ><a name="1558"
+      > </a
+      ><a name="1559" href="examples.benchmarks.libraryFastInt.html#615" class="Postulate Operator"
+      >_^Int_</a
+      ><a name="1565" class="Symbol"
+      >;</a
+      ><a name="1566"
+      > </a
+      ><a name="1567" href="examples.benchmarks.libraryFastInt.html#826" class="Postulate"
+      >fromInt</a
+      ><a name="1574" class="Symbol"
+      >;</a
+      ><a name="1575"
+      > </a
+      ><a name="1576" href="examples.benchmarks.libraryFastInt.html#781" class="Postulate"
+      >showInt</a
+      ><a name="1583" class="Symbol"
+      >;</a
+      ><a name="1584"
+      > </a
+      ><a name="1585" href="examples.benchmarks.libraryFastInt.html#588" class="Postulate Operator"
+      >_*Int_</a
+      ><a name="1591" class="Symbol"
+      >)</a
+      ><a name="1592"
+      >
+
+
+</a
+      ><a name="1595" class="Keyword"
+      >open</a
+      ><a name="1599"
+      > </a
+      ><a name="1600" class="Keyword"
+      >import</a
+      ><a name="1606"
+      > </a
+      ><a name="1607" href="examples.benchmarks.nativeBinaryTree.html#1" class="Module"
+      >examples.benchmarks.nativeBinaryTree</a
+      ><a name="1643"
+      >
+
+</a
+      ><a name="1645" class="Keyword"
+      >open</a
+      ><a name="1649"
+      > </a
+      ><a name="1650" class="Keyword"
+      >import</a
+      ><a name="1656"
+      > </a
+      ><a name="1657" href="examples.benchmarks.genericNativeHeap.html#1" class="Module"
+      >examples.benchmarks.genericNativeHeap</a
+      ><a name="1694"
+      >
+
+
+</a
+      ><a name="1697" class="Keyword"
+      >record</a
+      ><a name="1703"
+      > </a
+      ><a name="1704" href="examples.benchmarks.binaryTreeBenchmark.html#1704" class="Record"
+      >Node'</a
+      ><a name="1709"
+      > </a
+      ><a name="1710" class="Symbol"
+      >(</a
+      ><a name="1711" href="examples.benchmarks.binaryTreeBenchmark.html#1711" class="Bound"
+      >A</a
+      ><a name="1712"
+      > </a
+      ><a name="1713" class="Symbol"
+      >:</a
+      ><a name="1714"
+      > </a
+      ><a name="1715" class="PrimitiveType"
+      >Set</a
+      ><a name="1718" class="Symbol"
+      >)</a
+      ><a name="1719"
+      > </a
+      ><a name="1720" class="Symbol"
+      >(</a
+      ><a name="1721" href="examples.benchmarks.binaryTreeBenchmark.html#1721" class="Bound"
+      >Point</a
+      ><a name="1726"
+      > </a
+      ><a name="1727" class="Symbol"
+      >:</a
+      ><a name="1728"
+      > </a
+      ><a name="1729" class="PrimitiveType"
+      >Set</a
+      ><a name="1732" class="Symbol"
+      >)</a
+      ><a name="1733"
+      > </a
+      ><a name="1734" class="Symbol"
+      >:</a
+      ><a name="1735"
+      >  </a
+      ><a name="1737" class="PrimitiveType"
+      >Set</a
+      ><a name="1740"
+      > </a
+      ><a name="1741" class="Keyword"
+      >where</a
+      ><a name="1746"
+      >
+  </a
+      ><a name="1749" class="Keyword"
+      >constructor</a
+      ><a name="1760"
+      > </a
+      ><a name="1761" href="examples.benchmarks.binaryTreeBenchmark.html#1761" class="InductiveConstructor"
+      >node'</a
+      ><a name="1766"
+      >
+  </a
+      ><a name="1769" class="Keyword"
+      >field</a
+      ><a name="1774"
+      >
+    </a
+      ><a name="1779" href="examples.benchmarks.binaryTreeBenchmark.html#1779" class="Field"
+      >item'</a
+      ><a name="1784"
+      >  </a
+      ><a name="1786" class="Symbol"
+      >:</a
+      ><a name="1787"
+      > </a
+      ><a name="1788" href="examples.benchmarks.binaryTreeBenchmark.html#1711" class="Bound"
+      >A</a
+      ><a name="1789"
+      >
+    </a
+      ><a name="1794" href="examples.benchmarks.binaryTreeBenchmark.html#1794" class="Field"
+      >left'</a
+      ><a name="1799"
+      >  </a
+      ><a name="1801" class="Symbol"
+      >:</a
+      ><a name="1802"
+      > </a
+      ><a name="1803" href="src.heap.libraryMaybe.html#220" class="Datatype"
+      >NativeMaybe</a
+      ><a name="1814"
+      > </a
+      ><a name="1815" href="examples.benchmarks.binaryTreeBenchmark.html#1721" class="Bound"
+      >Point</a
+      ><a name="1820"
+      >
+    </a
+      ><a name="1825" href="examples.benchmarks.binaryTreeBenchmark.html#1825" class="Field"
+      >right'</a
+      ><a name="1831"
+      > </a
+      ><a name="1832" class="Symbol"
+      >:</a
+      ><a name="1833"
+      > </a
+      ><a name="1834" href="src.heap.libraryMaybe.html#220" class="Datatype"
+      >NativeMaybe</a
+      ><a name="1845"
+      > </a
+      ><a name="1846" href="examples.benchmarks.binaryTreeBenchmark.html#1721" class="Bound"
+      >Point</a
+      ><a name="1851"
+      >
+
+</a
+      ><a name="1853" class="Keyword"
+      >open</a
+      ><a name="1857"
+      > </a
+      ><a name="1858" href="examples.benchmarks.binaryTreeBenchmark.html#1704" class="Module"
+      >Node'</a
+      ><a name="1863"
+      > </a
+      ><a name="1864" class="Keyword"
+      >public</a
+      ><a name="1870"
+      >
+
+
+</a
+      ><a name="1873" href="examples.benchmarks.binaryTreeBenchmark.html#1873" class="Function"
+      >nativeNodeConstr'</a
+      ><a name="1890"
+      > </a
+      ><a name="1891" class="Symbol"
+      >:</a
+      ><a name="1892"
+      > </a
+      ><a name="1893" class="Symbol"
+      >{</a
+      ><a name="1894" href="examples.benchmarks.binaryTreeBenchmark.html#1894" class="Bound"
+      >A</a
+      ><a name="1895"
+      > </a
+      ><a name="1896" class="Symbol"
+      >:</a
+      ><a name="1897"
+      > </a
+      ><a name="1898" class="PrimitiveType"
+      >Set</a
+      ><a name="1901" class="Symbol"
+      >}</a
+      ><a name="1902"
+      > </a
+      ><a name="1903" class="Symbol"
+      >(</a
+      ><a name="1904" href="examples.benchmarks.binaryTreeBenchmark.html#1904" class="Bound"
+      >n</a
+      ><a name="1905"
+      > </a
+      ><a name="1906" class="Symbol"
+      >:</a
+      ><a name="1907"
+      > </a
+      ><a name="1908" href="examples.benchmarks.binaryTreeBenchmark.html#1704" class="Record"
+      >Node'</a
+      ><a name="1913"
+      > </a
+      ><a name="1914" href="examples.benchmarks.binaryTreeBenchmark.html#1894" class="Bound"
+      >A</a
+      ><a name="1915"
+      > </a
+      ><a name="1916" class="Symbol"
+      >(</a
+      ><a name="1917" href="src.heap.heapAsObjectNativeHeap.html#303" class="Postulate"
+      >IORef</a
+      ><a name="1922"
+      > </a
+      ><a name="1923" class="Symbol"
+      >(</a
+      ><a name="1924" href="examples.benchmarks.nativeBinaryTree.html#1090" class="Postulate"
+      >nativeLL</a
+      ><a name="1932"
+      > </a
+      ><a name="1933" href="examples.benchmarks.binaryTreeBenchmark.html#1894" class="Bound"
+      >A</a
+      ><a name="1934" class="Symbol"
+      >)))</a
+      ><a name="1937"
+      > </a
+      ><a name="1938" class="Symbol"
+      >&#8594;</a
+      ><a name="1939"
+      > </a
+      ><a name="1940" href="examples.benchmarks.nativeBinaryTree.html#1090" class="Postulate"
+      >nativeLL</a
+      ><a name="1948"
+      > </a
+      ><a name="1949" href="examples.benchmarks.binaryTreeBenchmark.html#1894" class="Bound"
+      >A</a
+      ><a name="1950"
+      >
+</a
+      ><a name="1951" href="examples.benchmarks.binaryTreeBenchmark.html#1873" class="Function"
+      >nativeNodeConstr'</a
+      ><a name="1968"
+      > </a
+      ><a name="1969" class="Symbol"
+      >{</a
+      ><a name="1970" href="examples.benchmarks.binaryTreeBenchmark.html#1970" class="Bound"
+      >A</a
+      ><a name="1971" class="Symbol"
+      >}</a
+      ><a name="1972"
+      > </a
+      ><a name="1973" class="Symbol"
+      >(</a
+      ><a name="1974" href="examples.benchmarks.binaryTreeBenchmark.html#1761" class="InductiveConstructor"
+      >node'</a
+      ><a name="1979"
+      > </a
+      ><a name="1980" href="examples.benchmarks.binaryTreeBenchmark.html#1980" class="Bound"
+      >item</a
+      ><a name="1984"
+      > </a
+      ><a name="1985" href="examples.benchmarks.binaryTreeBenchmark.html#1985" class="Bound"
+      >left</a
+      ><a name="1989"
+      > </a
+      ><a name="1990" href="examples.benchmarks.binaryTreeBenchmark.html#1990" class="Bound"
+      >right</a
+      ><a name="1995" class="Symbol"
+      >)</a
+      ><a name="1996"
+      > </a
+      ><a name="1997" class="Symbol"
+      >=</a
+      ><a name="1998"
+      > </a
+      ><a name="1999" href="examples.benchmarks.nativeBinaryTree.html#1113" class="Postulate"
+      >nativeNodeConstr</a
+      ><a name="2015"
+      > </a
+      ><a name="2016" href="examples.benchmarks.binaryTreeBenchmark.html#1980" class="Bound"
+      >item</a
+      ><a name="2020"
+      > </a
+      ><a name="2021" href="examples.benchmarks.binaryTreeBenchmark.html#1985" class="Bound"
+      >left</a
+      ><a name="2025"
+      > </a
+      ><a name="2026" href="examples.benchmarks.binaryTreeBenchmark.html#1990" class="Bound"
+      >right</a
+      ><a name="2031"
+      >
+</a
+      ><a name="2032" class="Symbol"
+      >{-#</a
+      ><a name="2035"
+      > </a
+      ><a name="2036" class="Keyword"
+      >INLINE</a
+      ><a name="2042"
+      > </a
+      ><a name="2043" href="examples.benchmarks.binaryTreeBenchmark.html#1873" class="Function"
+      >nativeNodeConstr'</a
+      ><a name="2060"
+      > </a
+      ><a name="2061" class="Symbol"
+      >#-}</a
+      ><a name="2064"
+      >
+
+</a
+      ><a name="2066" href="examples.benchmarks.binaryTreeBenchmark.html#2066" class="Function"
+      >nativeNodeUnfold'</a
+      ><a name="2083"
+      > </a
+      ><a name="2084" class="Symbol"
+      >:</a
+      ><a name="2085"
+      > </a
+      ><a name="2086" class="Symbol"
+      >{</a
+      ><a name="2087" href="examples.benchmarks.binaryTreeBenchmark.html#2087" class="Bound"
+      >A</a
+      ><a name="2088"
+      > </a
+      ><a name="2089" class="Symbol"
+      >:</a
+      ><a name="2090"
+      > </a
+      ><a name="2091" class="PrimitiveType"
+      >Set</a
+      ><a name="2094" class="Symbol"
+      >}</a
+      ><a name="2095"
+      > </a
+      ><a name="2096" class="Symbol"
+      >(</a
+      ><a name="2097" href="examples.benchmarks.binaryTreeBenchmark.html#2097" class="Bound"
+      >x</a
+      ><a name="2098"
+      > </a
+      ><a name="2099" class="Symbol"
+      >:</a
+      ><a name="2100"
+      > </a
+      ><a name="2101" href="examples.benchmarks.nativeBinaryTree.html#1090" class="Postulate"
+      >nativeLL</a
+      ><a name="2109"
+      > </a
+      ><a name="2110" href="examples.benchmarks.binaryTreeBenchmark.html#2087" class="Bound"
+      >A</a
+      ><a name="2111" class="Symbol"
+      >)</a
+      ><a name="2112"
+      > </a
+      ><a name="2113" class="Symbol"
+      >&#8594;</a
+      ><a name="2114"
+      > </a
+      ><a name="2115" href="examples.benchmarks.binaryTreeBenchmark.html#1704" class="Record"
+      >Node'</a
+      ><a name="2120"
+      > </a
+      ><a name="2121" href="examples.benchmarks.binaryTreeBenchmark.html#2087" class="Bound"
+      >A</a
+      ><a name="2122"
+      > </a
+      ><a name="2123" class="Symbol"
+      >(</a
+      ><a name="2124" href="src.heap.heapAsObjectNativeHeap.html#303" class="Postulate"
+      >IORef</a
+      ><a name="2129"
+      > </a
+      ><a name="2130" class="Symbol"
+      >(</a
+      ><a name="2131" href="examples.benchmarks.nativeBinaryTree.html#1090" class="Postulate"
+      >nativeLL</a
+      ><a name="2139"
+      > </a
+      ><a name="2140" href="examples.benchmarks.binaryTreeBenchmark.html#2087" class="Bound"
+      >A</a
+      ><a name="2141" class="Symbol"
+      >))</a
+      ><a name="2143"
+      >
+</a
+      ><a name="2144" href="examples.benchmarks.binaryTreeBenchmark.html#2066" class="Function"
+      >nativeNodeUnfold'</a
+      ><a name="2161"
+      > </a
+      ><a name="2162" href="examples.benchmarks.binaryTreeBenchmark.html#2162" class="Bound"
+      >x</a
+      ><a name="2163"
+      > </a
+      ><a name="2164" class="Symbol"
+      >=</a
+      ><a name="2165"
+      > </a
+      ><a name="2166" href="examples.benchmarks.binaryTreeBenchmark.html#1761" class="InductiveConstructor"
+      >node'</a
+      ><a name="2171"
+      > </a
+      ><a name="2172" class="Symbol"
+      >(</a
+      ><a name="2173" href="examples.benchmarks.nativeBinaryTree.html#1210" class="Postulate"
+      >getItem</a
+      ><a name="2180"
+      > </a
+      ><a name="2181" href="examples.benchmarks.binaryTreeBenchmark.html#2162" class="Bound"
+      >x</a
+      ><a name="2182" class="Symbol"
+      >)</a
+      ><a name="2183"
+      > </a
+      ><a name="2184" class="Symbol"
+      >(</a
+      ><a name="2185" href="examples.benchmarks.nativeBinaryTree.html#1249" class="Postulate"
+      >getLeft</a
+      ><a name="2192"
+      > </a
+      ><a name="2193" href="examples.benchmarks.binaryTreeBenchmark.html#2162" class="Bound"
+      >x</a
+      ><a name="2194" class="Symbol"
+      >)</a
+      ><a name="2195"
+      > </a
+      ><a name="2196" class="Symbol"
+      >(</a
+      ><a name="2197" href="examples.benchmarks.nativeBinaryTree.html#1321" class="Postulate"
+      >getRight</a
+      ><a name="2205"
+      > </a
+      ><a name="2206" href="examples.benchmarks.binaryTreeBenchmark.html#2162" class="Bound"
+      >x</a
+      ><a name="2207" class="Symbol"
+      >)</a
+      ><a name="2208"
+      >
+</a
+      ><a name="2209" class="Symbol"
+      >{-#</a
+      ><a name="2212"
+      > </a
+      ><a name="2213" class="Keyword"
+      >INLINE</a
+      ><a name="2219"
+      > </a
+      ><a name="2220" href="examples.benchmarks.binaryTreeBenchmark.html#2066" class="Function"
+      >nativeNodeUnfold'</a
+      ><a name="2237"
+      > </a
+      ><a name="2238" class="Symbol"
+      >#-}</a
+      ><a name="2241"
+      >
+
+
+</a
+      ><a name="2244" class="Keyword"
+      >open</a
+      ><a name="2248"
+      > </a
+      ><a name="2249" href="examples.benchmarks.genericNativeHeap.html#548" class="Module"
+      >genericNativeImpl</a
+      ><a name="2266"
+      > </a
+      ><a name="2267" class="Symbol"
+      >(</a
+      ><a name="2268" href="examples.benchmarks.nativeBinaryTree.html#1090" class="Postulate"
+      >nativeLL</a
+      ><a name="2276"
+      > </a
+      ><a name="2277" href="Agda.Builtin.Int.html#178" class="Datatype"
+      >&#8484;</a
+      ><a name="2278" class="Symbol"
+      >)</a
+      ><a name="2279"
+      > </a
+      ><a name="2280" class="Symbol"
+      >(</a
+      ><a name="2281" href="examples.benchmarks.binaryTreeBenchmark.html#1704" class="Record"
+      >Node'</a
+      ><a name="2286"
+      >  </a
+      ><a name="2288" href="Agda.Builtin.Int.html#178" class="Datatype"
+      >&#8484;</a
+      ><a name="2289" class="Symbol"
+      >)</a
+      ><a name="2290"
+      > </a
+      ><a name="2291" class="Symbol"
+      >(</a
+      ><a name="2292" href="examples.benchmarks.binaryTreeBenchmark.html#1873" class="Function"
+      >nativeNodeConstr'</a
+      ><a name="2309"
+      > </a
+      ><a name="2310" class="Symbol"
+      >{</a
+      ><a name="2311" href="Agda.Builtin.Int.html#178" class="Datatype"
+      >&#8484;</a
+      ><a name="2312" class="Symbol"
+      >})</a
+      ><a name="2314"
+      > </a
+      ><a name="2315" href="examples.benchmarks.binaryTreeBenchmark.html#2066" class="Function"
+      >nativeNodeUnfold'</a
+      ><a name="2332"
+      >
+
+
+</a
+      ><a name="2335" class="Keyword"
+      >module</a
+      ><a name="2341"
+      > </a
+      ><a name="2342" href="examples.benchmarks.binaryTreeBenchmark.html#2342" class="Module"
+      >_</a
+      ><a name="2343"
+      >  </a
+      ><a name="2345" class="Keyword"
+      >where</a
+      ><a name="2350"
+      >
+
+  </a
+      ><a name="2354" class="Comment"
+      >-- module may be generalized over this definition</a
+      ><a name="2403"
+      >
+  </a
+      ><a name="2406" class="Comment"
+      >--</a
+      ><a name="2408"
+      >
+  </a
+      ><a name="2411" href="examples.benchmarks.binaryTreeBenchmark.html#2411" class="Function"
+      >embedBH+</a
+      ><a name="2419"
+      > </a
+      ><a name="2420" class="Symbol"
+      >:</a
+      ><a name="2421"
+      > </a
+      ><a name="2422" class="Symbol"
+      >{</a
+      ><a name="2423" href="examples.benchmarks.binaryTreeBenchmark.html#2423" class="Bound"
+      >w</a
+      ><a name="2424"
+      > </a
+      ><a name="2425" href="examples.benchmarks.binaryTreeBenchmark.html#2425" class="Bound"
+      >w'</a
+      ><a name="2427"
+      > </a
+      ><a name="2428" class="Symbol"
+      >:</a
+      ><a name="2429"
+      > </a
+      ><a name="2430" href="src.heap.heapAsObjectBase.html#525" class="Function"
+      >World</a
+      ><a name="2435" class="Symbol"
+      >}</a
+      ><a name="2436"
+      > </a
+      ><a name="2437" class="Symbol"
+      >&#8594;</a
+      ><a name="2438"
+      > </a
+      ><a name="2439" href="Data.Bool.Base.html#791" class="Function"
+      >T</a
+      ><a name="2440"
+      > </a
+      ><a name="2441" class="Symbol"
+      >(</a
+      ><a name="2442" href="examples.benchmarks.binaryTreeBenchmark.html#2423" class="Bound"
+      >w</a
+      ><a name="2443"
+      > </a
+      ><a name="2444" href="src.heap.heapAsObjectBase.html#1085" class="Function Operator"
+      >&#8806;w</a
+      ><a name="2446"
+      > </a
+      ><a name="2447" href="examples.benchmarks.binaryTreeBenchmark.html#2425" class="Bound"
+      >w'</a
+      ><a name="2449" class="Symbol"
+      >)</a
+      ><a name="2450"
+      > </a
+      ><a name="2451" class="Symbol"
+      >&#8594;</a
+      ><a name="2452"
+      > </a
+      ><a name="2453" href="examples.benchmarks.genericNativeHeap.html#864" class="Function"
+      >iorefPointerStructGen</a
+      ><a name="2474"
+      > </a
+      ><a name="2475" class="Symbol"
+      >.</a
+      ><a name="2476" href="src.heap.heapAsObjectGeneric.html#513" class="Field"
+      >Pointer</a
+      ><a name="2483"
+      > </a
+      ><a name="2484" href="examples.benchmarks.binaryTreeBenchmark.html#2423" class="Bound"
+      >w</a
+      ><a name="2485"
+      > </a
+      ><a name="2486" class="Symbol"
+      >&#8594;</a
+      ><a name="2487"
+      > </a
+      ><a name="2488" href="examples.benchmarks.genericNativeHeap.html#864" class="Function"
+      >iorefPointerStructGen</a
+      ><a name="2509"
+      > </a
+      ><a name="2510" class="Symbol"
+      >.</a
+      ><a name="2511" href="src.heap.heapAsObjectGeneric.html#513" class="Field"
+      >Pointer</a
+      ><a name="2518"
+      > </a
+      ><a name="2519" href="examples.benchmarks.binaryTreeBenchmark.html#2425" class="Bound"
+      >w'</a
+      ><a name="2521"
+      >
+  </a
+      ><a name="2524" href="examples.benchmarks.binaryTreeBenchmark.html#2411" class="Function"
+      >embedBH+</a
+      ><a name="2532"
+      > </a
+      ><a name="2533" class="Symbol"
+      >{</a
+      ><a name="2534" href="examples.benchmarks.binaryTreeBenchmark.html#2534" class="Bound"
+      >w</a
+      ><a name="2535" class="Symbol"
+      >}</a
+      ><a name="2536"
+      > </a
+      ><a name="2537" class="Symbol"
+      >{</a
+      ><a name="2538" href="examples.benchmarks.binaryTreeBenchmark.html#2538" class="Bound"
+      >w'</a
+      ><a name="2540" class="Symbol"
+      >}</a
+      ><a name="2541"
+      > </a
+      ><a name="2542" class="Symbol"
+      >=</a
+      ><a name="2543"
+      > </a
+      ><a name="2544" class="Symbol"
+      >&#955;</a
+      ><a name="2545"
+      > </a
+      ><a name="2546" href="examples.benchmarks.binaryTreeBenchmark.html#2546" class="Bound"
+      >_</a
+      ><a name="2547"
+      > </a
+      ><a name="2548" href="examples.benchmarks.binaryTreeBenchmark.html#2548" class="Bound"
+      >x</a
+      ><a name="2549"
+      > </a
+      ><a name="2550" class="Symbol"
+      >&#8594;</a
+      ><a name="2551"
+      > </a
+      ><a name="2552" href="examples.benchmarks.binaryTreeBenchmark.html#2548" class="Bound"
+      >x</a
+      ><a name="2553"
+      >
+  </a
+      ><a name="2556" class="Symbol"
+      >{-#</a
+      ><a name="2559"
+      > </a
+      ><a name="2560" class="Keyword"
+      >INLINE</a
+      ><a name="2566"
+      >  </a
+      ><a name="2568" href="examples.benchmarks.binaryTreeBenchmark.html#2411" class="Function"
+      >embedBH+</a
+      ><a name="2576"
+      > </a
+      ><a name="2577" class="Symbol"
+      >#-}</a
+      ><a name="2580"
+      >
+
+
+
+  </a
+      ><a name="2586" href="examples.benchmarks.binaryTreeBenchmark.html#2586" class="Function"
+      >bottomUpTree</a
+      ><a name="2598"
+      > </a
+      ><a name="2599" class="Symbol"
+      >:</a
+      ><a name="2600"
+      > </a
+      ><a name="2601" class="Symbol"
+      >(</a
+      ><a name="2602" href="examples.benchmarks.binaryTreeBenchmark.html#2602" class="Bound"
+      >i</a
+      ><a name="2603"
+      > </a
+      ><a name="2604" class="Symbol"
+      >:</a
+      ><a name="2605"
+      > </a
+      ><a name="2606" href="Agda.Builtin.Size.html#114" class="Postulate"
+      >Size</a
+      ><a name="2610" class="Symbol"
+      >)(</a
+      ><a name="2612" href="examples.benchmarks.binaryTreeBenchmark.html#2612" class="Bound"
+      >w</a
+      ><a name="2613"
+      > </a
+      ><a name="2614" class="Symbol"
+      >:</a
+      ><a name="2615"
+      > </a
+      ><a name="2616" href="src.heap.heapAsObjectBase.html#525" class="Function"
+      >World</a
+      ><a name="2621" class="Symbol"
+      >)(</a
+      ><a name="2623" href="examples.benchmarks.binaryTreeBenchmark.html#2623" class="Bound"
+      >item</a
+      ><a name="2627"
+      > </a
+      ><a name="2628" class="Symbol"
+      >:</a
+      ><a name="2629"
+      > </a
+      ><a name="2630" href="Agda.Builtin.Int.html#178" class="Datatype"
+      >&#8484;</a
+      ><a name="2631" class="Symbol"
+      >)(</a
+      ><a name="2633" href="examples.benchmarks.binaryTreeBenchmark.html#2633" class="Bound"
+      >depth</a
+      ><a name="2638"
+      > </a
+      ><a name="2639" class="Symbol"
+      >:</a
+      ><a name="2640"
+      > </a
+      ><a name="2641" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="2642" class="Symbol"
+      >)</a
+      ><a name="2643"
+      >
+                  </a
+      ><a name="2662" class="Symbol"
+      >&#8594;</a
+      ><a name="2663"
+      > </a
+      ><a name="2664" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#10943" class="Datatype"
+      >IO&#738;indcoind+</a
+      ><a name="2676"
+      > </a
+      ><a name="2677" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#16117" class="Function"
+      >ConsoleInterface&#738;</a
+      ><a name="2694"
+      > </a
+      ><a name="2695" href="examples.benchmarks.genericNativeHeap.html#1071" class="Function"
+      >heapInter</a
+      ><a name="2704"
+      >
+                         </a
+      ><a name="2730" href="examples.benchmarks.binaryTreeBenchmark.html#2602" class="Bound"
+      >i</a
+      ><a name="2731"
+      > </a
+      ><a name="2732" class="Symbol"
+      >(&#955;</a
+      ><a name="2734"
+      > </a
+      ><a name="2735" href="examples.benchmarks.binaryTreeBenchmark.html#2735" class="Bound"
+      >_</a
+      ><a name="2736"
+      > </a
+      ><a name="2737" href="examples.benchmarks.binaryTreeBenchmark.html#2737" class="Bound"
+      >w'</a
+      ><a name="2739"
+      > </a
+      ><a name="2740" class="Symbol"
+      >&#8594;</a
+      ><a name="2741"
+      > </a
+      ><a name="2742" href="examples.benchmarks.genericNativeHeap.html#864" class="Function"
+      >iorefPointerStructGen</a
+      ><a name="2763"
+      > </a
+      ><a name="2764" class="Symbol"
+      >.</a
+      ><a name="2765" href="src.heap.heapAsObjectGeneric.html#513" class="Field"
+      >Pointer</a
+      ><a name="2772"
+      > </a
+      ><a name="2773" href="examples.benchmarks.binaryTreeBenchmark.html#2737" class="Bound"
+      >w'</a
+      ><a name="2775"
+      > </a
+      ><a name="2776" href="src.heap.library.html#638" class="Datatype Operator"
+      >&#215;</a
+      ><a name="2777"
+      > </a
+      ><a name="2778" href="Data.Bool.Base.html#791" class="Function"
+      >T</a
+      ><a name="2779"
+      > </a
+      ><a name="2780" class="Symbol"
+      >(</a
+      ><a name="2781" href="examples.benchmarks.binaryTreeBenchmark.html#2612" class="Bound"
+      >w</a
+      ><a name="2782"
+      > </a
+      ><a name="2783" href="src.heap.heapAsObjectBase.html#1085" class="Function Operator"
+      >&#8806;w</a
+      ><a name="2785"
+      > </a
+      ><a name="2786" href="examples.benchmarks.binaryTreeBenchmark.html#2737" class="Bound"
+      >w'</a
+      ><a name="2788" class="Symbol"
+      >))</a
+      ><a name="2790"
+      > </a
+      ><a name="2791" href="src.Unit.html#63" class="InductiveConstructor"
+      >unit</a
+      ><a name="2795"
+      > </a
+      ><a name="2796" href="examples.benchmarks.binaryTreeBenchmark.html#2612" class="Bound"
+      >w</a
+      ><a name="2797"
+      >
+  </a
+      ><a name="2800" href="examples.benchmarks.binaryTreeBenchmark.html#2586" class="Function"
+      >bottomUpTree</a
+      ><a name="2812"
+      > </a
+      ><a name="2813" href="examples.benchmarks.binaryTreeBenchmark.html#2813" class="Bound"
+      >i</a
+      ><a name="2814"
+      > </a
+      ><a name="2815" href="examples.benchmarks.binaryTreeBenchmark.html#2815" class="Bound"
+      >w</a
+      ><a name="2816"
+      > </a
+      ><a name="2817" href="examples.benchmarks.binaryTreeBenchmark.html#2817" class="Bound"
+      >item</a
+      ><a name="2821"
+      > </a
+      ><a name="2822" href="Agda.Builtin.Nat.html#115" class="InductiveConstructor"
+      >zero</a
+      ><a name="2826"
+      > </a
+      ><a name="2827" class="Symbol"
+      >=</a
+      ><a name="2828"
+      > </a
+      ><a name="2829" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#11161" class="InductiveConstructor"
+      >do&#738;obj</a
+      ><a name="2835"
+      > </a
+      ><a name="2836" class="Symbol"
+      >(</a
+      ><a name="2837" href="src.heap.heapAsObject.html#3753" class="Function"
+      >newP</a
+      ><a name="2841"
+      > </a
+      ><a name="2842" class="Symbol"
+      >(</a
+      ><a name="2843" href="examples.benchmarks.binaryTreeBenchmark.html#1761" class="InductiveConstructor"
+      >node'</a
+      ><a name="2848"
+      > </a
+      ><a name="2849" href="examples.benchmarks.binaryTreeBenchmark.html#2817" class="Bound"
+      >item</a
+      ><a name="2853"
+      > </a
+      ><a name="2854" href="src.heap.libraryMaybe.html#256" class="InductiveConstructor"
+      >nothingNative</a
+      ><a name="2867"
+      > </a
+      ><a name="2868" href="src.heap.libraryMaybe.html#256" class="InductiveConstructor"
+      >nothingNative</a
+      ><a name="2881" class="Symbol"
+      >))</a
+      ><a name="2883"
+      > </a
+      ><a name="2884" class="Symbol"
+      >&#955;</a
+      ><a name="2885"
+      > </a
+      ><a name="2886" href="examples.benchmarks.binaryTreeBenchmark.html#2886" class="Bound"
+      >p</a
+      ><a name="2887"
+      > </a
+      ><a name="2888" class="Symbol"
+      >&#8594;</a
+      ><a name="2889"
+      >
+                               </a
+      ><a name="2921" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#11298" class="InductiveConstructor"
+      >return&#738;ic</a
+      ><a name="2930"
+      > </a
+      ><a name="2931" class="Symbol"
+      >(</a
+      ><a name="2932" href="examples.benchmarks.binaryTreeBenchmark.html#2886" class="Bound"
+      >p</a
+      ><a name="2933"
+      > </a
+      ><a name="2934" href="src.heap.library.html#697" class="InductiveConstructor Operator"
+      >,,</a
+      ><a name="2936"
+      > </a
+      ><a name="2937" href="src.heap.libraryNat.html#2191" class="Function"
+      >n&#8806;&#8469;bsucn</a
+      ><a name="2945" class="Symbol"
+      >{</a
+      ><a name="2946" href="examples.benchmarks.binaryTreeBenchmark.html#2815" class="Bound"
+      >w</a
+      ><a name="2947" class="Symbol"
+      >})</a
+      ><a name="2949"
+      >
+
+  </a
+      ><a name="2953" href="examples.benchmarks.binaryTreeBenchmark.html#2586" class="Function"
+      >bottomUpTree</a
+      ><a name="2965"
+      > </a
+      ><a name="2966" href="examples.benchmarks.binaryTreeBenchmark.html#2966" class="Bound"
+      >i</a
+      ><a name="2967"
+      > </a
+      ><a name="2968" href="examples.benchmarks.binaryTreeBenchmark.html#2968" class="Bound"
+      >w</a
+      ><a name="2969"
+      > </a
+      ><a name="2970" href="examples.benchmarks.binaryTreeBenchmark.html#2970" class="Bound"
+      >item</a
+      ><a name="2974"
+      > </a
+      ><a name="2975" class="Symbol"
+      >(</a
+      ><a name="2976" href="Agda.Builtin.Nat.html#128" class="InductiveConstructor"
+      >suc</a
+      ><a name="2979"
+      > </a
+      ><a name="2980" href="examples.benchmarks.binaryTreeBenchmark.html#2980" class="Bound"
+      >depth</a
+      ><a name="2985" class="Symbol"
+      >)</a
+      ><a name="2986"
+      > </a
+      ><a name="2987" class="Symbol"
+      >=</a
+      ><a name="2988"
+      > </a
+      ><a name="2989" href="examples.benchmarks.binaryTreeBenchmark.html#2586" class="Function"
+      >bottomUpTree</a
+      ><a name="3001"
+      > </a
+      ><a name="3002" href="examples.benchmarks.binaryTreeBenchmark.html#2966" class="Bound"
+      >i</a
+      ><a name="3003"
+      > </a
+      ><a name="3004" href="examples.benchmarks.binaryTreeBenchmark.html#2968" class="Bound"
+      >w</a
+      ><a name="3005"
+      > </a
+      ><a name="3006" class="Symbol"
+      >(</a
+      ><a name="3007" href="examples.benchmarks.binaryTreeBenchmark.html#2970" class="Bound"
+      >item</a
+      ><a name="3011"
+      > </a
+      ><a name="3012" href="Data.Integer.Base.html#2025" class="Function Operator"
+      >+</a
+      ><a name="3013"
+      > </a
+      ><a name="3014" href="examples.benchmarks.binaryTreeBenchmark.html#2970" class="Bound"
+      >item</a
+      ><a name="3018"
+      > </a
+      ><a name="3019" href="Data.Integer.Base.html#2204" class="Function Operator"
+      >-</a
+      ><a name="3020"
+      > </a
+      ><a name="3021" href="Agda.Builtin.Int.html#196" class="InductiveConstructor Operator"
+      >+</a
+      ><a name="3022"
+      > </a
+      ><a name="3023" class="Number"
+      >1</a
+      ><a name="3024" class="Symbol"
+      >)</a
+      ><a name="3025"
+      > </a
+      ><a name="3026" href="examples.benchmarks.binaryTreeBenchmark.html#2980" class="Bound"
+      >depth</a
+      ><a name="3031"
+      >
+                                                      </a
+      ><a name="3086" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#13025" class="Function Operator"
+      >&gt;&gt;=indcoind+</a
+      ><a name="3098"
+      > </a
+      ><a name="3099" class="Symbol"
+      >&#955;</a
+      ><a name="3100"
+      > </a
+      ><a name="3101" class="Symbol"
+      >{</a
+      ><a name="3102"
+      > </a
+      ><a name="3103" class="Symbol"
+      >{_}{</a
+      ><a name="3107" href="examples.benchmarks.binaryTreeBenchmark.html#3107" class="Bound"
+      >w'</a
+      ><a name="3109" class="Symbol"
+      >}</a
+      ><a name="3110"
+      > </a
+      ><a name="3111" class="Symbol"
+      >(</a
+      ><a name="3112" href="examples.benchmarks.binaryTreeBenchmark.html#3112" class="Bound"
+      >pLeft</a
+      ><a name="3117"
+      > </a
+      ><a name="3118" href="src.heap.library.html#697" class="InductiveConstructor Operator"
+      >,,</a
+      ><a name="3120"
+      > </a
+      ><a name="3121" href="examples.benchmarks.binaryTreeBenchmark.html#3121" class="Bound"
+      >w&#8806;ww'</a
+      ><a name="3126" class="Symbol"
+      >)</a
+      ><a name="3127"
+      >  </a
+      ><a name="3129" class="Symbol"
+      >&#8594;</a
+      ><a name="3130"
+      >
+
+                                      </a
+      ><a name="3170" href="examples.benchmarks.binaryTreeBenchmark.html#2586" class="Function"
+      >bottomUpTree</a
+      ><a name="3182"
+      > </a
+      ><a name="3183" href="examples.benchmarks.binaryTreeBenchmark.html#2966" class="Bound"
+      >i</a
+      ><a name="3184"
+      > </a
+      ><a name="3185" href="examples.benchmarks.binaryTreeBenchmark.html#3107" class="Bound"
+      >w'</a
+      ><a name="3187"
+      > </a
+      ><a name="3188" class="Symbol"
+      >(</a
+      ><a name="3189" href="examples.benchmarks.binaryTreeBenchmark.html#2970" class="Bound"
+      >item</a
+      ><a name="3193"
+      > </a
+      ><a name="3194" href="Data.Integer.Base.html#2025" class="Function Operator"
+      >+</a
+      ><a name="3195"
+      > </a
+      ><a name="3196" href="examples.benchmarks.binaryTreeBenchmark.html#2970" class="Bound"
+      >item</a
+      ><a name="3200" class="Symbol"
+      >)</a
+      ><a name="3201"
+      > </a
+      ><a name="3202" href="examples.benchmarks.binaryTreeBenchmark.html#2980" class="Bound"
+      >depth</a
+      ><a name="3207"
+      >
+                                                      </a
+      ><a name="3262" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#13025" class="Function Operator"
+      >&gt;&gt;=indcoind+</a
+      ><a name="3274"
+      > </a
+      ><a name="3275" class="Symbol"
+      >&#955;</a
+      ><a name="3276"
+      > </a
+      ><a name="3277" class="Symbol"
+      >{</a
+      ><a name="3278"
+      > </a
+      ><a name="3279" class="Symbol"
+      >{_}{</a
+      ><a name="3283" href="examples.benchmarks.binaryTreeBenchmark.html#3283" class="Bound"
+      >w''</a
+      ><a name="3286" class="Symbol"
+      >}</a
+      ><a name="3287"
+      > </a
+      ><a name="3288" class="Symbol"
+      >(</a
+      ><a name="3289" href="examples.benchmarks.binaryTreeBenchmark.html#3289" class="Bound"
+      >pRight</a
+      ><a name="3295"
+      > </a
+      ><a name="3296" href="src.heap.library.html#697" class="InductiveConstructor Operator"
+      >,,</a
+      ><a name="3298"
+      > </a
+      ><a name="3299" href="examples.benchmarks.binaryTreeBenchmark.html#3299" class="Bound"
+      >w'&#8806;ww''</a
+      ><a name="3306" class="Symbol"
+      >)</a
+      ><a name="3307"
+      > </a
+      ><a name="3308" class="Symbol"
+      >&#8594;</a
+      ><a name="3309"
+      >
+
+                                      </a
+      ><a name="3349" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#11161" class="InductiveConstructor"
+      >do&#738;obj</a
+      ><a name="3355"
+      > </a
+      ><a name="3356" class="Symbol"
+      >(</a
+      ><a name="3357" href="src.heap.heapAsObject.html#3753" class="Function"
+      >newP</a
+      ><a name="3361"
+      > </a
+      ><a name="3362" class="Symbol"
+      >(</a
+      ><a name="3363" href="examples.benchmarks.binaryTreeBenchmark.html#1761" class="InductiveConstructor"
+      >node'</a
+      ><a name="3368"
+      > </a
+      ><a name="3369" href="examples.benchmarks.binaryTreeBenchmark.html#2970" class="Bound"
+      >item</a
+      ><a name="3373"
+      >
+                                                         </a
+      ><a name="3431" class="Symbol"
+      >(</a
+      ><a name="3432" href="src.heap.libraryMaybe.html#288" class="InductiveConstructor"
+      >justNative</a
+      ><a name="3442"
+      > </a
+      ><a name="3443" class="Symbol"
+      >(</a
+      ><a name="3444" href="examples.benchmarks.genericNativeHeap.html#864" class="Function"
+      >iorefPointerStructGen</a
+      ><a name="3465"
+      > </a
+      ><a name="3466" class="Symbol"
+      >.</a
+      ><a name="3467" href="src.heap.heapAsObjectGeneric.html#548" class="Field"
+      >embedp</a
+      ><a name="3473" class="Symbol"
+      >{</a
+      ><a name="3474" href="examples.benchmarks.binaryTreeBenchmark.html#3107" class="Bound"
+      >w'</a
+      ><a name="3476" class="Symbol"
+      >}</a
+      ><a name="3477"
+      > </a
+      ><a name="3478" class="Symbol"
+      >(</a
+      ><a name="3479" href="examples.benchmarks.binaryTreeBenchmark.html#2411" class="Function"
+      >embedBH+</a
+      ><a name="3487"
+      > </a
+      ><a name="3488" class="Symbol"
+      >{</a
+      ><a name="3489" href="examples.benchmarks.binaryTreeBenchmark.html#3107" class="Bound"
+      >w'</a
+      ><a name="3491" class="Symbol"
+      >}{</a
+      ><a name="3493" href="examples.benchmarks.binaryTreeBenchmark.html#3283" class="Bound"
+      >w''</a
+      ><a name="3496" class="Symbol"
+      >}</a
+      ><a name="3497"
+      > </a
+      ><a name="3498" href="examples.benchmarks.binaryTreeBenchmark.html#3299" class="Bound"
+      >w'&#8806;ww''</a
+      ><a name="3505"
+      > </a
+      ><a name="3506" href="examples.benchmarks.binaryTreeBenchmark.html#3112" class="Bound"
+      >pLeft</a
+      ><a name="3511" class="Symbol"
+      >)))</a
+      ><a name="3514"
+      >
+                                                         </a
+      ><a name="3572" class="Symbol"
+      >(</a
+      ><a name="3573" href="src.heap.libraryMaybe.html#288" class="InductiveConstructor"
+      >justNative</a
+      ><a name="3583"
+      > </a
+      ><a name="3584" class="Symbol"
+      >(</a
+      ><a name="3585" href="examples.benchmarks.genericNativeHeap.html#864" class="Function"
+      >iorefPointerStructGen</a
+      ><a name="3606"
+      > </a
+      ><a name="3607" class="Symbol"
+      >.</a
+      ><a name="3608" href="src.heap.heapAsObjectGeneric.html#548" class="Field"
+      >embedp</a
+      ><a name="3614" class="Symbol"
+      >{</a
+      ><a name="3615" href="examples.benchmarks.binaryTreeBenchmark.html#3107" class="Bound"
+      >w'</a
+      ><a name="3617" class="Symbol"
+      >}</a
+      ><a name="3618"
+      > </a
+      ><a name="3619" href="examples.benchmarks.binaryTreeBenchmark.html#3289" class="Bound"
+      >pRight</a
+      ><a name="3625" class="Symbol"
+      >))))</a
+      ><a name="3629"
+      > </a
+      ><a name="3630" class="Symbol"
+      >&#955;</a
+      ><a name="3631"
+      > </a
+      ><a name="3632" href="examples.benchmarks.binaryTreeBenchmark.html#3632" class="Bound"
+      >pReturn</a
+      ><a name="3639"
+      > </a
+      ><a name="3640" class="Symbol"
+      >&#8594;</a
+      ><a name="3641"
+      >
+
+                                      </a
+      ><a name="3681" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#11298" class="InductiveConstructor"
+      >return&#738;ic</a
+      ><a name="3690"
+      > </a
+      ><a name="3691" class="Symbol"
+      >(</a
+      ><a name="3692" href="examples.benchmarks.binaryTreeBenchmark.html#3632" class="Bound"
+      >pReturn</a
+      ><a name="3699"
+      > </a
+      ><a name="3700" href="src.heap.library.html#697" class="InductiveConstructor Operator"
+      >,,</a
+      ><a name="3702"
+      > </a
+      ><a name="3703" href="src.heap.libraryNat.html#2447" class="Function"
+      >trans&#8806;&#8469;b</a
+      ><a name="3711"
+      > </a
+      ><a name="3712" href="examples.benchmarks.binaryTreeBenchmark.html#2968" class="Bound"
+      >w</a
+      ><a name="3713"
+      > </a
+      ><a name="3714" href="examples.benchmarks.binaryTreeBenchmark.html#3107" class="Bound"
+      >w'</a
+      ><a name="3716"
+      > </a
+      ><a name="3717" class="Symbol"
+      >(</a
+      ><a name="3718" href="src.heap.heapAsObjectBase.html#549" class="Function"
+      >sucw</a
+      ><a name="3722"
+      > </a
+      ><a name="3723" href="examples.benchmarks.binaryTreeBenchmark.html#3283" class="Bound"
+      >w''</a
+      ><a name="3726" class="Symbol"
+      >)</a
+      ><a name="3727"
+      > </a
+      ><a name="3728" href="examples.benchmarks.binaryTreeBenchmark.html#3121" class="Bound"
+      >w&#8806;ww'</a
+      ><a name="3733"
+      >
+                                                               </a
+      ><a name="3797" class="Symbol"
+      >(</a
+      ><a name="3798" href="src.heap.libraryNat.html#2447" class="Function"
+      >trans&#8806;&#8469;b</a
+      ><a name="3806"
+      > </a
+      ><a name="3807" href="examples.benchmarks.binaryTreeBenchmark.html#3107" class="Bound"
+      >w'</a
+      ><a name="3809"
+      > </a
+      ><a name="3810" href="examples.benchmarks.binaryTreeBenchmark.html#3283" class="Bound"
+      >w''</a
+      ><a name="3813"
+      > </a
+      ><a name="3814" class="Symbol"
+      >(</a
+      ><a name="3815" href="src.heap.heapAsObjectBase.html#549" class="Function"
+      >sucw</a
+      ><a name="3819"
+      > </a
+      ><a name="3820" href="examples.benchmarks.binaryTreeBenchmark.html#3283" class="Bound"
+      >w''</a
+      ><a name="3823" class="Symbol"
+      >)</a
+      ><a name="3824"
+      > </a
+      ><a name="3825" href="examples.benchmarks.binaryTreeBenchmark.html#3299" class="Bound"
+      >w'&#8806;ww''</a
+      ><a name="3832"
+      >
+                                                               </a
+      ><a name="3896" class="Symbol"
+      >(</a
+      ><a name="3897" href="src.heap.libraryNat.html#2191" class="Function"
+      >n&#8806;&#8469;bsucn</a
+      ><a name="3905" class="Symbol"
+      >{</a
+      ><a name="3906" href="examples.benchmarks.binaryTreeBenchmark.html#3283" class="Bound"
+      >w''</a
+      ><a name="3909" class="Symbol"
+      >})))</a
+      ><a name="3913"
+      >
+                                      </a
+      ><a name="3952" class="Symbol"
+      >}}</a
+      ><a name="3954"
+      >
+
+
+  </a
+      ><a name="3959" href="examples.benchmarks.binaryTreeBenchmark.html#3959" class="Function"
+      >checkTree</a
+      ><a name="3968"
+      >  </a
+      ><a name="3970" class="Symbol"
+      >:</a
+      ><a name="3971"
+      > </a
+      ><a name="3972" class="Symbol"
+      >(</a
+      ><a name="3973" href="examples.benchmarks.binaryTreeBenchmark.html#3973" class="Bound"
+      >i</a
+      ><a name="3974"
+      > </a
+      ><a name="3975" class="Symbol"
+      >:</a
+      ><a name="3976"
+      > </a
+      ><a name="3977" href="Agda.Builtin.Size.html#114" class="Postulate"
+      >Size</a
+      ><a name="3981" class="Symbol"
+      >)</a
+      ><a name="3982"
+      > </a
+      ><a name="3983" class="Symbol"
+      >&#8594;</a
+      ><a name="3984"
+      > </a
+      ><a name="3985" class="Symbol"
+      >(</a
+      ><a name="3986" href="examples.benchmarks.binaryTreeBenchmark.html#3986" class="Bound"
+      >w</a
+      ><a name="3987"
+      > </a
+      ><a name="3988" class="Symbol"
+      >:</a
+      ><a name="3989"
+      > </a
+      ><a name="3990" href="src.heap.heapAsObjectBase.html#525" class="Function"
+      >World</a
+      ><a name="3995" class="Symbol"
+      >)</a
+      ><a name="3996"
+      > </a
+      ><a name="3997" class="Symbol"
+      >&#8594;</a
+      ><a name="3998"
+      > </a
+      ><a name="3999" class="Symbol"
+      >(</a
+      ><a name="4000" href="examples.benchmarks.genericNativeHeap.html#864" class="Function"
+      >iorefPointerStructGen</a
+      ><a name="4021"
+      > </a
+      ><a name="4022" class="Symbol"
+      >.</a
+      ><a name="4023" href="src.heap.heapAsObjectGeneric.html#513" class="Field"
+      >Pointer</a
+      ><a name="4030"
+      > </a
+      ><a name="4031" href="examples.benchmarks.binaryTreeBenchmark.html#3986" class="Bound"
+      >w</a
+      ><a name="4032" class="Symbol"
+      >)</a
+      ><a name="4033"
+      > </a
+      ><a name="4034" class="Symbol"
+      >&#8594;</a
+      ><a name="4035"
+      > </a
+      ><a name="4036" class="Symbol"
+      >(</a
+      ><a name="4037" href="examples.benchmarks.binaryTreeBenchmark.html#4037" class="Bound"
+      >depth</a
+      ><a name="4042"
+      > </a
+      ><a name="4043" class="Symbol"
+      >:</a
+      ><a name="4044"
+      > </a
+      ><a name="4045" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="4046" class="Symbol"
+      >)</a
+      ><a name="4047"
+      >
+                  </a
+      ><a name="4066" class="Symbol"
+      >&#8594;</a
+      ><a name="4067"
+      > </a
+      ><a name="4068" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#10943" class="Datatype"
+      >IO&#738;indcoind+</a
+      ><a name="4080"
+      > </a
+      ><a name="4081" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#16117" class="Function"
+      >ConsoleInterface&#738;</a
+      ><a name="4098"
+      > </a
+      ><a name="4099" href="examples.benchmarks.genericNativeHeap.html#1071" class="Function"
+      >heapInter</a
+      ><a name="4108"
+      >
+                         </a
+      ><a name="4134" href="examples.benchmarks.binaryTreeBenchmark.html#3973" class="Bound"
+      >i</a
+      ><a name="4135"
+      > </a
+      ><a name="4136" class="Symbol"
+      >(&#955;</a
+      ><a name="4138"
+      > </a
+      ><a name="4139" href="examples.benchmarks.binaryTreeBenchmark.html#4139" class="Bound"
+      >_</a
+      ><a name="4140"
+      > </a
+      ><a name="4141" href="examples.benchmarks.binaryTreeBenchmark.html#4141" class="Bound"
+      >w'</a
+      ><a name="4143"
+      > </a
+      ><a name="4144" class="Symbol"
+      >&#8594;</a
+      ><a name="4145"
+      > </a
+      ><a name="4146" href="Agda.Builtin.Int.html#178" class="Datatype"
+      >&#8484;</a
+      ><a name="4147"
+      > </a
+      ><a name="4148" href="src.heap.library.html#638" class="Datatype Operator"
+      >&#215;</a
+      ><a name="4149"
+      > </a
+      ><a name="4150" href="Data.Bool.Base.html#791" class="Function"
+      >T</a
+      ><a name="4151"
+      > </a
+      ><a name="4152" class="Symbol"
+      >(</a
+      ><a name="4153" href="examples.benchmarks.binaryTreeBenchmark.html#3986" class="Bound"
+      >w</a
+      ><a name="4154"
+      > </a
+      ><a name="4155" href="src.heap.heapAsObjectBase.html#1085" class="Function Operator"
+      >&#8806;w</a
+      ><a name="4157"
+      > </a
+      ><a name="4158" href="examples.benchmarks.binaryTreeBenchmark.html#4141" class="Bound"
+      >w'</a
+      ><a name="4160" class="Symbol"
+      >))</a
+      ><a name="4162"
+      > </a
+      ><a name="4163" href="src.Unit.html#63" class="InductiveConstructor"
+      >unit</a
+      ><a name="4167"
+      > </a
+      ><a name="4168" href="examples.benchmarks.binaryTreeBenchmark.html#3986" class="Bound"
+      >w</a
+      ><a name="4169"
+      >
+  </a
+      ><a name="4172" href="examples.benchmarks.binaryTreeBenchmark.html#3959" class="Function"
+      >checkTree</a
+      ><a name="4181"
+      > </a
+      ><a name="4182" href="examples.benchmarks.binaryTreeBenchmark.html#4182" class="Bound"
+      >i</a
+      ><a name="4183"
+      > </a
+      ><a name="4184" href="examples.benchmarks.binaryTreeBenchmark.html#4184" class="Bound"
+      >w</a
+      ><a name="4185"
+      > </a
+      ><a name="4186" href="examples.benchmarks.binaryTreeBenchmark.html#4186" class="Bound"
+      >p</a
+      ><a name="4187"
+      > </a
+      ><a name="4188" href="Agda.Builtin.Nat.html#115" class="InductiveConstructor"
+      >zero</a
+      ><a name="4192"
+      > </a
+      ><a name="4193" class="Symbol"
+      >=</a
+      ><a name="4194"
+      > </a
+      ><a name="4195" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#11298" class="InductiveConstructor"
+      >return&#738;ic</a
+      ><a name="4204"
+      > </a
+      ><a name="4205" class="Symbol"
+      >((</a
+      ><a name="4207" href="Agda.Builtin.Int.html#196" class="InductiveConstructor Operator"
+      >+</a
+      ><a name="4208"
+      > </a
+      ><a name="4209" class="Number"
+      >0</a
+      ><a name="4210" class="Symbol"
+      >)</a
+      ><a name="4211"
+      > </a
+      ><a name="4212" href="src.heap.library.html#697" class="InductiveConstructor Operator"
+      >,,</a
+      ><a name="4214"
+      > </a
+      ><a name="4215" href="src.heap.libraryNat.html#2368" class="Function"
+      >refl&#8806;&#8469;b</a
+      ><a name="4222"
+      > </a
+      ><a name="4223" href="examples.benchmarks.binaryTreeBenchmark.html#4184" class="Bound"
+      >w</a
+      ><a name="4224" class="Symbol"
+      >)</a
+      ><a name="4225"
+      >
+  </a
+      ><a name="4228" href="examples.benchmarks.binaryTreeBenchmark.html#3959" class="Function"
+      >checkTree</a
+      ><a name="4237"
+      > </a
+      ><a name="4238" href="examples.benchmarks.binaryTreeBenchmark.html#4238" class="Bound"
+      >i</a
+      ><a name="4239"
+      > </a
+      ><a name="4240" href="examples.benchmarks.binaryTreeBenchmark.html#4240" class="Bound"
+      >w</a
+      ><a name="4241"
+      > </a
+      ><a name="4242" href="examples.benchmarks.binaryTreeBenchmark.html#4242" class="Bound"
+      >p</a
+      ><a name="4243"
+      > </a
+      ><a name="4244" class="Symbol"
+      >(</a
+      ><a name="4245" href="Agda.Builtin.Nat.html#128" class="InductiveConstructor"
+      >suc</a
+      ><a name="4248"
+      > </a
+      ><a name="4249" href="examples.benchmarks.binaryTreeBenchmark.html#4249" class="Bound"
+      >depth</a
+      ><a name="4254" class="Symbol"
+      >)</a
+      ><a name="4255"
+      > </a
+      ><a name="4256" class="Symbol"
+      >=</a
+      ><a name="4257"
+      >  </a
+      ><a name="4259" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#11161" class="InductiveConstructor"
+      >do&#738;obj</a
+      ><a name="4265"
+      > </a
+      ><a name="4266" class="Symbol"
+      >(</a
+      ><a name="4267" href="src.heap.heapAsObject.html#3985" class="Function"
+      >readP</a
+      ><a name="4272"
+      > </a
+      ><a name="4273" href="examples.benchmarks.binaryTreeBenchmark.html#4242" class="Bound"
+      >p</a
+      ><a name="4274" class="Symbol"
+      >)</a
+      ><a name="4275"
+      > </a
+      ><a name="4276" class="Symbol"
+      >&#955;</a
+      ><a name="4277"
+      > </a
+      ><a name="4278" class="Symbol"
+      >{</a
+      ><a name="4279"
+      >
+                                   </a
+      ><a name="4315" class="Symbol"
+      >(</a
+      ><a name="4316" href="examples.benchmarks.binaryTreeBenchmark.html#1761" class="InductiveConstructor"
+      >node'</a
+      ><a name="4321"
+      > </a
+      ><a name="4322" href="examples.benchmarks.binaryTreeBenchmark.html#4322" class="Bound"
+      >item</a
+      ><a name="4326"
+      > </a
+      ><a name="4327" href="src.heap.libraryMaybe.html#256" class="InductiveConstructor"
+      >nothingNative</a
+      ><a name="4340"
+      > </a
+      ><a name="4341" class="Symbol"
+      >_)</a
+      ><a name="4343"
+      > </a
+      ><a name="4344" class="Symbol"
+      >&#8594;</a
+      ><a name="4345"
+      > </a
+      ><a name="4346" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#11298" class="InductiveConstructor"
+      >return&#738;ic</a
+      ><a name="4355"
+      > </a
+      ><a name="4356" class="Symbol"
+      >((</a
+      ><a name="4358" href="Agda.Builtin.Int.html#196" class="InductiveConstructor Operator"
+      >+</a
+      ><a name="4359"
+      > </a
+      ><a name="4360" class="Number"
+      >1</a
+      ><a name="4361" class="Symbol"
+      >)</a
+      ><a name="4362"
+      > </a
+      ><a name="4363" href="src.heap.library.html#697" class="InductiveConstructor Operator"
+      >,,</a
+      ><a name="4365"
+      > </a
+      ><a name="4366" href="src.heap.libraryNat.html#2368" class="Function"
+      >refl&#8806;&#8469;b</a
+      ><a name="4373"
+      > </a
+      ><a name="4374" href="examples.benchmarks.binaryTreeBenchmark.html#4240" class="Bound"
+      >w</a
+      ><a name="4375" class="Symbol"
+      >)</a
+      ><a name="4376"
+      >
+                                 </a
+      ><a name="4410" class="Symbol"
+      >;</a
+      ><a name="4411"
+      > </a
+      ><a name="4412" class="Symbol"
+      >(</a
+      ><a name="4413" href="examples.benchmarks.binaryTreeBenchmark.html#1761" class="InductiveConstructor"
+      >node'</a
+      ><a name="4418"
+      > </a
+      ><a name="4419" href="examples.benchmarks.binaryTreeBenchmark.html#4419" class="Bound"
+      >item</a
+      ><a name="4423"
+      > </a
+      ><a name="4424" class="Symbol"
+      >_</a
+      ><a name="4425"
+      > </a
+      ><a name="4426" href="src.heap.libraryMaybe.html#256" class="InductiveConstructor"
+      >nothingNative</a
+      ><a name="4439" class="Symbol"
+      >)</a
+      ><a name="4440"
+      > </a
+      ><a name="4441" class="Symbol"
+      >&#8594;</a
+      ><a name="4442"
+      > </a
+      ><a name="4443" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#11298" class="InductiveConstructor"
+      >return&#738;ic</a
+      ><a name="4452"
+      > </a
+      ><a name="4453" class="Symbol"
+      >((</a
+      ><a name="4455" href="Agda.Builtin.Int.html#196" class="InductiveConstructor Operator"
+      >+</a
+      ><a name="4456"
+      > </a
+      ><a name="4457" class="Number"
+      >1</a
+      ><a name="4458" class="Symbol"
+      >)</a
+      ><a name="4459"
+      > </a
+      ><a name="4460" href="src.heap.library.html#697" class="InductiveConstructor Operator"
+      >,,</a
+      ><a name="4462"
+      > </a
+      ><a name="4463" href="src.heap.libraryNat.html#2368" class="Function"
+      >refl&#8806;&#8469;b</a
+      ><a name="4470"
+      > </a
+      ><a name="4471" href="examples.benchmarks.binaryTreeBenchmark.html#4240" class="Bound"
+      >w</a
+      ><a name="4472" class="Symbol"
+      >)</a
+      ><a name="4473"
+      >
+                                 </a
+      ><a name="4507" class="Symbol"
+      >;</a
+      ><a name="4508"
+      > </a
+      ><a name="4509" class="Symbol"
+      >(</a
+      ><a name="4510" href="examples.benchmarks.binaryTreeBenchmark.html#1761" class="InductiveConstructor"
+      >node'</a
+      ><a name="4515"
+      > </a
+      ><a name="4516" href="examples.benchmarks.binaryTreeBenchmark.html#4516" class="Bound"
+      >item</a
+      ><a name="4520"
+      > </a
+      ><a name="4521" class="Symbol"
+      >(</a
+      ><a name="4522" href="src.heap.libraryMaybe.html#288" class="InductiveConstructor"
+      >justNative</a
+      ><a name="4532"
+      > </a
+      ><a name="4533" href="examples.benchmarks.binaryTreeBenchmark.html#4533" class="Bound"
+      >left</a
+      ><a name="4537" class="Symbol"
+      >)</a
+      ><a name="4538"
+      > </a
+      ><a name="4539" class="Symbol"
+      >(</a
+      ><a name="4540" href="src.heap.libraryMaybe.html#288" class="InductiveConstructor"
+      >justNative</a
+      ><a name="4550"
+      > </a
+      ><a name="4551" href="examples.benchmarks.binaryTreeBenchmark.html#4551" class="Bound"
+      >right</a
+      ><a name="4556" class="Symbol"
+      >))</a
+      ><a name="4558"
+      > </a
+      ><a name="4559" class="Symbol"
+      >&#8594;</a
+      ><a name="4560"
+      >
+
+                                 </a
+      ><a name="4595" href="examples.benchmarks.binaryTreeBenchmark.html#3959" class="Function"
+      >checkTree</a
+      ><a name="4604"
+      > </a
+      ><a name="4605" href="examples.benchmarks.binaryTreeBenchmark.html#4238" class="Bound"
+      >i</a
+      ><a name="4606"
+      > </a
+      ><a name="4607" href="examples.benchmarks.binaryTreeBenchmark.html#4240" class="Bound"
+      >w</a
+      ><a name="4608"
+      > </a
+      ><a name="4609" href="examples.benchmarks.binaryTreeBenchmark.html#4533" class="Bound"
+      >left</a
+      ><a name="4613"
+      > </a
+      ><a name="4614" href="examples.benchmarks.binaryTreeBenchmark.html#4249" class="Bound"
+      >depth</a
+      ><a name="4619"
+      > </a
+      ><a name="4620" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#13025" class="Function Operator"
+      >&gt;&gt;=indcoind+</a
+      ><a name="4632"
+      > </a
+      ><a name="4633" class="Symbol"
+      >&#955;</a
+      ><a name="4634"
+      > </a
+      ><a name="4635" class="Symbol"
+      >{</a
+      ><a name="4636"
+      > </a
+      ><a name="4637" class="Symbol"
+      >{_}{</a
+      ><a name="4641" href="examples.benchmarks.binaryTreeBenchmark.html#4641" class="Bound"
+      >w'</a
+      ><a name="4643" class="Symbol"
+      >}</a
+      ><a name="4644"
+      > </a
+      ><a name="4645" class="Symbol"
+      >(</a
+      ><a name="4646" href="examples.benchmarks.binaryTreeBenchmark.html#4646" class="Bound"
+      >leftRes</a
+      ><a name="4653"
+      > </a
+      ><a name="4654" href="src.heap.library.html#697" class="InductiveConstructor Operator"
+      >,,</a
+      ><a name="4656"
+      > </a
+      ><a name="4657" href="examples.benchmarks.binaryTreeBenchmark.html#4657" class="Bound"
+      >w&#8806;ww'</a
+      ><a name="4662" class="Symbol"
+      >)</a
+      ><a name="4663"
+      > </a
+      ><a name="4664" class="Symbol"
+      >&#8594;</a
+      ><a name="4665"
+      >
+                                 </a
+      ><a name="4699" href="examples.benchmarks.binaryTreeBenchmark.html#3959" class="Function"
+      >checkTree</a
+      ><a name="4708"
+      > </a
+      ><a name="4709" href="examples.benchmarks.binaryTreeBenchmark.html#4238" class="Bound"
+      >i</a
+      ><a name="4710"
+      > </a
+      ><a name="4711" href="examples.benchmarks.binaryTreeBenchmark.html#4641" class="Bound"
+      >w'</a
+      ><a name="4713"
+      > </a
+      ><a name="4714" class="Symbol"
+      >(</a
+      ><a name="4715" href="examples.benchmarks.binaryTreeBenchmark.html#2411" class="Function"
+      >embedBH+</a
+      ><a name="4723" class="Symbol"
+      >{</a
+      ><a name="4724" href="examples.benchmarks.binaryTreeBenchmark.html#4240" class="Bound"
+      >w</a
+      ><a name="4725" class="Symbol"
+      >}{</a
+      ><a name="4727" href="examples.benchmarks.binaryTreeBenchmark.html#4641" class="Bound"
+      >w'</a
+      ><a name="4729" class="Symbol"
+      >}</a
+      ><a name="4730"
+      > </a
+      ><a name="4731" href="examples.benchmarks.binaryTreeBenchmark.html#4657" class="Bound"
+      >w&#8806;ww'</a
+      ><a name="4736"
+      > </a
+      ><a name="4737" href="examples.benchmarks.binaryTreeBenchmark.html#4551" class="Bound"
+      >right</a
+      ><a name="4742" class="Symbol"
+      >)</a
+      ><a name="4743"
+      > </a
+      ><a name="4744" href="examples.benchmarks.binaryTreeBenchmark.html#4249" class="Bound"
+      >depth</a
+      ><a name="4749"
+      > </a
+      ><a name="4750" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#13025" class="Function Operator"
+      >&gt;&gt;=indcoind+</a
+      ><a name="4762"
+      > </a
+      ><a name="4763" class="Symbol"
+      >&#955;</a
+      ><a name="4764"
+      > </a
+      ><a name="4765" class="Symbol"
+      >{</a
+      ><a name="4766"
+      > </a
+      ><a name="4767" class="Symbol"
+      >{_}{</a
+      ><a name="4771" href="examples.benchmarks.binaryTreeBenchmark.html#4771" class="Bound"
+      >w''</a
+      ><a name="4774" class="Symbol"
+      >}</a
+      ><a name="4775"
+      > </a
+      ><a name="4776" class="Symbol"
+      >(</a
+      ><a name="4777" href="examples.benchmarks.binaryTreeBenchmark.html#4777" class="Bound"
+      >rightRes</a
+      ><a name="4785"
+      > </a
+      ><a name="4786" href="src.heap.library.html#697" class="InductiveConstructor Operator"
+      >,,</a
+      ><a name="4788"
+      >  </a
+      ><a name="4790" href="examples.benchmarks.binaryTreeBenchmark.html#4790" class="Bound"
+      >w'&#8806;ww''</a
+      ><a name="4797" class="Symbol"
+      >)</a
+      ><a name="4798"
+      > </a
+      ><a name="4799" class="Symbol"
+      >&#8594;</a
+      ><a name="4800"
+      >
+                                 </a
+      ><a name="4834" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#11298" class="InductiveConstructor"
+      >return&#738;ic</a
+      ><a name="4843"
+      > </a
+      ><a name="4844" class="Symbol"
+      >((</a
+      ><a name="4846" href="Agda.Builtin.Int.html#196" class="InductiveConstructor Operator"
+      >+</a
+      ><a name="4847"
+      > </a
+      ><a name="4848" class="Number"
+      >1</a
+      ><a name="4849"
+      > </a
+      ><a name="4850" href="Data.Integer.Base.html#2025" class="Function Operator"
+      >+</a
+      ><a name="4851"
+      > </a
+      ><a name="4852" href="examples.benchmarks.binaryTreeBenchmark.html#4646" class="Bound"
+      >leftRes</a
+      ><a name="4859"
+      > </a
+      ><a name="4860" href="Data.Integer.Base.html#2025" class="Function Operator"
+      >+</a
+      ><a name="4861"
+      > </a
+      ><a name="4862" href="examples.benchmarks.binaryTreeBenchmark.html#4777" class="Bound"
+      >rightRes</a
+      ><a name="4870" class="Symbol"
+      >)</a
+      ><a name="4871"
+      > </a
+      ><a name="4872" href="src.heap.library.html#697" class="InductiveConstructor Operator"
+      >,,</a
+      ><a name="4874"
+      >  </a
+      ><a name="4876" href="src.heap.libraryNat.html#2447" class="Function"
+      >trans&#8806;&#8469;b</a
+      ><a name="4884"
+      > </a
+      ><a name="4885" href="examples.benchmarks.binaryTreeBenchmark.html#4240" class="Bound"
+      >w</a
+      ><a name="4886"
+      > </a
+      ><a name="4887" href="examples.benchmarks.binaryTreeBenchmark.html#4641" class="Bound"
+      >w'</a
+      ><a name="4889"
+      > </a
+      ><a name="4890" href="examples.benchmarks.binaryTreeBenchmark.html#4771" class="Bound"
+      >w''</a
+      ><a name="4893"
+      > </a
+      ><a name="4894" href="examples.benchmarks.binaryTreeBenchmark.html#4657" class="Bound"
+      >w&#8806;ww'</a
+      ><a name="4899"
+      > </a
+      ><a name="4900" href="examples.benchmarks.binaryTreeBenchmark.html#4790" class="Bound"
+      >w'&#8806;ww''</a
+      ><a name="4907" class="Symbol"
+      >)</a
+      ><a name="4908"
+      >
+                                 </a
+      ><a name="4942" class="Symbol"
+      >}}}</a
+      ><a name="4945"
+      >
+
+  </a
+      ><a name="4949" href="examples.benchmarks.binaryTreeBenchmark.html#4949" class="Function"
+      >checkBottomUpTree</a
+      ><a name="4966"
+      > </a
+      ><a name="4967" class="Symbol"
+      >:</a
+      ><a name="4968"
+      > </a
+      ><a name="4969" class="Symbol"
+      >(</a
+      ><a name="4970" href="examples.benchmarks.binaryTreeBenchmark.html#4970" class="Bound"
+      >i</a
+      ><a name="4971"
+      > </a
+      ><a name="4972" class="Symbol"
+      >:</a
+      ><a name="4973"
+      > </a
+      ><a name="4974" href="Agda.Builtin.Size.html#114" class="Postulate"
+      >Size</a
+      ><a name="4978" class="Symbol"
+      >)(</a
+      ><a name="4980" href="examples.benchmarks.binaryTreeBenchmark.html#4980" class="Bound"
+      >w</a
+      ><a name="4981"
+      > </a
+      ><a name="4982" class="Symbol"
+      >:</a
+      ><a name="4983"
+      > </a
+      ><a name="4984" href="src.heap.heapAsObjectBase.html#525" class="Function"
+      >World</a
+      ><a name="4989" class="Symbol"
+      >)(</a
+      ><a name="4991" href="examples.benchmarks.binaryTreeBenchmark.html#4991" class="Bound"
+      >item</a
+      ><a name="4995"
+      > </a
+      ><a name="4996" class="Symbol"
+      >:</a
+      ><a name="4997"
+      > </a
+      ><a name="4998" href="Agda.Builtin.Int.html#178" class="Datatype"
+      >&#8484;</a
+      ><a name="4999" class="Symbol"
+      >)(</a
+      ><a name="5001" href="examples.benchmarks.binaryTreeBenchmark.html#5001" class="Bound"
+      >depth</a
+      ><a name="5006"
+      > </a
+      ><a name="5007" class="Symbol"
+      >:</a
+      ><a name="5008"
+      > </a
+      ><a name="5009" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="5010" class="Symbol"
+      >)</a
+      ><a name="5011"
+      >
+                  </a
+      ><a name="5030" class="Symbol"
+      >&#8594;</a
+      ><a name="5031"
+      > </a
+      ><a name="5032" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#10943" class="Datatype"
+      >IO&#738;indcoind+</a
+      ><a name="5044"
+      >  </a
+      ><a name="5046" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#16117" class="Function"
+      >ConsoleInterface&#738;</a
+      ><a name="5063"
+      > </a
+      ><a name="5064" href="examples.benchmarks.genericNativeHeap.html#1071" class="Function"
+      >heapInter</a
+      ><a name="5073"
+      > </a
+      ><a name="5074" href="examples.benchmarks.binaryTreeBenchmark.html#4970" class="Bound"
+      >i</a
+      ><a name="5075"
+      > </a
+      ><a name="5076" class="Symbol"
+      >(&#955;</a
+      ><a name="5078"
+      > </a
+      ><a name="5079" href="examples.benchmarks.binaryTreeBenchmark.html#5079" class="Bound"
+      >_</a
+      ><a name="5080"
+      > </a
+      ><a name="5081" href="examples.benchmarks.binaryTreeBenchmark.html#5081" class="Bound"
+      >w'</a
+      ><a name="5083"
+      > </a
+      ><a name="5084" class="Symbol"
+      >&#8594;</a
+      ><a name="5085"
+      > </a
+      ><a name="5086" href="Agda.Builtin.Int.html#178" class="Datatype"
+      >&#8484;</a
+      ><a name="5087"
+      > </a
+      ><a name="5088" href="src.heap.library.html#638" class="Datatype Operator"
+      >&#215;</a
+      ><a name="5089"
+      > </a
+      ><a name="5090" href="Data.Bool.Base.html#791" class="Function"
+      >T</a
+      ><a name="5091"
+      > </a
+      ><a name="5092" class="Symbol"
+      >(</a
+      ><a name="5093" href="examples.benchmarks.binaryTreeBenchmark.html#4980" class="Bound"
+      >w</a
+      ><a name="5094"
+      > </a
+      ><a name="5095" href="src.heap.heapAsObjectBase.html#1085" class="Function Operator"
+      >&#8806;w</a
+      ><a name="5097"
+      > </a
+      ><a name="5098" href="examples.benchmarks.binaryTreeBenchmark.html#5081" class="Bound"
+      >w'</a
+      ><a name="5100" class="Symbol"
+      >))</a
+      ><a name="5102"
+      > </a
+      ><a name="5103" href="src.Unit.html#63" class="InductiveConstructor"
+      >unit</a
+      ><a name="5107"
+      > </a
+      ><a name="5108" href="examples.benchmarks.binaryTreeBenchmark.html#4980" class="Bound"
+      >w</a
+      ><a name="5109"
+      >
+
+
+  </a
+      ><a name="5114" href="examples.benchmarks.binaryTreeBenchmark.html#4949" class="Function"
+      >checkBottomUpTree</a
+      ><a name="5131"
+      > </a
+      ><a name="5132" href="examples.benchmarks.binaryTreeBenchmark.html#5132" class="Bound"
+      >i</a
+      ><a name="5133"
+      > </a
+      ><a name="5134" href="examples.benchmarks.binaryTreeBenchmark.html#5134" class="Bound"
+      >w</a
+      ><a name="5135"
+      > </a
+      ><a name="5136" href="examples.benchmarks.binaryTreeBenchmark.html#5136" class="Bound"
+      >item</a
+      ><a name="5140"
+      > </a
+      ><a name="5141" href="examples.benchmarks.binaryTreeBenchmark.html#5141" class="Bound"
+      >depth</a
+      ><a name="5146"
+      > </a
+      ><a name="5147" class="Symbol"
+      >=</a
+      ><a name="5148"
+      >  </a
+      ><a name="5150" href="examples.benchmarks.binaryTreeBenchmark.html#2586" class="Function"
+      >bottomUpTree</a
+      ><a name="5162"
+      > </a
+      ><a name="5163" href="examples.benchmarks.binaryTreeBenchmark.html#5132" class="Bound"
+      >i</a
+      ><a name="5164"
+      > </a
+      ><a name="5165" href="examples.benchmarks.binaryTreeBenchmark.html#5134" class="Bound"
+      >w</a
+      ><a name="5166"
+      > </a
+      ><a name="5167" href="examples.benchmarks.binaryTreeBenchmark.html#5136" class="Bound"
+      >item</a
+      ><a name="5171"
+      > </a
+      ><a name="5172" href="examples.benchmarks.binaryTreeBenchmark.html#5141" class="Bound"
+      >depth</a
+      ><a name="5177"
+      > </a
+      ><a name="5178" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#13025" class="Function Operator"
+      >&gt;&gt;=indcoind+</a
+      ><a name="5190"
+      > </a
+      ><a name="5191" class="Symbol"
+      >&#955;</a
+      ><a name="5192"
+      > </a
+      ><a name="5193" class="Symbol"
+      >{</a
+      ><a name="5194"
+      > </a
+      ><a name="5195" class="Symbol"
+      >{_}{</a
+      ><a name="5199" href="examples.benchmarks.binaryTreeBenchmark.html#5199" class="Bound"
+      >w'</a
+      ><a name="5201" class="Symbol"
+      >}</a
+      ><a name="5202"
+      > </a
+      ><a name="5203" class="Symbol"
+      >(</a
+      ><a name="5204" href="examples.benchmarks.binaryTreeBenchmark.html#5204" class="Bound"
+      >pointerTree</a
+      ><a name="5215"
+      > </a
+      ><a name="5216" href="src.heap.library.html#697" class="InductiveConstructor Operator"
+      >,,</a
+      ><a name="5218"
+      > </a
+      ><a name="5219" href="examples.benchmarks.binaryTreeBenchmark.html#5219" class="Bound"
+      >w&#8806;ww'</a
+      ><a name="5224" class="Symbol"
+      >)</a
+      ><a name="5225"
+      > </a
+      ><a name="5226" class="Symbol"
+      >&#8594;</a
+      ><a name="5227"
+      >
+                                      </a
+      ><a name="5266" href="examples.benchmarks.binaryTreeBenchmark.html#3959" class="Function"
+      >checkTree</a
+      ><a name="5275"
+      > </a
+      ><a name="5276" href="examples.benchmarks.binaryTreeBenchmark.html#5132" class="Bound"
+      >i</a
+      ><a name="5277"
+      > </a
+      ><a name="5278" href="examples.benchmarks.binaryTreeBenchmark.html#5199" class="Bound"
+      >w'</a
+      ><a name="5280"
+      > </a
+      ><a name="5281" href="examples.benchmarks.binaryTreeBenchmark.html#5204" class="Bound"
+      >pointerTree</a
+      ><a name="5292"
+      > </a
+      ><a name="5293" class="Symbol"
+      >(</a
+      ><a name="5294" href="src.heap.heapAsObjectBase.html#549" class="Function"
+      >sucw</a
+      ><a name="5298"
+      > </a
+      ><a name="5299" href="examples.benchmarks.binaryTreeBenchmark.html#5141" class="Bound"
+      >depth</a
+      ><a name="5304" class="Symbol"
+      >)</a
+      ><a name="5305"
+      > </a
+      ><a name="5306" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#13025" class="Function Operator"
+      >&gt;&gt;=indcoind+</a
+      ><a name="5318"
+      > </a
+      ><a name="5319" class="Symbol"
+      >&#955;</a
+      ><a name="5320"
+      > </a
+      ><a name="5321" class="Symbol"
+      >{</a
+      ><a name="5322"
+      > </a
+      ><a name="5323" class="Symbol"
+      >{_}{</a
+      ><a name="5327" href="examples.benchmarks.binaryTreeBenchmark.html#5327" class="Bound"
+      >w''</a
+      ><a name="5330" class="Symbol"
+      >}</a
+      ><a name="5331"
+      > </a
+      ><a name="5332" class="Symbol"
+      >(</a
+      ><a name="5333" href="examples.benchmarks.binaryTreeBenchmark.html#5333" class="Bound"
+      >checkNum</a
+      ><a name="5341"
+      > </a
+      ><a name="5342" href="src.heap.library.html#697" class="InductiveConstructor Operator"
+      >,,</a
+      ><a name="5344"
+      > </a
+      ><a name="5345" href="examples.benchmarks.binaryTreeBenchmark.html#5345" class="Bound"
+      >w'&#8806;ww''</a
+      ><a name="5352" class="Symbol"
+      >)</a
+      ><a name="5353"
+      > </a
+      ><a name="5354" class="Symbol"
+      >&#8594;</a
+      ><a name="5355"
+      >
+                                      </a
+      ><a name="5394" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#11298" class="InductiveConstructor"
+      >return&#738;ic</a
+      ><a name="5403"
+      > </a
+      ><a name="5404" class="Symbol"
+      >(</a
+      ><a name="5405" href="examples.benchmarks.binaryTreeBenchmark.html#5333" class="Bound"
+      >checkNum</a
+      ><a name="5413"
+      > </a
+      ><a name="5414" href="src.heap.library.html#697" class="InductiveConstructor Operator"
+      >,,</a
+      ><a name="5416"
+      >  </a
+      ><a name="5418" href="src.heap.libraryNat.html#2447" class="Function"
+      >trans&#8806;&#8469;b</a
+      ><a name="5426"
+      > </a
+      ><a name="5427" href="examples.benchmarks.binaryTreeBenchmark.html#5134" class="Bound"
+      >w</a
+      ><a name="5428"
+      > </a
+      ><a name="5429" href="examples.benchmarks.binaryTreeBenchmark.html#5199" class="Bound"
+      >w'</a
+      ><a name="5431"
+      > </a
+      ><a name="5432" href="examples.benchmarks.binaryTreeBenchmark.html#5327" class="Bound"
+      >w''</a
+      ><a name="5435"
+      > </a
+      ><a name="5436" href="examples.benchmarks.binaryTreeBenchmark.html#5219" class="Bound"
+      >w&#8806;ww'</a
+      ><a name="5441"
+      > </a
+      ><a name="5442" href="examples.benchmarks.binaryTreeBenchmark.html#5345" class="Bound"
+      >w'&#8806;ww''</a
+      ><a name="5449" class="Symbol"
+      >)</a
+      ><a name="5450"
+      >
+                                      </a
+      ><a name="5489" class="Symbol"
+      >}}</a
+      ><a name="5491"
+      >
+
+
+  </a
+      ><a name="5496" href="examples.benchmarks.binaryTreeBenchmark.html#5496" class="Function"
+      >forInner</a
+      ><a name="5504"
+      > </a
+      ><a name="5505" class="Symbol"
+      >:</a
+      ><a name="5506"
+      > </a
+      ><a name="5507" class="Symbol"
+      >(</a
+      ><a name="5508" href="examples.benchmarks.binaryTreeBenchmark.html#5508" class="Bound"
+      >i</a
+      ><a name="5509"
+      > </a
+      ><a name="5510" class="Symbol"
+      >:</a
+      ><a name="5511"
+      > </a
+      ><a name="5512" href="Agda.Builtin.Size.html#114" class="Postulate"
+      >Size</a
+      ><a name="5516" class="Symbol"
+      >)(</a
+      ><a name="5518" href="examples.benchmarks.binaryTreeBenchmark.html#5518" class="Bound"
+      >w</a
+      ><a name="5519"
+      > </a
+      ><a name="5520" class="Symbol"
+      >:</a
+      ><a name="5521"
+      > </a
+      ><a name="5522" href="src.heap.heapAsObjectBase.html#525" class="Function"
+      >World</a
+      ><a name="5527" class="Symbol"
+      >)(</a
+      ><a name="5529" href="examples.benchmarks.binaryTreeBenchmark.html#5529" class="Bound"
+      >j</a
+      ><a name="5530"
+      > </a
+      ><a name="5531" class="Symbol"
+      >:</a
+      ><a name="5532"
+      >  </a
+      ><a name="5534" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="5535" class="Symbol"
+      >)(</a
+      ><a name="5537" href="examples.benchmarks.binaryTreeBenchmark.html#5537" class="Bound"
+      >checkVal</a
+      ><a name="5545"
+      > </a
+      ><a name="5546" class="Symbol"
+      >:</a
+      ><a name="5547"
+      > </a
+      ><a name="5548" href="Agda.Builtin.Int.html#178" class="Datatype"
+      >&#8484;</a
+      ><a name="5549" class="Symbol"
+      >)</a
+      ><a name="5550"
+      > </a
+      ><a name="5551" class="Symbol"
+      >(</a
+      ><a name="5552" href="examples.benchmarks.binaryTreeBenchmark.html#5552" class="Bound"
+      >depth</a
+      ><a name="5557"
+      > </a
+      ><a name="5558" class="Symbol"
+      >:</a
+      ><a name="5559"
+      > </a
+      ><a name="5560" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="5561" class="Symbol"
+      >)</a
+      ><a name="5562"
+      >
+                  </a
+      ><a name="5581" class="Symbol"
+      >&#8594;</a
+      ><a name="5582"
+      > </a
+      ><a name="5583" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#10943" class="Datatype"
+      >IO&#738;indcoind+</a
+      ><a name="5595"
+      >
+                         </a
+      ><a name="5621" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#16117" class="Function"
+      >ConsoleInterface&#738;</a
+      ><a name="5638"
+      >
+                          </a
+      ><a name="5665" href="examples.benchmarks.genericNativeHeap.html#1071" class="Function"
+      >heapInter</a
+      ><a name="5674"
+      >
+                         </a
+      ><a name="5700" href="examples.benchmarks.binaryTreeBenchmark.html#5508" class="Bound"
+      >i</a
+      ><a name="5701"
+      > </a
+      ><a name="5702" class="Symbol"
+      >(&#955;</a
+      ><a name="5704"
+      > </a
+      ><a name="5705" href="examples.benchmarks.binaryTreeBenchmark.html#5705" class="Bound"
+      >_</a
+      ><a name="5706"
+      > </a
+      ><a name="5707" href="examples.benchmarks.binaryTreeBenchmark.html#5707" class="Bound"
+      >w'</a
+      ><a name="5709"
+      > </a
+      ><a name="5710" class="Symbol"
+      >&#8594;</a
+      ><a name="5711"
+      > </a
+      ><a name="5712" href="Agda.Builtin.Int.html#178" class="Datatype"
+      >&#8484;</a
+      ><a name="5713"
+      > </a
+      ><a name="5714" href="src.heap.library.html#638" class="Datatype Operator"
+      >&#215;</a
+      ><a name="5715"
+      > </a
+      ><a name="5716" href="Data.Bool.Base.html#791" class="Function"
+      >T</a
+      ><a name="5717"
+      > </a
+      ><a name="5718" class="Symbol"
+      >(</a
+      ><a name="5719" href="examples.benchmarks.binaryTreeBenchmark.html#5518" class="Bound"
+      >w</a
+      ><a name="5720"
+      > </a
+      ><a name="5721" href="src.heap.heapAsObjectBase.html#1085" class="Function Operator"
+      >&#8806;w</a
+      ><a name="5723"
+      > </a
+      ><a name="5724" href="examples.benchmarks.binaryTreeBenchmark.html#5707" class="Bound"
+      >w'</a
+      ><a name="5726" class="Symbol"
+      >))</a
+      ><a name="5728"
+      > </a
+      ><a name="5729" href="src.Unit.html#63" class="InductiveConstructor"
+      >unit</a
+      ><a name="5733"
+      > </a
+      ><a name="5734" href="examples.benchmarks.binaryTreeBenchmark.html#5518" class="Bound"
+      >w</a
+      ><a name="5735"
+      >
+  </a
+      ><a name="5738" href="examples.benchmarks.binaryTreeBenchmark.html#5496" class="Function"
+      >forInner</a
+      ><a name="5746"
+      > </a
+      ><a name="5747" href="examples.benchmarks.binaryTreeBenchmark.html#5747" class="Bound"
+      >i</a
+      ><a name="5748"
+      > </a
+      ><a name="5749" href="examples.benchmarks.binaryTreeBenchmark.html#5749" class="Bound"
+      >w</a
+      ><a name="5750"
+      > </a
+      ><a name="5751" href="Agda.Builtin.Nat.html#115" class="InductiveConstructor"
+      >zero</a
+      ><a name="5755"
+      > </a
+      ><a name="5756" href="examples.benchmarks.binaryTreeBenchmark.html#5756" class="Bound"
+      >check</a
+      ><a name="5761"
+      > </a
+      ><a name="5762" class="Symbol"
+      >_</a
+      ><a name="5763"
+      > </a
+      ><a name="5764" class="Symbol"
+      >=</a
+      ><a name="5765"
+      > </a
+      ><a name="5766" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#11298" class="InductiveConstructor"
+      >return&#738;ic</a
+      ><a name="5775"
+      > </a
+      ><a name="5776" class="Symbol"
+      >(</a
+      ><a name="5777" href="examples.benchmarks.binaryTreeBenchmark.html#5756" class="Bound"
+      >check</a
+      ><a name="5782"
+      > </a
+      ><a name="5783" href="src.heap.library.html#697" class="InductiveConstructor Operator"
+      >,,</a
+      ><a name="5785"
+      > </a
+      ><a name="5786" href="src.heap.libraryNat.html#2368" class="Function"
+      >refl&#8806;&#8469;b</a
+      ><a name="5793"
+      > </a
+      ><a name="5794" href="examples.benchmarks.binaryTreeBenchmark.html#5749" class="Bound"
+      >w</a
+      ><a name="5795" class="Symbol"
+      >)</a
+      ><a name="5796"
+      >
+  </a
+      ><a name="5799" href="examples.benchmarks.binaryTreeBenchmark.html#5496" class="Function"
+      >forInner</a
+      ><a name="5807"
+      > </a
+      ><a name="5808" href="examples.benchmarks.binaryTreeBenchmark.html#5808" class="Bound"
+      >i</a
+      ><a name="5809"
+      > </a
+      ><a name="5810" href="examples.benchmarks.binaryTreeBenchmark.html#5810" class="Bound"
+      >w</a
+      ><a name="5811"
+      > </a
+      ><a name="5812" class="Symbol"
+      >(</a
+      ><a name="5813" href="Agda.Builtin.Nat.html#128" class="InductiveConstructor"
+      >suc</a
+      ><a name="5816"
+      > </a
+      ><a name="5817" href="examples.benchmarks.binaryTreeBenchmark.html#5817" class="Bound"
+      >j</a
+      ><a name="5818" class="Symbol"
+      >)</a
+      ><a name="5819"
+      > </a
+      ><a name="5820" href="examples.benchmarks.binaryTreeBenchmark.html#5820" class="Bound"
+      >check</a
+      ><a name="5825"
+      > </a
+      ><a name="5826" href="examples.benchmarks.binaryTreeBenchmark.html#5826" class="Bound"
+      >depth</a
+      ><a name="5831"
+      > </a
+      ><a name="5832" class="Symbol"
+      >=</a
+      ><a name="5833"
+      > </a
+      ><a name="5834" href="examples.benchmarks.binaryTreeBenchmark.html#4949" class="Function"
+      >checkBottomUpTree</a
+      ><a name="5851"
+      > </a
+      ><a name="5852" href="examples.benchmarks.binaryTreeBenchmark.html#5808" class="Bound"
+      >i</a
+      ><a name="5853"
+      > </a
+      ><a name="5854" href="examples.benchmarks.binaryTreeBenchmark.html#5810" class="Bound"
+      >w</a
+      ><a name="5855"
+      > </a
+      ><a name="5856" class="Symbol"
+      >(</a
+      ><a name="5857" href="Agda.Builtin.Int.html#196" class="InductiveConstructor Operator"
+      >+</a
+      ><a name="5858"
+      > </a
+      ><a name="5859" href="Agda.Builtin.Nat.html#128" class="InductiveConstructor"
+      >suc</a
+      ><a name="5862"
+      > </a
+      ><a name="5863" href="examples.benchmarks.binaryTreeBenchmark.html#5817" class="Bound"
+      >j</a
+      ><a name="5864" class="Symbol"
+      >)</a
+      ><a name="5865"
+      > </a
+      ><a name="5866" href="examples.benchmarks.binaryTreeBenchmark.html#5826" class="Bound"
+      >depth</a
+      ><a name="5871"
+      > </a
+      ><a name="5872" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#13025" class="Function Operator"
+      >&gt;&gt;=indcoind+</a
+      ><a name="5884"
+      >  </a
+      ><a name="5886" class="Symbol"
+      >&#955;</a
+      ><a name="5887"
+      > </a
+      ><a name="5888" class="Symbol"
+      >{</a
+      ><a name="5889"
+      > </a
+      ><a name="5890" class="Symbol"
+      >{</a
+      ><a name="5891" href="examples.benchmarks.binaryTreeBenchmark.html#5891" class="Bound"
+      >s</a
+      ><a name="5892" class="Symbol"
+      >}{</a
+      ><a name="5894" href="examples.benchmarks.binaryTreeBenchmark.html#5894" class="Bound"
+      >w'</a
+      ><a name="5896" class="Symbol"
+      >}</a
+      ><a name="5897"
+      > </a
+      ><a name="5898" class="Symbol"
+      >(</a
+      ><a name="5899" href="examples.benchmarks.binaryTreeBenchmark.html#5899" class="Bound"
+      >check1</a
+      ><a name="5905"
+      > </a
+      ><a name="5906" href="src.heap.library.html#697" class="InductiveConstructor Operator"
+      >,,</a
+      ><a name="5908"
+      > </a
+      ><a name="5909" href="examples.benchmarks.binaryTreeBenchmark.html#5909" class="Bound"
+      >w&#8806;ww'</a
+      ><a name="5914" class="Symbol"
+      >)</a
+      ><a name="5915"
+      >  </a
+      ><a name="5917" class="Symbol"
+      >&#8594;</a
+      ><a name="5918"
+      >
+                                     </a
+      ><a name="5956" href="examples.benchmarks.binaryTreeBenchmark.html#4949" class="Function"
+      >checkBottomUpTree</a
+      ><a name="5973"
+      > </a
+      ><a name="5974" href="examples.benchmarks.binaryTreeBenchmark.html#5808" class="Bound"
+      >i</a
+      ><a name="5975"
+      > </a
+      ><a name="5976" href="examples.benchmarks.binaryTreeBenchmark.html#5894" class="Bound"
+      >w'</a
+      ><a name="5978"
+      > </a
+      ><a name="5979" class="Symbol"
+      >(</a
+      ><a name="5980" href="Agda.Builtin.Int.html#196" class="InductiveConstructor Operator"
+      >+</a
+      ><a name="5981"
+      > </a
+      ><a name="5982" class="Number"
+      >0</a
+      ><a name="5983"
+      > </a
+      ><a name="5984" href="Data.Integer.Base.html#2204" class="Function Operator"
+      >-</a
+      ><a name="5985"
+      > </a
+      ><a name="5986" href="Agda.Builtin.Int.html#196" class="InductiveConstructor Operator"
+      >+</a
+      ><a name="5987"
+      > </a
+      ><a name="5988" href="Agda.Builtin.Nat.html#128" class="InductiveConstructor"
+      >suc</a
+      ><a name="5991"
+      > </a
+      ><a name="5992" href="examples.benchmarks.binaryTreeBenchmark.html#5817" class="Bound"
+      >j</a
+      ><a name="5993" class="Symbol"
+      >)</a
+      ><a name="5994"
+      > </a
+      ><a name="5995" href="examples.benchmarks.binaryTreeBenchmark.html#5826" class="Bound"
+      >depth</a
+      ><a name="6000"
+      > </a
+      ><a name="6001" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#13025" class="Function Operator"
+      >&gt;&gt;=indcoind+</a
+      ><a name="6013"
+      > </a
+      ><a name="6014" class="Symbol"
+      >&#955;</a
+      ><a name="6015"
+      > </a
+      ><a name="6016" class="Symbol"
+      >{</a
+      ><a name="6017"
+      > </a
+      ><a name="6018" class="Symbol"
+      >{</a
+      ><a name="6019" href="examples.benchmarks.binaryTreeBenchmark.html#6019" class="Bound"
+      >s'</a
+      ><a name="6021" class="Symbol"
+      >}{</a
+      ><a name="6023" href="examples.benchmarks.binaryTreeBenchmark.html#6023" class="Bound"
+      >w''</a
+      ><a name="6026" class="Symbol"
+      >}</a
+      ><a name="6027"
+      > </a
+      ><a name="6028" class="Symbol"
+      >(</a
+      ><a name="6029" href="examples.benchmarks.binaryTreeBenchmark.html#6029" class="Bound"
+      >check2</a
+      ><a name="6035"
+      > </a
+      ><a name="6036" href="src.heap.library.html#697" class="InductiveConstructor Operator"
+      >,,</a
+      ><a name="6038"
+      > </a
+      ><a name="6039" href="examples.benchmarks.binaryTreeBenchmark.html#6039" class="Bound"
+      >w'&#8806;ww''</a
+      ><a name="6046" class="Symbol"
+      >)</a
+      ><a name="6047"
+      >  </a
+      ><a name="6049" class="Symbol"
+      >&#8594;</a
+      ><a name="6050"
+      >
+                                     </a
+      ><a name="6088" href="examples.benchmarks.binaryTreeBenchmark.html#5496" class="Function"
+      >forInner</a
+      ><a name="6096"
+      > </a
+      ><a name="6097" href="examples.benchmarks.binaryTreeBenchmark.html#5808" class="Bound"
+      >i</a
+      ><a name="6098"
+      > </a
+      ><a name="6099" href="examples.benchmarks.binaryTreeBenchmark.html#6023" class="Bound"
+      >w''</a
+      ><a name="6102"
+      > </a
+      ><a name="6103" href="examples.benchmarks.binaryTreeBenchmark.html#5817" class="Bound"
+      >j</a
+      ><a name="6104"
+      > </a
+      ><a name="6105" class="Symbol"
+      >(</a
+      ><a name="6106" href="examples.benchmarks.binaryTreeBenchmark.html#5820" class="Bound"
+      >check</a
+      ><a name="6111"
+      > </a
+      ><a name="6112" href="Data.Integer.Base.html#2025" class="Function Operator"
+      >+</a
+      ><a name="6113"
+      > </a
+      ><a name="6114" href="examples.benchmarks.binaryTreeBenchmark.html#5899" class="Bound"
+      >check1</a
+      ><a name="6120" class="Symbol"
+      >)</a
+      ><a name="6121"
+      > </a
+      ><a name="6122" href="examples.benchmarks.binaryTreeBenchmark.html#5826" class="Bound"
+      >depth</a
+      ><a name="6127"
+      >  </a
+      ><a name="6129" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#13025" class="Function Operator"
+      >&gt;&gt;=indcoind+</a
+      ><a name="6141"
+      > </a
+      ><a name="6142" class="Symbol"
+      >&#955;</a
+      ><a name="6143"
+      > </a
+      ><a name="6144" class="Symbol"
+      >{</a
+      ><a name="6145"
+      > </a
+      ><a name="6146" class="Symbol"
+      >{</a
+      ><a name="6147" href="examples.benchmarks.binaryTreeBenchmark.html#6147" class="Bound"
+      >s'</a
+      ><a name="6149" class="Symbol"
+      >}{</a
+      ><a name="6151" href="examples.benchmarks.binaryTreeBenchmark.html#6151" class="Bound"
+      >w'''</a
+      ><a name="6155" class="Symbol"
+      >}</a
+      ><a name="6156"
+      > </a
+      ><a name="6157" class="Symbol"
+      >(</a
+      ><a name="6158" href="examples.benchmarks.binaryTreeBenchmark.html#6158" class="Bound"
+      >checkRes</a
+      ><a name="6166"
+      > </a
+      ><a name="6167" href="src.heap.library.html#697" class="InductiveConstructor Operator"
+      >,,</a
+      ><a name="6169"
+      > </a
+      ><a name="6170" href="examples.benchmarks.binaryTreeBenchmark.html#6170" class="Bound"
+      >w''&#8806;ww'''</a
+      ><a name="6179" class="Symbol"
+      >)</a
+      ><a name="6180"
+      > </a
+      ><a name="6181" class="Symbol"
+      >&#8594;</a
+      ><a name="6182"
+      >
+                                     </a
+      ><a name="6220" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#11298" class="InductiveConstructor"
+      >return&#738;ic</a
+      ><a name="6229"
+      > </a
+      ><a name="6230" class="Symbol"
+      >(</a
+      ><a name="6231" href="examples.benchmarks.binaryTreeBenchmark.html#6158" class="Bound"
+      >checkRes</a
+      ><a name="6239"
+      > </a
+      ><a name="6240" href="src.heap.library.html#697" class="InductiveConstructor Operator"
+      >,,</a
+      ><a name="6242"
+      > </a
+      ><a name="6243" href="src.heap.libraryNat.html#2447" class="Function"
+      >trans&#8806;&#8469;b</a
+      ><a name="6251"
+      > </a
+      ><a name="6252" href="examples.benchmarks.binaryTreeBenchmark.html#5810" class="Bound"
+      >w</a
+      ><a name="6253"
+      > </a
+      ><a name="6254" href="examples.benchmarks.binaryTreeBenchmark.html#6023" class="Bound"
+      >w''</a
+      ><a name="6257"
+      > </a
+      ><a name="6258" href="examples.benchmarks.binaryTreeBenchmark.html#6151" class="Bound"
+      >w'''</a
+      ><a name="6262"
+      > </a
+      ><a name="6263" class="Symbol"
+      >(</a
+      ><a name="6264" href="src.heap.libraryNat.html#2447" class="Function"
+      >trans&#8806;&#8469;b</a
+      ><a name="6272"
+      > </a
+      ><a name="6273" href="examples.benchmarks.binaryTreeBenchmark.html#5810" class="Bound"
+      >w</a
+      ><a name="6274"
+      > </a
+      ><a name="6275" href="examples.benchmarks.binaryTreeBenchmark.html#5894" class="Bound"
+      >w'</a
+      ><a name="6277"
+      > </a
+      ><a name="6278" href="examples.benchmarks.binaryTreeBenchmark.html#6023" class="Bound"
+      >w''</a
+      ><a name="6281"
+      > </a
+      ><a name="6282" href="examples.benchmarks.binaryTreeBenchmark.html#5909" class="Bound"
+      >w&#8806;ww'</a
+      ><a name="6287"
+      > </a
+      ><a name="6288" href="examples.benchmarks.binaryTreeBenchmark.html#6039" class="Bound"
+      >w'&#8806;ww''</a
+      ><a name="6295" class="Symbol"
+      >)</a
+      ><a name="6296"
+      > </a
+      ><a name="6297" href="examples.benchmarks.binaryTreeBenchmark.html#6170" class="Bound"
+      >w''&#8806;ww'''</a
+      ><a name="6306"
+      > </a
+      ><a name="6307" class="Symbol"
+      >)}}}</a
+      ><a name="6311"
+      >
+
+
+
+  </a
+      ><a name="6317" href="examples.benchmarks.binaryTreeBenchmark.html#6317" class="Function"
+      >forOuter</a
+      ><a name="6325"
+      > </a
+      ><a name="6326" class="Symbol"
+      >:</a
+      ><a name="6327"
+      > </a
+      ><a name="6328" class="Symbol"
+      >(</a
+      ><a name="6329" href="examples.benchmarks.binaryTreeBenchmark.html#6329" class="Bound"
+      >i</a
+      ><a name="6330"
+      > </a
+      ><a name="6331" class="Symbol"
+      >:</a
+      ><a name="6332"
+      > </a
+      ><a name="6333" href="Agda.Builtin.Size.html#114" class="Postulate"
+      >Size</a
+      ><a name="6337" class="Symbol"
+      >)(</a
+      ><a name="6339" href="examples.benchmarks.binaryTreeBenchmark.html#6339" class="Bound"
+      >w</a
+      ><a name="6340"
+      > </a
+      ><a name="6341" class="Symbol"
+      >:</a
+      ><a name="6342"
+      > </a
+      ><a name="6343" href="src.heap.heapAsObjectBase.html#525" class="Function"
+      >World</a
+      ><a name="6348" class="Symbol"
+      >)(</a
+      ><a name="6350" href="examples.benchmarks.binaryTreeBenchmark.html#6350" class="Bound"
+      >depth</a
+      ><a name="6355"
+      > </a
+      ><a name="6356" class="Symbol"
+      >:</a
+      ><a name="6357"
+      > </a
+      ><a name="6358" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="6359" class="Symbol"
+      >)</a
+      ><a name="6360"
+      > </a
+      ><a name="6361" class="Symbol"
+      >&#8594;</a
+      ><a name="6362"
+      > </a
+      ><a name="6363" class="Symbol"
+      >(</a
+      ><a name="6364" href="examples.benchmarks.binaryTreeBenchmark.html#6364" class="Bound"
+      >maxDepth</a
+      ><a name="6372"
+      > </a
+      ><a name="6373" class="Symbol"
+      >:</a
+      ><a name="6374"
+      > </a
+      ><a name="6375" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="6376" class="Symbol"
+      >)</a
+      ><a name="6377"
+      > </a
+      ><a name="6378" class="Symbol"
+      >&#8594;</a
+      ><a name="6379"
+      > </a
+      ><a name="6380" class="Symbol"
+      >(</a
+      ><a name="6381" href="examples.benchmarks.binaryTreeBenchmark.html#6381" class="Bound"
+      >minDepth</a
+      ><a name="6389"
+      > </a
+      ><a name="6390" class="Symbol"
+      >:</a
+      ><a name="6391"
+      > </a
+      ><a name="6392" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="6393" class="Symbol"
+      >)</a
+      ><a name="6394"
+      >
+                  </a
+      ><a name="6413" class="Symbol"
+      >&#8594;</a
+      ><a name="6414"
+      > </a
+      ><a name="6415" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#10943" class="Datatype"
+      >IO&#738;indcoind+</a
+      ><a name="6427"
+      > </a
+      ><a name="6428" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#16117" class="Function"
+      >ConsoleInterface&#738;</a
+      ><a name="6445"
+      > </a
+      ><a name="6446" href="examples.benchmarks.genericNativeHeap.html#1071" class="Function"
+      >heapInter</a
+      ><a name="6455"
+      >
+                         </a
+      ><a name="6481" href="examples.benchmarks.binaryTreeBenchmark.html#6329" class="Bound"
+      >i</a
+      ><a name="6482"
+      > </a
+      ><a name="6483" class="Symbol"
+      >(&#955;</a
+      ><a name="6485"
+      > </a
+      ><a name="6486" href="examples.benchmarks.binaryTreeBenchmark.html#6486" class="Bound"
+      >_</a
+      ><a name="6487"
+      > </a
+      ><a name="6488" href="examples.benchmarks.binaryTreeBenchmark.html#6488" class="Bound"
+      >w'</a
+      ><a name="6490"
+      > </a
+      ><a name="6491" class="Symbol"
+      >&#8594;</a
+      ><a name="6492"
+      >  </a
+      ><a name="6494" href="Data.Bool.Base.html#791" class="Function"
+      >T</a
+      ><a name="6495"
+      > </a
+      ><a name="6496" class="Symbol"
+      >(</a
+      ><a name="6497" href="examples.benchmarks.binaryTreeBenchmark.html#6339" class="Bound"
+      >w</a
+      ><a name="6498"
+      > </a
+      ><a name="6499" href="src.heap.heapAsObjectBase.html#1085" class="Function Operator"
+      >&#8806;w</a
+      ><a name="6501"
+      > </a
+      ><a name="6502" href="examples.benchmarks.binaryTreeBenchmark.html#6488" class="Bound"
+      >w'</a
+      ><a name="6504" class="Symbol"
+      >))</a
+      ><a name="6506"
+      > </a
+      ><a name="6507" href="src.Unit.html#63" class="InductiveConstructor"
+      >unit</a
+      ><a name="6511"
+      > </a
+      ><a name="6512" href="examples.benchmarks.binaryTreeBenchmark.html#6339" class="Bound"
+      >w</a
+      ><a name="6513"
+      >
+  </a
+      ><a name="6516" href="examples.benchmarks.binaryTreeBenchmark.html#6317" class="Function"
+      >forOuter</a
+      ><a name="6524"
+      > </a
+      ><a name="6525" href="examples.benchmarks.binaryTreeBenchmark.html#6525" class="Bound"
+      >i</a
+      ><a name="6526"
+      > </a
+      ><a name="6527" href="examples.benchmarks.binaryTreeBenchmark.html#6527" class="Bound"
+      >w</a
+      ><a name="6528"
+      > </a
+      ><a name="6529" class="Symbol"
+      >(</a
+      ><a name="6530" href="Agda.Builtin.Nat.html#128" class="InductiveConstructor"
+      >suc</a
+      ><a name="6533"
+      > </a
+      ><a name="6534" class="Symbol"
+      >(</a
+      ><a name="6535" href="Agda.Builtin.Nat.html#128" class="InductiveConstructor"
+      >suc</a
+      ><a name="6538"
+      > </a
+      ><a name="6539" href="examples.benchmarks.binaryTreeBenchmark.html#6539" class="Bound"
+      >d</a
+      ><a name="6540" class="Symbol"
+      >))</a
+      ><a name="6542"
+      > </a
+      ><a name="6543" href="examples.benchmarks.binaryTreeBenchmark.html#6543" class="Bound"
+      >maxDepth</a
+      ><a name="6551"
+      > </a
+      ><a name="6552" href="examples.benchmarks.binaryTreeBenchmark.html#6552" class="Bound"
+      >minDepth</a
+      ><a name="6560"
+      > </a
+      ><a name="6561" class="Keyword"
+      >with</a
+      ><a name="6565"
+      > </a
+      ><a name="6566" href="Relation.Nullary.Decidable.html#822" class="Function Operator"
+      >&#8970;</a
+      ><a name="6567"
+      > </a
+      ><a name="6568" href="examples.benchmarks.binaryTreeBenchmark.html#6552" class="Bound"
+      >minDepth</a
+      ><a name="6576"
+      > </a
+      ><a name="6577" href="Data.Nat.Base.html#3522" class="Function Operator"
+      >&#8804;?</a
+      ><a name="6579"
+      > </a
+      ><a name="6580" class="Symbol"
+      >(</a
+      ><a name="6581" href="Agda.Builtin.Nat.html#128" class="InductiveConstructor"
+      >suc</a
+      ><a name="6584"
+      > </a
+      ><a name="6585" class="Symbol"
+      >(</a
+      ><a name="6586" href="Agda.Builtin.Nat.html#128" class="InductiveConstructor"
+      >suc</a
+      ><a name="6589"
+      > </a
+      ><a name="6590" href="examples.benchmarks.binaryTreeBenchmark.html#6539" class="Bound"
+      >d</a
+      ><a name="6591" class="Symbol"
+      >))</a
+      ><a name="6593"
+      > </a
+      ><a name="6594" href="Relation.Nullary.Decidable.html#822" class="Function Operator"
+      >&#8971;</a
+      ><a name="6595"
+      >
+  </a
+      ><a name="6598" class="Symbol"
+      >...</a
+      ><a name="6601"
+      > </a
+      ><a name="6602" class="Symbol"
+      >|</a
+      ><a name="6603"
+      > </a
+      ><a name="6604" href="Agda.Builtin.Bool.html#92" class="InductiveConstructor"
+      >true</a
+      ><a name="6608"
+      > </a
+      ><a name="6609" class="Symbol"
+      >=</a
+      ><a name="6610"
+      >
+    </a
+      ><a name="6615" class="Keyword"
+      >let</a
+      ><a name="6618"
+      > </a
+      ><a name="6619" href="examples.benchmarks.binaryTreeBenchmark.html#6619" class="Bound"
+      >depth</a
+      ><a name="6624"
+      > </a
+      ><a name="6625" class="Symbol"
+      >=</a
+      ><a name="6626"
+      > </a
+      ><a name="6627" href="Agda.Builtin.Nat.html#128" class="InductiveConstructor"
+      >suc</a
+      ><a name="6630"
+      > </a
+      ><a name="6631" class="Symbol"
+      >(</a
+      ><a name="6632" href="Agda.Builtin.Nat.html#128" class="InductiveConstructor"
+      >suc</a
+      ><a name="6635"
+      > </a
+      ><a name="6636" href="examples.benchmarks.binaryTreeBenchmark.html#6539" class="Bound"
+      >d</a
+      ><a name="6637" class="Symbol"
+      >)</a
+      ><a name="6638"
+      >
+        </a
+      ><a name="6647" href="examples.benchmarks.binaryTreeBenchmark.html#6647" class="Bound"
+      >realDepth</a
+      ><a name="6656"
+      > </a
+      ><a name="6657" class="Symbol"
+      >=</a
+      ><a name="6658"
+      > </a
+      ><a name="6659" href="Agda.Builtin.Int.html#196" class="InductiveConstructor Operator"
+      >+</a
+      ><a name="6660"
+      > </a
+      ><a name="6661" href="examples.benchmarks.binaryTreeBenchmark.html#6543" class="Bound"
+      >maxDepth</a
+      ><a name="6669"
+      > </a
+      ><a name="6670" href="Data.Integer.Base.html#2204" class="Function Operator"
+      >-</a
+      ><a name="6671"
+      > </a
+      ><a name="6672" href="Agda.Builtin.Int.html#196" class="InductiveConstructor Operator"
+      >+</a
+      ><a name="6673"
+      > </a
+      ><a name="6674" href="examples.benchmarks.binaryTreeBenchmark.html#6619" class="Bound"
+      >depth</a
+      ><a name="6679"
+      > </a
+      ><a name="6680" href="Data.Integer.Base.html#2025" class="Function Operator"
+      >+</a
+      ><a name="6681"
+      > </a
+      ><a name="6682" href="Agda.Builtin.Int.html#196" class="InductiveConstructor Operator"
+      >+</a
+      ><a name="6683"
+      > </a
+      ><a name="6684" href="examples.benchmarks.binaryTreeBenchmark.html#6552" class="Bound"
+      >minDepth</a
+      ><a name="6692"
+      >
+        </a
+      ><a name="6701" href="examples.benchmarks.binaryTreeBenchmark.html#6701" class="Bound"
+      >iterations</a
+      ><a name="6711"
+      > </a
+      ><a name="6712" class="Symbol"
+      >=</a
+      ><a name="6713"
+      > </a
+      ><a name="6714" class="Symbol"
+      >(</a
+      ><a name="6715" href="examples.benchmarks.libraryFastInt.html#807" class="Postulate"
+      >toInt</a
+      ><a name="6720"
+      > </a
+      ><a name="6721" class="Number"
+      >2</a
+      ><a name="6722" class="Symbol"
+      >)</a
+      ><a name="6723"
+      > </a
+      ><a name="6724" href="examples.benchmarks.libraryFastInt.html#615" class="Postulate Operator"
+      >^Int</a
+      ><a name="6728"
+      > </a
+      ><a name="6729" class="Symbol"
+      >(</a
+      ><a name="6730" href="examples.benchmarks.libraryFastInt.html#807" class="Postulate"
+      >toInt</a
+      ><a name="6735"
+      > </a
+      ><a name="6736" href="Data.Integer.Base.html#1047" class="Function Operator"
+      >&#8739;</a
+      ><a name="6737"
+      > </a
+      ><a name="6738" class="Symbol"
+      >(</a
+      ><a name="6739" href="Agda.Builtin.Int.html#196" class="InductiveConstructor Operator"
+      >+</a
+      ><a name="6740"
+      > </a
+      ><a name="6741" href="examples.benchmarks.binaryTreeBenchmark.html#6543" class="Bound"
+      >maxDepth</a
+      ><a name="6749"
+      > </a
+      ><a name="6750" href="Data.Integer.Base.html#2204" class="Function Operator"
+      >-</a
+      ><a name="6751"
+      > </a
+      ><a name="6752" href="examples.benchmarks.binaryTreeBenchmark.html#6647" class="Bound"
+      >realDepth</a
+      ><a name="6761"
+      > </a
+      ><a name="6762" href="Data.Integer.Base.html#2025" class="Function Operator"
+      >+</a
+      ><a name="6763"
+      > </a
+      ><a name="6764" href="Agda.Builtin.Int.html#196" class="InductiveConstructor Operator"
+      >+</a
+      ><a name="6765"
+      > </a
+      ><a name="6766" href="examples.benchmarks.binaryTreeBenchmark.html#6552" class="Bound"
+      >minDepth</a
+      ><a name="6774" class="Symbol"
+      >)</a
+      ><a name="6775"
+      > </a
+      ><a name="6776" href="Data.Integer.Base.html#1047" class="Function Operator"
+      >&#8739;</a
+      ><a name="6777" class="Symbol"
+      >)</a
+      ><a name="6778"
+      >
+
+    </a
+      ><a name="6784" class="Keyword"
+      >in</a
+      ><a name="6786"
+      > </a
+      ><a name="6787" href="examples.benchmarks.binaryTreeBenchmark.html#5496" class="Function"
+      >forInner</a
+      ><a name="6795"
+      > </a
+      ><a name="6796" href="examples.benchmarks.binaryTreeBenchmark.html#6525" class="Bound"
+      >i</a
+      ><a name="6797"
+      > </a
+      ><a name="6798" href="examples.benchmarks.binaryTreeBenchmark.html#6527" class="Bound"
+      >w</a
+      ><a name="6799"
+      > </a
+      ><a name="6800" class="Symbol"
+      >(</a
+      ><a name="6801" href="examples.benchmarks.libraryFastInt.html#826" class="Postulate"
+      >fromInt</a
+      ><a name="6808"
+      > </a
+      ><a name="6809" href="examples.benchmarks.binaryTreeBenchmark.html#6701" class="Bound"
+      >iterations</a
+      ><a name="6819" class="Symbol"
+      >)</a
+      ><a name="6820"
+      > </a
+      ><a name="6821" class="Symbol"
+      >(</a
+      ><a name="6822" href="Agda.Builtin.Int.html#196" class="InductiveConstructor Operator"
+      >+</a
+      ><a name="6823"
+      > </a
+      ><a name="6824" class="Number"
+      >0</a
+      ><a name="6825" class="Symbol"
+      >)</a
+      ><a name="6826"
+      > </a
+      ><a name="6827" href="Data.Integer.Base.html#1047" class="Function Operator"
+      >&#8739;</a
+      ><a name="6828"
+      > </a
+      ><a name="6829" href="examples.benchmarks.binaryTreeBenchmark.html#6647" class="Bound"
+      >realDepth</a
+      ><a name="6838"
+      > </a
+      ><a name="6839" href="Data.Integer.Base.html#1047" class="Function Operator"
+      >&#8739;</a
+      ><a name="6840"
+      >  </a
+      ><a name="6842" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#13025" class="Function Operator"
+      >&gt;&gt;=indcoind+</a
+      ><a name="6854"
+      > </a
+      ><a name="6855" class="Symbol"
+      >&#955;</a
+      ><a name="6856"
+      > </a
+      ><a name="6857" class="Symbol"
+      >{</a
+      ><a name="6858"
+      > </a
+      ><a name="6859" class="Symbol"
+      >{_}</a
+      ><a name="6862"
+      > </a
+      ><a name="6863" class="Symbol"
+      >{</a
+      ><a name="6864" href="examples.benchmarks.binaryTreeBenchmark.html#6864" class="Bound"
+      >w'</a
+      ><a name="6866" class="Symbol"
+      >}</a
+      ><a name="6867"
+      > </a
+      ><a name="6868" class="Symbol"
+      >(</a
+      ><a name="6869" href="examples.benchmarks.binaryTreeBenchmark.html#6869" class="Bound"
+      >resInner</a
+      ><a name="6877"
+      > </a
+      ><a name="6878" href="src.heap.library.html#697" class="InductiveConstructor Operator"
+      >,,</a
+      ><a name="6880"
+      > </a
+      ><a name="6881" href="examples.benchmarks.binaryTreeBenchmark.html#6881" class="Bound"
+      >w&#8806;ww'</a
+      ><a name="6886" class="Symbol"
+      >)</a
+      ><a name="6887"
+      > </a
+      ><a name="6888" class="Symbol"
+      >&#8594;</a
+      ><a name="6889"
+      >
+        </a
+      ><a name="6898" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#11024" class="InductiveConstructor"
+      >do&#738;IO</a
+      ><a name="6903"
+      > </a
+      ><a name="6904" class="Symbol"
+      >(</a
+      ><a name="6905" href="src.SizedIO.Console.html#194" class="InductiveConstructor"
+      >putStrLn</a
+      ><a name="6913"
+      > </a
+      ><a name="6914" class="Symbol"
+      >(</a
+      ><a name="6915" href="examples.benchmarks.libraryFastInt.html#781" class="Postulate"
+      >showInt</a
+      ><a name="6922"
+      > </a
+      ><a name="6923" class="Symbol"
+      >(</a
+      ><a name="6924" href="examples.benchmarks.binaryTreeBenchmark.html#6701" class="Bound"
+      >iterations</a
+      ><a name="6934" class="Symbol"
+      >)</a
+      ><a name="6935"
+      >
+                         </a
+      ><a name="6961" href="Data.String.Base.html#873" class="Function Operator"
+      >++</a
+      ><a name="6963"
+      > </a
+      ><a name="6964" class="String"
+      >&quot;\t trees of depth &quot;</a
+      ><a name="6984"
+      > </a
+      ><a name="6985" href="Data.String.Base.html#873" class="Function Operator"
+      >++</a
+      ><a name="6987"
+      > </a
+      ><a name="6988" href="Data.Integer.html#931" class="Function"
+      >show</a
+      ><a name="6992"
+      > </a
+      ><a name="6993" href="examples.benchmarks.binaryTreeBenchmark.html#6647" class="Bound"
+      >realDepth</a
+      ><a name="7002"
+      > </a
+      ><a name="7003" href="Data.String.Base.html#873" class="Function Operator"
+      >++</a
+      ><a name="7005"
+      > </a
+      ><a name="7006" class="String"
+      >&quot;\t check: &quot;</a
+      ><a name="7018"
+      > </a
+      ><a name="7019" href="Data.String.Base.html#873" class="Function Operator"
+      >++</a
+      ><a name="7021"
+      > </a
+      ><a name="7022" href="Data.Integer.html#931" class="Function"
+      >show</a
+      ><a name="7026"
+      > </a
+      ><a name="7027" href="examples.benchmarks.binaryTreeBenchmark.html#6869" class="Bound"
+      >resInner</a
+      ><a name="7035" class="Symbol"
+      >))</a
+      ><a name="7037"
+      > </a
+      ><a name="7038" class="Symbol"
+      >&#955;</a
+      ><a name="7039"
+      > </a
+      ><a name="7040" href="examples.benchmarks.binaryTreeBenchmark.html#7040" class="Bound"
+      >_</a
+      ><a name="7041"
+      > </a
+      ><a name="7042" class="Symbol"
+      >&#8594;</a
+      ><a name="7043"
+      >
+                         </a
+      ><a name="7069" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#14187" class="Function"
+      >delay&#738;ic</a
+      ><a name="7077"
+      > </a
+      ><a name="7078" class="Symbol"
+      >(</a
+      ><a name="7079" href="examples.benchmarks.binaryTreeBenchmark.html#6317" class="Function"
+      >forOuter</a
+      ><a name="7087"
+      > </a
+      ><a name="7088" href="examples.benchmarks.binaryTreeBenchmark.html#6525" class="Bound"
+      >i</a
+      ><a name="7089"
+      > </a
+      ><a name="7090" href="examples.benchmarks.binaryTreeBenchmark.html#6864" class="Bound"
+      >w'</a
+      ><a name="7092"
+      > </a
+      ><a name="7093" href="examples.benchmarks.binaryTreeBenchmark.html#6539" class="Bound"
+      >d</a
+      ><a name="7094"
+      > </a
+      ><a name="7095" href="examples.benchmarks.binaryTreeBenchmark.html#6543" class="Bound"
+      >maxDepth</a
+      ><a name="7103"
+      > </a
+      ><a name="7104" href="examples.benchmarks.binaryTreeBenchmark.html#6552" class="Bound"
+      >minDepth</a
+      ><a name="7112" class="Symbol"
+      >)</a
+      ><a name="7113"
+      > </a
+      ><a name="7114" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#13547" class="Function Operator"
+      >&gt;&gt;=indcoind</a
+      ><a name="7125"
+      > </a
+      ><a name="7126" class="Symbol"
+      >&#955;</a
+      ><a name="7127"
+      > </a
+      ><a name="7128" class="Symbol"
+      >{</a
+      ><a name="7129"
+      > </a
+      ><a name="7130" class="Symbol"
+      >{_}</a
+      ><a name="7133"
+      > </a
+      ><a name="7134" class="Symbol"
+      >{</a
+      ><a name="7135" href="examples.benchmarks.binaryTreeBenchmark.html#7135" class="Bound"
+      >w''</a
+      ><a name="7138" class="Symbol"
+      >}</a
+      ><a name="7139"
+      > </a
+      ><a name="7140" class="Symbol"
+      >(</a
+      ><a name="7141" href="examples.benchmarks.binaryTreeBenchmark.html#7141" class="Bound"
+      >w'&#8806;ww''</a
+      ><a name="7148" class="Symbol"
+      >)</a
+      ><a name="7149"
+      > </a
+      ><a name="7150" class="Symbol"
+      >&#8594;</a
+      ><a name="7151"
+      >
+                         </a
+      ><a name="7177" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#11298" class="InductiveConstructor"
+      >return&#738;ic</a
+      ><a name="7186"
+      > </a
+      ><a name="7187" class="Symbol"
+      >(</a
+      ><a name="7188" href="src.heap.libraryNat.html#2447" class="Function"
+      >trans&#8806;&#8469;b</a
+      ><a name="7196"
+      > </a
+      ><a name="7197" href="examples.benchmarks.binaryTreeBenchmark.html#6527" class="Bound"
+      >w</a
+      ><a name="7198"
+      > </a
+      ><a name="7199" href="examples.benchmarks.binaryTreeBenchmark.html#6864" class="Bound"
+      >w'</a
+      ><a name="7201"
+      > </a
+      ><a name="7202" href="examples.benchmarks.binaryTreeBenchmark.html#7135" class="Bound"
+      >w''</a
+      ><a name="7205"
+      > </a
+      ><a name="7206" href="examples.benchmarks.binaryTreeBenchmark.html#6881" class="Bound"
+      >w&#8806;ww'</a
+      ><a name="7211"
+      > </a
+      ><a name="7212" href="examples.benchmarks.binaryTreeBenchmark.html#7141" class="Bound"
+      >w'&#8806;ww''</a
+      ><a name="7219" class="Symbol"
+      >)</a
+      ><a name="7220"
+      >
+                         </a
+      ><a name="7246" class="Symbol"
+      >}}</a
+      ><a name="7248"
+      >
+
+
+  </a
+      ><a name="7253" class="Symbol"
+      >...</a
+      ><a name="7256"
+      > </a
+      ><a name="7257" class="Symbol"
+      >|</a
+      ><a name="7258"
+      > </a
+      ><a name="7259" href="Agda.Builtin.Bool.html#86" class="InductiveConstructor"
+      >false</a
+      ><a name="7264"
+      > </a
+      ><a name="7265" class="Symbol"
+      >=</a
+      ><a name="7266"
+      > </a
+      ><a name="7267" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#11298" class="InductiveConstructor"
+      >return&#738;ic</a
+      ><a name="7276"
+      > </a
+      ><a name="7277" class="Symbol"
+      >(</a
+      ><a name="7278" href="src.heap.libraryNat.html#2368" class="Function"
+      >refl&#8806;&#8469;b</a
+      ><a name="7285"
+      > </a
+      ><a name="7286" href="examples.benchmarks.binaryTreeBenchmark.html#6527" class="Bound"
+      >w</a
+      ><a name="7287" class="Symbol"
+      >)</a
+      ><a name="7288"
+      >
+  </a
+      ><a name="7291" href="examples.benchmarks.binaryTreeBenchmark.html#6317" class="Function"
+      >forOuter</a
+      ><a name="7299"
+      > </a
+      ><a name="7300" href="examples.benchmarks.binaryTreeBenchmark.html#7300" class="Bound"
+      >i</a
+      ><a name="7301"
+      > </a
+      ><a name="7302" href="examples.benchmarks.binaryTreeBenchmark.html#7302" class="Bound"
+      >w</a
+      ><a name="7303"
+      > </a
+      ><a name="7304" class="Symbol"
+      >_</a
+      ><a name="7305"
+      > </a
+      ><a name="7306" class="Symbol"
+      >_</a
+      ><a name="7307"
+      > </a
+      ><a name="7308" class="Symbol"
+      >_</a
+      ><a name="7309"
+      > </a
+      ><a name="7310" class="Symbol"
+      >=</a
+      ><a name="7311"
+      >  </a
+      ><a name="7313" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#11298" class="InductiveConstructor"
+      >return&#738;ic</a
+      ><a name="7322"
+      > </a
+      ><a name="7323" class="Symbol"
+      >(</a
+      ><a name="7324" href="src.heap.libraryNat.html#2368" class="Function"
+      >refl&#8806;&#8469;b</a
+      ><a name="7331"
+      > </a
+      ><a name="7332" href="examples.benchmarks.binaryTreeBenchmark.html#7302" class="Bound"
+      >w</a
+      ><a name="7333" class="Symbol"
+      >)</a
+      ><a name="7334"
+      >
+
+
+  </a
+      ><a name="7339" href="examples.benchmarks.binaryTreeBenchmark.html#7339" class="Function"
+      >mainProg</a
+      ><a name="7347"
+      > </a
+      ><a name="7348" class="Symbol"
+      >:</a
+      ><a name="7349"
+      > </a
+      ><a name="7350" class="Symbol"
+      >(</a
+      ><a name="7351" href="examples.benchmarks.binaryTreeBenchmark.html#7351" class="Bound"
+      >n</a
+      ><a name="7352"
+      > </a
+      ><a name="7353" class="Symbol"
+      >:</a
+      ><a name="7354"
+      > </a
+      ><a name="7355" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="7356" class="Symbol"
+      >)</a
+      ><a name="7357"
+      >
+             </a
+      ><a name="7371" class="Symbol"
+      >&#8594;</a
+      ><a name="7372"
+      > </a
+      ><a name="7373" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#10943" class="Datatype"
+      >IO&#738;indcoind+</a
+      ><a name="7385"
+      > </a
+      ><a name="7386" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#16117" class="Function"
+      >ConsoleInterface&#738;</a
+      ><a name="7403"
+      > </a
+      ><a name="7404" href="examples.benchmarks.genericNativeHeap.html#1071" class="Function"
+      >heapInter</a
+      ><a name="7413"
+      >
+                         </a
+      ><a name="7439" href="Agda.Builtin.Size.html#210" class="Postulate"
+      >&#8734;</a
+      ><a name="7440"
+      > </a
+      ><a name="7441" class="Symbol"
+      >(&#955;</a
+      ><a name="7443"
+      > </a
+      ><a name="7444" href="examples.benchmarks.binaryTreeBenchmark.html#7444" class="Bound"
+      >_</a
+      ><a name="7445"
+      > </a
+      ><a name="7446" href="examples.benchmarks.binaryTreeBenchmark.html#7446" class="Bound"
+      >w'</a
+      ><a name="7448"
+      > </a
+      ><a name="7449" class="Symbol"
+      >&#8594;</a
+      ><a name="7450"
+      > </a
+      ><a name="7451" href="src.Unit.html#32" class="Record"
+      >Unit</a
+      ><a name="7455" class="Symbol"
+      >)</a
+      ><a name="7456"
+      > </a
+      ><a name="7457" href="src.Unit.html#63" class="InductiveConstructor"
+      >unit</a
+      ><a name="7461"
+      > </a
+      ><a name="7462" href="Agda.Builtin.Nat.html#115" class="InductiveConstructor"
+      >zero</a
+      ><a name="7466"
+      >
+  </a
+      ><a name="7469" href="examples.benchmarks.binaryTreeBenchmark.html#7339" class="Function"
+      >mainProg</a
+      ><a name="7477"
+      > </a
+      ><a name="7478" href="examples.benchmarks.binaryTreeBenchmark.html#7478" class="Bound"
+      >n</a
+      ><a name="7479"
+      >     </a
+      ><a name="7484" class="Symbol"
+      >=</a
+      ><a name="7485"
+      > </a
+      ><a name="7486" class="Keyword"
+      >let</a
+      ><a name="7489"
+      >
+                     </a
+      ><a name="7511" href="examples.benchmarks.binaryTreeBenchmark.html#7511" class="Bound"
+      >minDepth</a
+      ><a name="7519"
+      > </a
+      ><a name="7520" class="Symbol"
+      >:</a
+      ><a name="7521"
+      > </a
+      ><a name="7522" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="7523"
+      >
+                     </a
+      ><a name="7545" href="examples.benchmarks.binaryTreeBenchmark.html#7511" class="Bound"
+      >minDepth</a
+      ><a name="7553"
+      > </a
+      ><a name="7554" class="Symbol"
+      >=</a
+      ><a name="7555"
+      > </a
+      ><a name="7556" class="Number"
+      >4</a
+      ><a name="7557"
+      >
+                     </a
+      ><a name="7579" href="examples.benchmarks.binaryTreeBenchmark.html#7579" class="Bound"
+      >maxDepth</a
+      ><a name="7587"
+      > </a
+      ><a name="7588" class="Symbol"
+      >:</a
+      ><a name="7589"
+      > </a
+      ><a name="7590" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="7591"
+      >
+                     </a
+      ><a name="7613" href="examples.benchmarks.binaryTreeBenchmark.html#7579" class="Bound"
+      >maxDepth</a
+      ><a name="7621"
+      > </a
+      ><a name="7622" class="Symbol"
+      >=</a
+      ><a name="7623"
+      > </a
+      ><a name="7624" href="Data.Bool.Base.html#831" class="Function Operator"
+      >if</a
+      ><a name="7626"
+      > </a
+      ><a name="7627" href="Relation.Nullary.Decidable.html#822" class="Function Operator"
+      >&#8970;</a
+      ><a name="7628"
+      > </a
+      ><a name="7629" href="examples.benchmarks.binaryTreeBenchmark.html#7478" class="Bound"
+      >n</a
+      ><a name="7630"
+      > </a
+      ><a name="7631" href="Data.Nat.Base.html#3522" class="Function Operator"
+      >&#8804;?</a
+      ><a name="7633"
+      > </a
+      ><a name="7634" class="Symbol"
+      >(</a
+      ><a name="7635" href="examples.benchmarks.binaryTreeBenchmark.html#7511" class="Bound"
+      >minDepth</a
+      ><a name="7643"
+      > </a
+      ><a name="7644" href="Agda.Builtin.Nat.html#230" class="Primitive Operator"
+      >+Nat</a
+      ><a name="7648"
+      > </a
+      ><a name="7649" class="Number"
+      >2</a
+      ><a name="7650" class="Symbol"
+      >)</a
+      ><a name="7651"
+      > </a
+      ><a name="7652" href="Relation.Nullary.Decidable.html#822" class="Function Operator"
+      >&#8971;</a
+      ><a name="7653"
+      >
+                                  </a
+      ><a name="7688" href="Data.Bool.Base.html#831" class="Function Operator"
+      >then</a
+      ><a name="7692"
+      > </a
+      ><a name="7693" href="examples.benchmarks.binaryTreeBenchmark.html#7511" class="Bound"
+      >minDepth</a
+      ><a name="7701"
+      > </a
+      ><a name="7702" href="Agda.Builtin.Nat.html#230" class="Primitive Operator"
+      >+Nat</a
+      ><a name="7706"
+      > </a
+      ><a name="7707" class="Number"
+      >2</a
+      ><a name="7708"
+      > </a
+      ><a name="7709" href="Data.Bool.Base.html#831" class="Function Operator"
+      >else</a
+      ><a name="7713"
+      > </a
+      ><a name="7714" href="examples.benchmarks.binaryTreeBenchmark.html#7478" class="Bound"
+      >n</a
+      ><a name="7715"
+      >
+                     </a
+      ><a name="7737" href="examples.benchmarks.binaryTreeBenchmark.html#7737" class="Bound"
+      >stretchDepth</a
+      ><a name="7749"
+      > </a
+      ><a name="7750" class="Symbol"
+      >:</a
+      ><a name="7751"
+      > </a
+      ><a name="7752" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="7753"
+      >
+                     </a
+      ><a name="7775" href="examples.benchmarks.binaryTreeBenchmark.html#7737" class="Bound"
+      >stretchDepth</a
+      ><a name="7787"
+      > </a
+      ><a name="7788" class="Symbol"
+      >=</a
+      ><a name="7789"
+      > </a
+      ><a name="7790" href="Agda.Builtin.Nat.html#128" class="InductiveConstructor"
+      >suc</a
+      ><a name="7793"
+      > </a
+      ><a name="7794" href="examples.benchmarks.binaryTreeBenchmark.html#7579" class="Bound"
+      >maxDepth</a
+      ><a name="7802"
+      >
+
+                   </a
+      ><a name="7823" class="Keyword"
+      >in</a
+      ><a name="7825"
+      > </a
+      ><a name="7826" href="examples.benchmarks.binaryTreeBenchmark.html#4949" class="Function"
+      >checkBottomUpTree</a
+      ><a name="7843"
+      > </a
+      ><a name="7844" href="Agda.Builtin.Size.html#210" class="Postulate"
+      >&#8734;</a
+      ><a name="7845"
+      > </a
+      ><a name="7846" href="Agda.Builtin.Nat.html#115" class="InductiveConstructor"
+      >zero</a
+      ><a name="7850"
+      > </a
+      ><a name="7851" class="Symbol"
+      >(</a
+      ><a name="7852" href="Agda.Builtin.Int.html#196" class="InductiveConstructor Operator"
+      >+</a
+      ><a name="7853"
+      > </a
+      ><a name="7854" class="Number"
+      >0</a
+      ><a name="7855" class="Symbol"
+      >)</a
+      ><a name="7856"
+      > </a
+      ><a name="7857" href="examples.benchmarks.binaryTreeBenchmark.html#7737" class="Bound"
+      >stretchDepth</a
+      ><a name="7869"
+      > </a
+      ><a name="7870" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#13025" class="Function Operator"
+      >&gt;&gt;=indcoind+</a
+      ><a name="7882"
+      >  </a
+      ><a name="7884" class="Symbol"
+      >&#955;</a
+      ><a name="7885"
+      > </a
+      ><a name="7886" class="Symbol"
+      >{</a
+      ><a name="7887"
+      > </a
+      ><a name="7888" class="Symbol"
+      >{_}</a
+      ><a name="7891"
+      > </a
+      ><a name="7892" class="Symbol"
+      >{</a
+      ><a name="7893" href="examples.benchmarks.binaryTreeBenchmark.html#7893" class="Bound"
+      >w'</a
+      ><a name="7895" class="Symbol"
+      >}</a
+      ><a name="7896"
+      > </a
+      ><a name="7897" class="Symbol"
+      >(</a
+      ><a name="7898" href="examples.benchmarks.binaryTreeBenchmark.html#7898" class="Bound"
+      >checkValStretched</a
+      ><a name="7915"
+      > </a
+      ><a name="7916" href="src.heap.library.html#697" class="InductiveConstructor Operator"
+      >,,</a
+      ><a name="7918"
+      > </a
+      ><a name="7919" href="examples.benchmarks.binaryTreeBenchmark.html#7919" class="Bound"
+      >w&#8806;ww'</a
+      ><a name="7924" class="Symbol"
+      >)</a
+      ><a name="7925"
+      > </a
+      ><a name="7926" class="Symbol"
+      >&#8594;</a
+      ><a name="7927"
+      >
+                      </a
+      ><a name="7950" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#11024" class="InductiveConstructor"
+      >do&#738;IO</a
+      ><a name="7955"
+      > </a
+      ><a name="7956" class="Symbol"
+      >(</a
+      ><a name="7957" href="src.SizedIO.Console.html#194" class="InductiveConstructor"
+      >putStrLn</a
+      ><a name="7965"
+      > </a
+      ><a name="7966" class="Symbol"
+      >(</a
+      ><a name="7967" class="String"
+      >&quot;stretch tree of depth &quot;</a
+      ><a name="7991"
+      >
+                        </a
+      ><a name="8016" href="Data.String.Base.html#873" class="Function Operator"
+      >++</a
+      ><a name="8018"
+      > </a
+      ><a name="8019" href="src.NativeIO.html#907" class="Postulate"
+      >primShowNat</a
+      ><a name="8030"
+      > </a
+      ><a name="8031" href="examples.benchmarks.binaryTreeBenchmark.html#7737" class="Bound"
+      >stretchDepth</a
+      ><a name="8043"
+      > </a
+      ><a name="8044" href="Data.String.Base.html#873" class="Function Operator"
+      >++</a
+      ><a name="8046"
+      > </a
+      ><a name="8047" class="String"
+      >&quot;\t check: &quot;</a
+      ><a name="8059"
+      > </a
+      ><a name="8060" href="Data.String.Base.html#873" class="Function Operator"
+      >++</a
+      ><a name="8062"
+      > </a
+      ><a name="8063" href="Data.Integer.html#931" class="Function"
+      >show</a
+      ><a name="8067"
+      > </a
+      ><a name="8068" href="examples.benchmarks.binaryTreeBenchmark.html#7898" class="Bound"
+      >checkValStretched</a
+      ><a name="8085" class="Symbol"
+      >))</a
+      ><a name="8087"
+      > </a
+      ><a name="8088" class="Symbol"
+      >&#955;</a
+      ><a name="8089"
+      > </a
+      ><a name="8090" href="examples.benchmarks.binaryTreeBenchmark.html#8090" class="Bound"
+      >_</a
+      ><a name="8091"
+      > </a
+      ><a name="8092" class="Symbol"
+      >&#8594;</a
+      ><a name="8093"
+      >
+
+                      </a
+      ><a name="8117" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#14187" class="Function"
+      >delay&#738;ic</a
+      ><a name="8125"
+      > </a
+      ><a name="8126" class="Symbol"
+      >(</a
+      ><a name="8127" href="examples.benchmarks.binaryTreeBenchmark.html#2586" class="Function"
+      >bottomUpTree</a
+      ><a name="8139"
+      > </a
+      ><a name="8140" href="Agda.Builtin.Size.html#210" class="Postulate"
+      >&#8734;</a
+      ><a name="8141"
+      > </a
+      ><a name="8142" href="examples.benchmarks.binaryTreeBenchmark.html#7893" class="Bound"
+      >w'</a
+      ><a name="8144"
+      > </a
+      ><a name="8145" class="Symbol"
+      >(</a
+      ><a name="8146" href="Agda.Builtin.Int.html#196" class="InductiveConstructor Operator"
+      >+</a
+      ><a name="8147"
+      > </a
+      ><a name="8148" class="Number"
+      >0</a
+      ><a name="8149" class="Symbol"
+      >)</a
+      ><a name="8150"
+      > </a
+      ><a name="8151" href="examples.benchmarks.binaryTreeBenchmark.html#7579" class="Bound"
+      >maxDepth</a
+      ><a name="8159" class="Symbol"
+      >)</a
+      ><a name="8160"
+      > </a
+      ><a name="8161" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#13547" class="Function Operator"
+      >&gt;&gt;=indcoind</a
+      ><a name="8172"
+      > </a
+      ><a name="8173" class="Symbol"
+      >&#955;</a
+      ><a name="8174"
+      > </a
+      ><a name="8175" class="Symbol"
+      >{</a
+      ><a name="8176"
+      > </a
+      ><a name="8177" class="Symbol"
+      >{_}</a
+      ><a name="8180"
+      > </a
+      ><a name="8181" class="Symbol"
+      >{</a
+      ><a name="8182" href="examples.benchmarks.binaryTreeBenchmark.html#8182" class="Bound"
+      >w''</a
+      ><a name="8185" class="Symbol"
+      >}</a
+      ><a name="8186"
+      > </a
+      ><a name="8187" class="Symbol"
+      >(</a
+      ><a name="8188" href="examples.benchmarks.binaryTreeBenchmark.html#8188" class="Bound"
+      >ptrLongLivedTree</a
+      ><a name="8204"
+      > </a
+      ><a name="8205" href="src.heap.library.html#697" class="InductiveConstructor Operator"
+      >,,</a
+      ><a name="8207"
+      >  </a
+      ><a name="8209" href="examples.benchmarks.binaryTreeBenchmark.html#8209" class="Bound"
+      >w'&#8806;ww''</a
+      ><a name="8216" class="Symbol"
+      >)</a
+      ><a name="8217"
+      > </a
+      ><a name="8218" class="Symbol"
+      >&#8594;</a
+      ><a name="8219"
+      >
+
+                      </a
+      ><a name="8243" class="Comment"
+      >-- For:</a
+      ><a name="8250"
+      >
+                      </a
+      ><a name="8273" href="examples.benchmarks.binaryTreeBenchmark.html#6317" class="Function"
+      >forOuter</a
+      ><a name="8281"
+      > </a
+      ><a name="8282" href="Agda.Builtin.Size.html#210" class="Postulate"
+      >&#8734;</a
+      ><a name="8283"
+      > </a
+      ><a name="8284" href="examples.benchmarks.binaryTreeBenchmark.html#8182" class="Bound"
+      >w''</a
+      ><a name="8287"
+      > </a
+      ><a name="8288" href="examples.benchmarks.binaryTreeBenchmark.html#7579" class="Bound"
+      >maxDepth</a
+      ><a name="8296"
+      > </a
+      ><a name="8297" href="examples.benchmarks.binaryTreeBenchmark.html#7579" class="Bound"
+      >maxDepth</a
+      ><a name="8305"
+      > </a
+      ><a name="8306" href="examples.benchmarks.binaryTreeBenchmark.html#7511" class="Bound"
+      >minDepth</a
+      ><a name="8314"
+      > </a
+      ><a name="8315" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#13025" class="Function Operator"
+      >&gt;&gt;=indcoind+</a
+      ><a name="8327"
+      > </a
+      ><a name="8328" class="Symbol"
+      >&#955;</a
+      ><a name="8329"
+      > </a
+      ><a name="8330" class="Symbol"
+      >{</a
+      ><a name="8331"
+      > </a
+      ><a name="8332" class="Symbol"
+      >{_}</a
+      ><a name="8335"
+      > </a
+      ><a name="8336" class="Symbol"
+      >{</a
+      ><a name="8337" href="examples.benchmarks.binaryTreeBenchmark.html#8337" class="Bound"
+      >w'''</a
+      ><a name="8341" class="Symbol"
+      >}</a
+      ><a name="8342"
+      > </a
+      ><a name="8343" class="Symbol"
+      >(</a
+      ><a name="8344" href="examples.benchmarks.binaryTreeBenchmark.html#8344" class="Bound"
+      >w''&#8806;ww'''</a
+      ><a name="8353" class="Symbol"
+      >)</a
+      ><a name="8354"
+      > </a
+      ><a name="8355" class="Symbol"
+      >&#8594;</a
+      ><a name="8356"
+      >
+
+                      </a
+      ><a name="8380" href="examples.benchmarks.binaryTreeBenchmark.html#3959" class="Function"
+      >checkTree</a
+      ><a name="8389"
+      > </a
+      ><a name="8390" href="Agda.Builtin.Size.html#210" class="Postulate"
+      >&#8734;</a
+      ><a name="8391"
+      > </a
+      ><a name="8392" href="examples.benchmarks.binaryTreeBenchmark.html#8337" class="Bound"
+      >w'''</a
+      ><a name="8396"
+      > </a
+      ><a name="8397" class="Symbol"
+      >(</a
+      ><a name="8398" href="examples.benchmarks.binaryTreeBenchmark.html#2411" class="Function"
+      >embedBH+</a
+      ><a name="8406" class="Symbol"
+      >{</a
+      ><a name="8407" href="examples.benchmarks.binaryTreeBenchmark.html#8182" class="Bound"
+      >w''</a
+      ><a name="8410" class="Symbol"
+      >}{</a
+      ><a name="8412" href="examples.benchmarks.binaryTreeBenchmark.html#8337" class="Bound"
+      >w'''</a
+      ><a name="8416" class="Symbol"
+      >}</a
+      ><a name="8417"
+      > </a
+      ><a name="8418" href="examples.benchmarks.binaryTreeBenchmark.html#8344" class="Bound"
+      >w''&#8806;ww'''</a
+      ><a name="8427"
+      > </a
+      ><a name="8428" href="examples.benchmarks.binaryTreeBenchmark.html#8188" class="Bound"
+      >ptrLongLivedTree</a
+      ><a name="8444" class="Symbol"
+      >)</a
+      ><a name="8445"
+      >
+                                       </a
+      ><a name="8485" class="Symbol"
+      >(</a
+      ><a name="8486" href="src.heap.heapAsObjectBase.html#549" class="Function"
+      >sucw</a
+      ><a name="8490"
+      > </a
+      ><a name="8491" href="examples.benchmarks.binaryTreeBenchmark.html#7579" class="Bound"
+      >maxDepth</a
+      ><a name="8499" class="Symbol"
+      >)</a
+      ><a name="8500"
+      > </a
+      ><a name="8501" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#13025" class="Function Operator"
+      >&gt;&gt;=indcoind+</a
+      ><a name="8513"
+      > </a
+      ><a name="8514" class="Symbol"
+      >&#955;</a
+      ><a name="8515"
+      > </a
+      ><a name="8516" class="Symbol"
+      >{</a
+      ><a name="8517"
+      > </a
+      ><a name="8518" class="Symbol"
+      >{_}</a
+      ><a name="8521"
+      > </a
+      ><a name="8522" class="Symbol"
+      >{</a
+      ><a name="8523" href="examples.benchmarks.binaryTreeBenchmark.html#8523" class="Bound"
+      >w''</a
+      ><a name="8526" class="Symbol"
+      >}</a
+      ><a name="8527"
+      > </a
+      ><a name="8528" class="Symbol"
+      >(</a
+      ><a name="8529" href="examples.benchmarks.binaryTreeBenchmark.html#8529" class="Bound"
+      >checkLong</a
+      ><a name="8538"
+      > </a
+      ><a name="8539" href="src.heap.library.html#697" class="InductiveConstructor Operator"
+      >,,</a
+      ><a name="8541"
+      > </a
+      ><a name="8542" href="examples.benchmarks.binaryTreeBenchmark.html#8542" class="Bound"
+      >w'''&#8806;ww''''</a
+      ><a name="8553" class="Symbol"
+      >)</a
+      ><a name="8554"
+      > </a
+      ><a name="8555" class="Symbol"
+      >&#8594;</a
+      ><a name="8556"
+      >
+                      </a
+      ><a name="8579" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#11024" class="InductiveConstructor"
+      >do&#738;IO</a
+      ><a name="8584"
+      > </a
+      ><a name="8585" class="Symbol"
+      >(</a
+      ><a name="8586" href="src.SizedIO.Console.html#194" class="InductiveConstructor"
+      >putStrLn</a
+      ><a name="8594"
+      > </a
+      ><a name="8595" class="Symbol"
+      >(</a
+      ><a name="8596" class="String"
+      >&quot;long lived tree of depth &quot;</a
+      ><a name="8623"
+      > </a
+      ><a name="8624" href="Data.String.Base.html#873" class="Function Operator"
+      >++</a
+      ><a name="8626"
+      > </a
+      ><a name="8627" href="Data.Integer.html#931" class="Function"
+      >show</a
+      ><a name="8631"
+      > </a
+      ><a name="8632" class="Symbol"
+      >(</a
+      ><a name="8633" href="Agda.Builtin.Int.html#196" class="InductiveConstructor Operator"
+      >+</a
+      ><a name="8634"
+      > </a
+      ><a name="8635" href="examples.benchmarks.binaryTreeBenchmark.html#7579" class="Bound"
+      >maxDepth</a
+      ><a name="8643" class="Symbol"
+      >)</a
+      ><a name="8644"
+      > </a
+      ><a name="8645" href="Data.String.Base.html#873" class="Function Operator"
+      >++</a
+      ><a name="8647"
+      > </a
+      ><a name="8648" class="String"
+      >&quot;\t check: &quot;</a
+      ><a name="8660"
+      > </a
+      ><a name="8661" href="Data.String.Base.html#873" class="Function Operator"
+      >++</a
+      ><a name="8663"
+      > </a
+      ><a name="8664" href="Data.Integer.html#931" class="Function"
+      >show</a
+      ><a name="8668"
+      > </a
+      ><a name="8669" href="examples.benchmarks.binaryTreeBenchmark.html#8529" class="Bound"
+      >checkLong</a
+      ><a name="8678" class="Symbol"
+      >))</a
+      ><a name="8680"
+      > </a
+      ><a name="8681" class="Symbol"
+      >&#955;</a
+      ><a name="8682"
+      > </a
+      ><a name="8683" href="examples.benchmarks.binaryTreeBenchmark.html#8683" class="Bound"
+      >_</a
+      ><a name="8684"
+      > </a
+      ><a name="8685" class="Symbol"
+      >&#8594;</a
+      ><a name="8686"
+      >
+                      </a
+      ><a name="8709" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#14187" class="Function"
+      >delay&#738;ic</a
+      ><a name="8717"
+      > </a
+      ><a name="8718" class="Symbol"
+      >(</a
+      ><a name="8719" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#11298" class="InductiveConstructor"
+      >return&#738;ic</a
+      ><a name="8728"
+      > </a
+      ><a name="8729" class="Symbol"
+      >_)</a
+      ><a name="8731"
+      >
+                   </a
+      ><a name="8751" class="Symbol"
+      >}}}}</a
+      ><a name="8755"
+      >
+
+
+
+</a
+      ><a name="8759" href="examples.benchmarks.binaryTreeBenchmark.html#8759" class="Function"
+      >prgGen</a
+      ><a name="8765"
+      > </a
+      ><a name="8766" class="Symbol"
+      >:</a
+      ><a name="8767"
+      > </a
+      ><a name="8768" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="8769"
+      > </a
+      ><a name="8770" class="Symbol"
+      >&#8594;</a
+      ><a name="8771"
+      > </a
+      ><a name="8772" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#10943" class="Datatype"
+      >IO&#738;indcoind+</a
+      ><a name="8784"
+      > </a
+      ><a name="8785" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#16117" class="Function"
+      >ConsoleInterface&#738;</a
+      ><a name="8802"
+      > </a
+      ><a name="8803" href="examples.benchmarks.genericNativeHeap.html#1071" class="Function"
+      >heapInter</a
+      ><a name="8812"
+      > </a
+      ><a name="8813" href="Agda.Builtin.Size.html#210" class="Postulate"
+      >&#8734;</a
+      ><a name="8814"
+      > </a
+      ><a name="8815" class="Symbol"
+      >(&#955;</a
+      ><a name="8817"
+      > </a
+      ><a name="8818" href="examples.benchmarks.binaryTreeBenchmark.html#8818" class="Bound"
+      >_</a
+      ><a name="8819"
+      > </a
+      ><a name="8820" href="examples.benchmarks.binaryTreeBenchmark.html#8820" class="Bound"
+      >_</a
+      ><a name="8821"
+      > </a
+      ><a name="8822" class="Symbol"
+      >&#8594;</a
+      ><a name="8823"
+      > </a
+      ><a name="8824" href="src.Unit.html#32" class="Record"
+      >Unit</a
+      ><a name="8828" class="Symbol"
+      >)</a
+      ><a name="8829"
+      > </a
+      ><a name="8830" href="src.Unit.html#63" class="InductiveConstructor"
+      >unit</a
+      ><a name="8834"
+      > </a
+      ><a name="8835" href="Agda.Builtin.Nat.html#115" class="InductiveConstructor"
+      >zero</a
+      ><a name="8839"
+      >
+</a
+      ><a name="8840" href="examples.benchmarks.binaryTreeBenchmark.html#8759" class="Function"
+      >prgGen</a
+      ><a name="8846"
+      > </a
+      ><a name="8847" href="examples.benchmarks.binaryTreeBenchmark.html#8847" class="Bound"
+      >n</a
+      ><a name="8848"
+      > </a
+      ><a name="8849" class="Symbol"
+      >=</a
+      ><a name="8850"
+      > </a
+      ><a name="8851" href="examples.benchmarks.binaryTreeBenchmark.html#7339" class="Function"
+      >mainProg</a
+      ><a name="8859"
+      > </a
+      ><a name="8860" href="examples.benchmarks.binaryTreeBenchmark.html#8847" class="Bound"
+      >n</a
+      ><a name="8861"
+      >
+</a
+      ><a name="8862" class="Symbol"
+      >{-#</a
+      ><a name="8865"
+      > </a
+      ><a name="8866" class="Keyword"
+      >INLINE</a
+      ><a name="8872"
+      >  </a
+      ><a name="8874" href="examples.benchmarks.binaryTreeBenchmark.html#8759" class="Function"
+      >prgGen</a
+      ><a name="8880"
+      > </a
+      ><a name="8881" class="Symbol"
+      >#-}</a
+      ><a name="8884"
+      >
+
+</a
+      ><a name="8886" href="examples.benchmarks.binaryTreeBenchmark.html#8886" class="Function"
+      >prgGen'</a
+      ><a name="8893"
+      > </a
+      ><a name="8894" class="Symbol"
+      >:</a
+      ><a name="8895"
+      > </a
+      ><a name="8896" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="8897"
+      > </a
+      ><a name="8898" class="Symbol"
+      >&#8594;</a
+      ><a name="8899"
+      > </a
+      ><a name="8900" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#10596" class="Record"
+      >IO&#738;indcoind</a
+      ><a name="8911"
+      > </a
+      ><a name="8912" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#16117" class="Function"
+      >ConsoleInterface&#738;</a
+      ><a name="8929"
+      > </a
+      ><a name="8930" href="examples.benchmarks.genericNativeHeap.html#1071" class="Function"
+      >heapInter</a
+      ><a name="8939"
+      > </a
+      ><a name="8940" href="Agda.Builtin.Size.html#210" class="Postulate"
+      >&#8734;</a
+      ><a name="8941"
+      > </a
+      ><a name="8942" class="Symbol"
+      >(&#955;</a
+      ><a name="8944"
+      > </a
+      ><a name="8945" href="examples.benchmarks.binaryTreeBenchmark.html#8945" class="Bound"
+      >_</a
+      ><a name="8946"
+      > </a
+      ><a name="8947" href="examples.benchmarks.binaryTreeBenchmark.html#8947" class="Bound"
+      >_</a
+      ><a name="8948"
+      > </a
+      ><a name="8949" class="Symbol"
+      >&#8594;</a
+      ><a name="8950"
+      > </a
+      ><a name="8951" href="src.Unit.html#32" class="Record"
+      >Unit</a
+      ><a name="8955" class="Symbol"
+      >)</a
+      ><a name="8956"
+      > </a
+      ><a name="8957" href="src.Unit.html#63" class="InductiveConstructor"
+      >unit</a
+      ><a name="8961"
+      > </a
+      ><a name="8962" href="Agda.Builtin.Nat.html#115" class="InductiveConstructor"
+      >zero</a
+      ><a name="8966"
+      >
+</a
+      ><a name="8967" href="examples.benchmarks.binaryTreeBenchmark.html#8886" class="Function"
+      >prgGen'</a
+      ><a name="8974"
+      > </a
+      ><a name="8975" href="examples.benchmarks.binaryTreeBenchmark.html#8975" class="Bound"
+      >n</a
+      ><a name="8976"
+      > </a
+      ><a name="8977" class="DottedPattern Symbol"
+      >.</a
+      ><a name="8978" href="src.StateSizedIO.writingOOsUsingIOReaderMethods.html#10735" class="DottedPattern Field"
+      >forceIC</a
+      ><a name="8985"
+      > </a
+      ><a name="8986" class="Symbol"
+      >=</a
+      ><a name="8987"
+      > </a
+      ><a name="8988" href="examples.benchmarks.binaryTreeBenchmark.html#8759" class="Function"
+      >prgGen</a
+      ><a name="8994"
+      > </a
+      ><a name="8995" href="examples.benchmarks.binaryTreeBenchmark.html#8975" class="Bound"
+      >n</a
+      ><a name="8996"
+      >
+</a
+      ><a name="8997" class="Symbol"
+      >{-#</a
+      ><a name="9000"
+      > </a
+      ><a name="9001" class="Keyword"
+      >INLINE</a
+      ><a name="9007"
+      >  </a
+      ><a name="9009" href="examples.benchmarks.binaryTreeBenchmark.html#8886" class="Function"
+      >prgGen'</a
+      ><a name="9016"
+      > </a
+      ><a name="9017" class="Symbol"
+      >#-}</a
+      ><a name="9020"
+      >
+
+</a
+      ><a name="9022" href="examples.benchmarks.binaryTreeBenchmark.html#9022" class="Function"
+      >mainBinaryTranslatedViaNativeHeap'</a
+      ><a name="9056"
+      > </a
+      ><a name="9057" class="Symbol"
+      >:</a
+      ><a name="9058"
+      > </a
+      ><a name="9059" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="9060"
+      > </a
+      ><a name="9061" class="Symbol"
+      >&#8594;</a
+      ><a name="9062"
+      > </a
+      ><a name="9063" href="src.NativeIO.html#268" class="Postulate"
+      >NativeIO</a
+      ><a name="9071"
+      > </a
+      ><a name="9072" href="src.Unit.html#32" class="Record"
+      >Unit</a
+      ><a name="9076"
+      >
+</a
+      ><a name="9077" href="examples.benchmarks.binaryTreeBenchmark.html#9022" class="Function"
+      >mainBinaryTranslatedViaNativeHeap'</a
+      ><a name="9111"
+      > </a
+      ><a name="9112" href="examples.benchmarks.binaryTreeBenchmark.html#9112" class="Bound"
+      >n</a
+      ><a name="9113"
+      > </a
+      ><a name="9114" class="Symbol"
+      >=</a
+      ><a name="9115"
+      > </a
+      ><a name="9116" href="examples.benchmarks.genericNativeHeap.html#1683" class="Function"
+      >translate2NativeGen</a
+      ><a name="9135"
+      > </a
+      ><a name="9136" class="Symbol"
+      >(</a
+      ><a name="9137" href="examples.benchmarks.binaryTreeBenchmark.html#8886" class="Function"
+      >prgGen'</a
+      ><a name="9144"
+      > </a
+      ><a name="9145" href="examples.benchmarks.binaryTreeBenchmark.html#9112" class="Bound"
+      >n</a
+      ><a name="9146" class="Symbol"
+      >)</a
+      ><a name="9147"
+      >
+</a
+      ><a name="9148" class="Symbol"
+      >{-#</a
+      ><a name="9151"
+      > </a
+      ><a name="9152" class="Keyword"
+      >INLINE</a
+      ><a name="9158"
+      >  </a
+      ><a name="9160" href="examples.benchmarks.binaryTreeBenchmark.html#9022" class="Function"
+      >mainBinaryTranslatedViaNativeHeap'</a
+      ><a name="9194"
+      > </a
+      ><a name="9195" class="Symbol"
+      >#-}</a
+      ><a name="9198"
+      >
+
+
+</a
+      ><a name="9201" class="Keyword"
+      >postulate</a
+      ><a name="9210"
+      >
+  </a
+      ><a name="9213" href="examples.benchmarks.binaryTreeBenchmark.html#9213" class="Postulate"
+      >readMaybe&#8469;</a
+      ><a name="9223"
+      > </a
+      ><a name="9224" class="Symbol"
+      >:</a
+      ><a name="9225"
+      > </a
+      ><a name="9226" href="Agda.Builtin.String.html#165" class="Postulate"
+      >String</a
+      ><a name="9232"
+      > </a
+      ><a name="9233" class="Symbol"
+      >&#8594;</a
+      ><a name="9234"
+      > </a
+      ><a name="9235" href="Data.Maybe.Base.html#335" class="Datatype"
+      >Maybe</a
+      ><a name="9240"
+      > </a
+      ><a name="9241" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="9242"
+      >
+
+</a
+      ><a name="9244" class="Symbol"
+      >{-#</a
+      ><a name="9247"
+      > </a
+      ><a name="9248" class="Keyword"
+      >FOREIGN</a
+      ><a name="9255"
+      > GHC import qualified Text.Read </a
+      ><a name="9287" class="Symbol"
+      >#-}</a
+      ><a name="9290"
+      >
+</a
+      ><a name="9291" class="Symbol"
+      >{-#</a
+      ><a name="9294"
+      > </a
+      ><a name="9295" class="Keyword"
+      >COMPILE</a
+      ><a name="9302"
+      > GHC </a
+      ><a name="9307" href="examples.benchmarks.binaryTreeBenchmark.html#9213" class="Postulate"
+      >readMaybe&#8469;</a
+      ><a name="9317"
+      > = (\s -&gt; Text.Read.readMaybe (Data.Text.unpack s)) </a
+      ><a name="9369" class="Symbol"
+      >#-}</a
+      ><a name="9372"
+      >
+
+
+</a
+      ><a name="9375" href="examples.benchmarks.binaryTreeBenchmark.html#9375" class="Function"
+      >parseOneArg</a
+      ><a name="9386"
+      > </a
+      ><a name="9387" class="Symbol"
+      >:</a
+      ><a name="9388"
+      > </a
+      ><a name="9389" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="9393"
+      > </a
+      ><a name="9394" href="Agda.Builtin.String.html#165" class="Postulate"
+      >String</a
+      ><a name="9400"
+      > </a
+      ><a name="9401" class="Symbol"
+      >&#8594;</a
+      ><a name="9402"
+      > </a
+      ><a name="9403" href="Data.Maybe.Base.html#335" class="Datatype"
+      >Maybe</a
+      ><a name="9408"
+      >  </a
+      ><a name="9410" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="9411"
+      >
+</a
+      ><a name="9412" href="examples.benchmarks.binaryTreeBenchmark.html#9375" class="Function"
+      >parseOneArg</a
+      ><a name="9423"
+      > </a
+      ><a name="9424" class="Symbol"
+      >(</a
+      ><a name="9425" href="examples.benchmarks.binaryTreeBenchmark.html#9425" class="Bound"
+      >s&#8321;</a
+      ><a name="9427"
+      > </a
+      ><a name="9428" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="9429"
+      > </a
+      ><a name="9430" href="Agda.Builtin.List.html#117" class="InductiveConstructor"
+      >[]</a
+      ><a name="9432" class="Symbol"
+      >)</a
+      ><a name="9433"
+      > </a
+      ><a name="9434" class="Keyword"
+      >with</a
+      ><a name="9438"
+      > </a
+      ><a name="9439" href="examples.benchmarks.binaryTreeBenchmark.html#9213" class="Postulate"
+      >readMaybe&#8469;</a
+      ><a name="9449"
+      > </a
+      ><a name="9450" href="examples.benchmarks.binaryTreeBenchmark.html#9425" class="Bound"
+      >s&#8321;</a
+      ><a name="9452"
+      >
+</a
+      ><a name="9453" class="Symbol"
+      >...</a
+      ><a name="9456"
+      > </a
+      ><a name="9457" class="Symbol"
+      >|</a
+      ><a name="9458"
+      > </a
+      ><a name="9459" href="Data.Maybe.Base.html#373" class="InductiveConstructor"
+      >just</a
+      ><a name="9463"
+      > </a
+      ><a name="9464" href="examples.benchmarks.binaryTreeBenchmark.html#9464" class="Bound"
+      >num&#8321;</a
+      ><a name="9468"
+      > </a
+      ><a name="9469" class="Symbol"
+      >=</a
+      ><a name="9470"
+      > </a
+      ><a name="9471" href="Data.Maybe.Base.html#373" class="InductiveConstructor"
+      >just</a
+      ><a name="9475"
+      > </a
+      ><a name="9476" href="examples.benchmarks.binaryTreeBenchmark.html#9464" class="Bound"
+      >num&#8321;</a
+      ><a name="9480"
+      >
+</a
+      ><a name="9481" class="Symbol"
+      >...</a
+      ><a name="9484"
+      > </a
+      ><a name="9485" class="Symbol"
+      >|</a
+      ><a name="9486"
+      > </a
+      ><a name="9487" class="Symbol"
+      >_</a
+      ><a name="9488"
+      > </a
+      ><a name="9489" class="Symbol"
+      >=</a
+      ><a name="9490"
+      > </a
+      ><a name="9491" href="Data.Maybe.Base.html#403" class="InductiveConstructor"
+      >nothing</a
+      ><a name="9498"
+      >
+</a
+      ><a name="9499" href="examples.benchmarks.binaryTreeBenchmark.html#9375" class="Function"
+      >parseOneArg</a
+      ><a name="9510"
+      > </a
+      ><a name="9511" class="Symbol"
+      >_</a
+      ><a name="9512"
+      > </a
+      ><a name="9513" class="Symbol"
+      >=</a
+      ><a name="9514"
+      > </a
+      ><a name="9515" href="Data.Maybe.Base.html#403" class="InductiveConstructor"
+      >nothing</a
+      ><a name="9522"
+      >
+
+
+</a
+      ><a name="9525" href="examples.benchmarks.binaryTreeBenchmark.html#9525" class="Function"
+      >mainBinaryTranslatedViaNativeHeap</a
+      ><a name="9558"
+      > </a
+      ><a name="9559" class="Symbol"
+      >:</a
+      ><a name="9560"
+      > </a
+      ><a name="9561" href="src.NativeIO.html#268" class="Postulate"
+      >NativeIO</a
+      ><a name="9569"
+      > </a
+      ><a name="9570" href="src.Unit.html#32" class="Record"
+      >Unit</a
+      ><a name="9574"
+      >
+</a
+      ><a name="9575" href="examples.benchmarks.binaryTreeBenchmark.html#9525" class="Function"
+      >mainBinaryTranslatedViaNativeHeap</a
+      ><a name="9608"
+      > </a
+      ><a name="9609" class="Symbol"
+      >=</a
+      ><a name="9610"
+      >
+         </a
+      ><a name="9620" href="src.NativeIO.html#872" class="Postulate"
+      >getArgs</a
+      ><a name="9627"
+      > </a
+      ><a name="9628" href="src.NativeIO.html#339" class="Postulate Operator"
+      >native&gt;&gt;=</a
+      ><a name="9637"
+      > </a
+      ><a name="9638" class="Symbol"
+      >&#955;</a
+      ><a name="9639"
+      > </a
+      ><a name="9640" href="examples.benchmarks.binaryTreeBenchmark.html#9640" class="Bound"
+      >args</a
+      ><a name="9644"
+      > </a
+      ><a name="9645" class="Symbol"
+      >&#8594;</a
+      ><a name="9646"
+      >
+         </a
+      ><a name="9656" href="Function.html#2761" class="Function Operator"
+      >case</a
+      ><a name="9660"
+      > </a
+      ><a name="9661" class="Symbol"
+      >(</a
+      ><a name="9662" href="examples.benchmarks.binaryTreeBenchmark.html#9375" class="Function"
+      >parseOneArg</a
+      ><a name="9673"
+      > </a
+      ><a name="9674" href="examples.benchmarks.binaryTreeBenchmark.html#9640" class="Bound"
+      >args</a
+      ><a name="9678" class="Symbol"
+      >)</a
+      ><a name="9679"
+      > </a
+      ><a name="9680" href="Function.html#2761" class="Function Operator"
+      >of</a
+      ><a name="9682"
+      > </a
+      ><a name="9683" class="Symbol"
+      >&#955;</a
+      ><a name="9684"
+      > </a
+      ><a name="9685" class="Symbol"
+      >{</a
+      ><a name="9686"
+      >
+         </a
+      ><a name="9696" class="Symbol"
+      >(</a
+      ><a name="9697" href="Data.Maybe.Base.html#373" class="InductiveConstructor"
+      >just</a
+      ><a name="9701"
+      > </a
+      ><a name="9702" href="examples.benchmarks.binaryTreeBenchmark.html#9702" class="Bound"
+      >n</a
+      ><a name="9703" class="Symbol"
+      >)</a
+      ><a name="9704"
+      > </a
+      ><a name="9705" class="Symbol"
+      >&#8594;</a
+      ><a name="9706"
+      > </a
+      ><a name="9707" href="examples.benchmarks.binaryTreeBenchmark.html#9022" class="Function"
+      >mainBinaryTranslatedViaNativeHeap'</a
+      ><a name="9741"
+      > </a
+      ><a name="9742" href="examples.benchmarks.binaryTreeBenchmark.html#9702" class="Bound"
+      >n</a
+      ><a name="9743" class="Symbol"
+      >;</a
+      ><a name="9744"
+      >
+
+         </a
+      ><a name="9755" class="Symbol"
+      >_</a
+      ><a name="9756"
+      > </a
+      ><a name="9757" class="Symbol"
+      >&#8594;</a
+      ><a name="9758"
+      > </a
+      ><a name="9759" href="src.NativeIO.html#674" class="Postulate"
+      >nativePutStrLn</a
+      ><a name="9773"
+      > </a
+      ><a name="9774" class="String"
+      >&quot;need excactly one argument: the maxDepth of the tree&quot;</a
+      ><a name="9828"
+      >
+         </a
+      ><a name="9838" class="Symbol"
+      >}</a
+      ><a name="9839"
+      >
+</a
+      ><a name="9840" class="Symbol"
+      >{-#</a
+      ><a name="9843"
+      > </a
+      ><a name="9844" class="Keyword"
+      >INLINE</a
+      ><a name="9850"
+      >  </a
+      ><a name="9852" href="examples.benchmarks.binaryTreeBenchmark.html#9525" class="Function"
+      >mainBinaryTranslatedViaNativeHeap</a
+      ><a name="9885"
+      > </a
+      ><a name="9886" class="Symbol"
+      >#-}</a
+      ><a name="9889"
+      >
+
+
+</a
+      ><a name="9892" href="examples.benchmarks.binaryTreeBenchmark.html#9892" class="Function"
+      >main</a
+      ><a name="9896"
+      > </a
+      ><a name="9897" class="Symbol"
+      >=</a
+      ><a name="9898"
+      > </a
+      ><a name="9899" href="examples.benchmarks.binaryTreeBenchmark.html#9525" class="Function"
+      >mainBinaryTranslatedViaNativeHeap</a
+      ><a name="9932"
+      >
+</a
+      ><a name="9933" class="Symbol"
+      >{-#</a
+      ><a name="9936"
+      > </a
+      ><a name="9937" class="Keyword"
+      >INLINE</a
+      ><a name="9943"
+      > </a
+      ><a name="9944" href="examples.benchmarks.binaryTreeBenchmark.html#9892" class="Function"
+      >main</a
+      ><a name="9948"
+      > </a
+      ><a name="9949" class="Symbol"
+      >#-}</a
+      ><a name="9952"
+      >
+</a
+      ></pre
+    ></body
+  ></html
+>

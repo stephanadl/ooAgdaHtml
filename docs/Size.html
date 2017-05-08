@@ -9,164 +9,166 @@
      /></head
   ><body
   ><pre
-    ><a name="1"
-      >
-</a
-      ><a name="2" class="Comment"
-      >-- The Agda standard library</a
-      ><a name="30"
-      >
-</a
-      ><a name="31" class="Comment"
-      >--</a
-      ><a name="33"
-      >
-</a
-      ><a name="34" class="Comment"
-      >-- Sizes for Agda's sized types</a
-      ><a name="65"
-      >
-</a
-      ><a name="66" class="Comment"
+    ><a name="1" class="Comment"
       >------------------------------------------------------------------------</a
-      ><a name="138"
+      ><a name="73"
+      >
+</a
+      ><a name="74" class="Comment"
+      >-- The Agda standard library</a
+      ><a name="102"
+      >
+</a
+      ><a name="103" class="Comment"
+      >--</a
+      ><a name="105"
+      >
+</a
+      ><a name="106" class="Comment"
+      >-- Sizes for Agda's sized types</a
+      ><a name="137"
+      >
+</a
+      ><a name="138" class="Comment"
+      >------------------------------------------------------------------------</a
+      ><a name="210"
       >
 
 </a
-      ><a name="140" class="Keyword"
+      ><a name="212" class="Keyword"
       >module</a
-      ><a name="146"
+      ><a name="218"
       > </a
-      ><a name="147" href="Size.html#1" class="Module"
+      ><a name="219" href="Size.html#1" class="Module"
       >Size</a
-      ><a name="151"
+      ><a name="223"
       > </a
-      ><a name="152" class="Keyword"
+      ><a name="224" class="Keyword"
       >where</a
-      ><a name="157"
+      ><a name="229"
       >
 
 </a
-      ><a name="159" class="Keyword"
+      ><a name="231" class="Keyword"
       >open</a
-      ><a name="163"
+      ><a name="235"
       > </a
-      ><a name="164" class="Keyword"
+      ><a name="236" class="Keyword"
       >import</a
-      ><a name="170"
+      ><a name="242"
       > </a
-      ><a name="171" href="Agda.Builtin.Size.html#1" class="Module"
+      ><a name="243" href="Agda.Builtin.Size.html#1" class="Module"
       >Agda.Builtin.Size</a
-      ><a name="188"
+      ><a name="260"
       > </a
-      ><a name="189" class="Keyword"
+      ><a name="261" class="Keyword"
       >public</a
-      ><a name="195"
+      ><a name="267"
       >
   </a
-      ><a name="198" class="Keyword"
+      ><a name="270" class="Keyword"
       >renaming</a
-      ><a name="206"
+      ><a name="278"
       > </a
-      ><a name="207" class="Symbol"
+      ><a name="279" class="Symbol"
       >(</a
-      ><a name="208"
+      ><a name="280"
       > </a
-      ><a name="209" href="Agda.Builtin.Size.html#83" class="Function"
+      ><a name="281" href="Agda.Builtin.Size.html#83" class="Function"
       >SizeU</a
-      ><a name="214"
+      ><a name="286"
       > </a
-      ><a name="215" class="Symbol"
+      ><a name="287" class="Symbol"
       >to</a
-      ><a name="217"
+      ><a name="289"
       > </a
-      ><a name="218" href="Agda.Builtin.Size.html#83" class="Function"
+      ><a name="290" href="Agda.Builtin.Size.html#83" class="Function"
       >SizeUniv</a
-      ><a name="226"
+      ><a name="298"
       > </a
-      ><a name="227" class="Symbol"
+      ><a name="299" class="Symbol"
       >)</a
-      ><a name="228"
+      ><a name="300"
       > </a
-      ><a name="229" class="Comment"
+      ><a name="301" class="Comment"
       >--  sort SizeUniv</a
-      ><a name="246"
+      ><a name="318"
       >
   </a
-      ><a name="249" class="Keyword"
+      ><a name="321" class="Keyword"
       >using</a
-      ><a name="254"
+      ><a name="326"
       >    </a
-      ><a name="258" class="Symbol"
+      ><a name="330" class="Symbol"
       >(</a
-      ><a name="259"
+      ><a name="331"
       > </a
-      ><a name="260" href="Agda.Builtin.Size.html#114" class="Postulate"
+      ><a name="332" href="Agda.Builtin.Size.html#114" class="Postulate"
       >Size</a
-      ><a name="264"
+      ><a name="336"
       >                </a
-      ><a name="280" class="Comment"
+      ><a name="352" class="Comment"
       >--  Size   : SizeUniv</a
-      ><a name="301"
+      ><a name="373"
       >
            </a
-      ><a name="313" class="Symbol"
+      ><a name="385" class="Symbol"
       >;</a
-      ><a name="314"
+      ><a name="386"
       > </a
-      ><a name="315" href="Agda.Builtin.Size.html#146" class="Postulate Operator"
+      ><a name="387" href="Agda.Builtin.Size.html#146" class="Postulate Operator"
       >Size&lt;_</a
-      ><a name="321"
+      ><a name="393"
       >              </a
-      ><a name="335" class="Comment"
+      ><a name="407" class="Comment"
       >--  Size&lt;_ : Size &#8594; SizeUniv</a
-      ><a name="363"
+      ><a name="435"
       >
            </a
-      ><a name="375" class="Symbol"
+      ><a name="447" class="Symbol"
       >;</a
-      ><a name="376"
+      ><a name="448"
       > </a
-      ><a name="377" href="Agda.Builtin.Size.html#178" class="Postulate Operator"
+      ><a name="449" href="Agda.Builtin.Size.html#178" class="Postulate Operator"
       >&#8593;_</a
-      ><a name="379"
+      ><a name="451"
       > </a
-      ><a name="380" class="Symbol"
+      ><a name="452" class="Symbol"
       >)</a
-      ><a name="381"
+      ><a name="453"
       >                </a
-      ><a name="397" class="Comment"
+      ><a name="469" class="Comment"
       >--  &#8593;_     : Size &#8594; Size</a
-      ><a name="421"
+      ><a name="493"
       >
   </a
-      ><a name="424" class="Keyword"
+      ><a name="496" class="Keyword"
       >renaming</a
-      ><a name="432"
+      ><a name="504"
       > </a
-      ><a name="433" class="Symbol"
+      ><a name="505" class="Symbol"
       >(</a
-      ><a name="434"
+      ><a name="506"
       > </a
-      ><a name="435" href="Agda.Builtin.Size.html#210" class="Postulate"
+      ><a name="507" href="Agda.Builtin.Size.html#210" class="Postulate"
       >&#969;</a
-      ><a name="436"
+      ><a name="508"
       > </a
-      ><a name="437" class="Symbol"
+      ><a name="509" class="Symbol"
       >to</a
-      ><a name="439"
+      ><a name="511"
       > </a
-      ><a name="440" href="Agda.Builtin.Size.html#210" class="Postulate"
+      ><a name="512" href="Agda.Builtin.Size.html#210" class="Postulate"
       >&#8734;</a
-      ><a name="441"
+      ><a name="513"
       > </a
-      ><a name="442" class="Symbol"
+      ><a name="514" class="Symbol"
       >)</a
-      ><a name="443"
+      ><a name="515"
       >           </a
-      ><a name="454" class="Comment"
+      ><a name="526" class="Comment"
       >--  &#8734;      : Size</a
-      ><a name="471"
+      ><a name="543"
       >
 </a
       ></pre
